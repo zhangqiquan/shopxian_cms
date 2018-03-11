@@ -1,0 +1,26 @@
+.tagInput_img {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	height:auto;
+	overflow: hidden;
+}
+.tagInput_img .tagInput_img_left {
+	width: 70%;
+	float: left;
+	height:auto;
+	overflow: hidden;
+}
+.tagInput_img .tagInput_img_right {
+	float: right;
+	width: 25%;
+	height: auto;
+	overflow: hidden;
+	position: relative;
+}
+.tagInput_img .tagInput_img_yulan {
+	float: left;
+	width: 100px;
+	height:auto;
+	overflow: hidden;
+}

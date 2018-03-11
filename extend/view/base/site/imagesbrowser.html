@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>文件上传选择demo</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ROOT_PATH__/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/css/demo/webuploader-demo.min.css">
+    <link href="__ROOT_PATH__/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/plugins/jsTree/style.min.css" rel="stylesheet">
+	<style>
+		*{
+			list-style:none;
+		}
+		.file_list{
+			width: 80%; 
+			float: left;
+		}
+	.file_list ul .file_list_li {
+		float: left;
+		width: 120px;
+		height: 120px;
+		overflow: hidden;
+		padding: 6px;
+		border: 2px solid #FFFFFF;
+		cursor:pointer;
+		padding: 0px;
+		position: relative;
+	}
+		.file_list ul .file_list_li:hover {
+		border: 2px solid #F55;
+	}
+		.file_list ul .file_list_li p {
+		position:absolute;
+		bottom: 0px;
+		background: #000;
+		color: #fff;	
+		width: 100%;
+		opacity: 0.3;
+		text-align: center;	
+		padding: 0px;	
+	}
+		.file_list_page{
+			width: 100%;
+			float: right;
+			text-align: center;
+			margin-top: 20px;
+		}
+		.file-name{
+			width: 200px; height: 80px; overflow: hidden;
+		}
+    </style>
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeIn">
+		<div class="col-sm-12">
+			<div class="ibox float-e-margins">
+
+				  <div class="col-sm-12">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li class="active" <{if $upload_num < 1}>style="display:none;"<{/if}>><a id="native" data-toggle="tab" href="#tab-1" aria-expanded="false"> 本地上传</a>
+							</li>
+							<li class="<{if $upload_num < 1}>active<{/if}>"><a data-toggle="tab" href="#tab-2" aria-expanded="true">图片空间</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab-1" class="tab-pane<{if $upload_num > 0}> active<{/if}>">
+								<div class="panel-body">
+									<!---------------------->
+									<div class="page-container">
+										<p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮，来体验此demo.</p>
+										<div id="uploader" class="wu-example">
+											<div class="queueList">
+												<div id="dndArea" class="placeholder">
+													<div id="filePicker"></div>
+													<p>或将照片拖到这里，单次最多可选<{$upload_num}>张</p>
+												</div>
+											</div>
+											<div class="statusBar" style="display:none;">
+												<div class="progress">
+													<span class="text">0%</span>
+													<span class="percentage"></span>
+												</div>
+												<div class="info"></div>
+												<div class="btns">
+													<div id="filePicker2"></div>
+													<div class="uploadBtn">开始上传</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--------------------->
+								</div>
+							</div>
+							<div id="tab-2" class="tab-pane<{if $upload_num < 1}> active<{/if}>">
+								<div class="panel-body">
+
+									<!---------------------->
+<!--
+										<div id="jstree1"  style="width: 16%; float: left;">
+											<ul>
+												<li class="jstree-open">我的图片
+												</li>
+											</ul>
+
+										</div>
+-->
+										<!------------文件列表------------->
+										<div class="col-sm-10 animated fadeInRight" style="width: 100%;">
+											<div class="row">
+												<div class="col-sm-12" id="show_file_list">
+													<div class="file-box">
+														<div class="file">
+															<a href="file_manager.html#">
+																<span class="corner"></span>
+
+																<div class="icon">
+																	<i class="fa fa-file"></i>
+																</div>
+																<div class="file-name">
+																	Document_2014.doc
+																	<br/>
+																	<small>添加时间：2014-10-13</small>
+																</div>
+															</a>
+														</div>
+
+													</div>
+
+												</div>
+												<div class="classpage" style="text-align: center;" id="classpage">123456</div>
+											</div>
+										</div>
+										<!-----------文件列表-------------->
+
+									<!--------------------->
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ROOT_PATH__/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript">
+        var BASE_URL = '/';
+		var UPLOAD_SERVER_PATH='<{url link="files/Imgupload/submit"}>';
+		<{if $submit_url}>
+			UPLOAD_SERVER_PATH="<{$submit_url}>";
+		<{/if}>
+		var DOMAIN='__ROOT_PATH__/';
+		var UPLOAD_STATUS="var index = parent.layer.getFrameIndex(window.name);parent.$('.btn-refresh').click();parent.layer.close(index);";	
+    </script>
+    <script src="__ROOT_PATH__/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="__ROOT_PATH__/static/js/plugins/jsTree/jstree.min.js"></script>
+    <script src="__ROOT_PATH__/static/layui-v2.1.1/layui/layui.all.js"></script>
+    <style>
+        .jstree-open>.jstree-anchor>.fa-folder:before{content:"\f07c"}.jstree-default .jstree-icon.none{width:0}
+    </style>
+	<script>
+		jQuery(function() {
+		function e(e) {
+			var a = o('<li id="' + e.id + '"><p class="title">' + e.name + '</p><p class="imgWrap"></p><p class="progress"><span></span></p></li>'),
+			s = o('<div class="file-panel"><span class="cancel">删除</span><span class="rotateRight">向右旋转</span><span class="rotateLeft">向左旋转</span></div>').appendTo(a),
+			i = a.find("p.progress span"),
+			t = a.find("p.imgWrap"),
+			r = o('<p class="error"></p>'),
+			d = function(e) {
+				switch (e) {
+				case "exceed_size":
+					text = "文件大小超出";
+					break;
+				case "interrupt":
+					text = "上传暂停";
+					break;
+				default:
+					text = "上传失败，请重试"
+				}
+				r.text(text).appendTo(a)
+			};
+			"invalid" === e.getStatus() ? d(e.statusText) : (t.text("预览中"), n.makeThumb(e,
+			function(e, a) {
+				if (e) return void t.text("不能预览");
+				var s = o('<img src="' + a + '">');
+				t.empty().append(s)
+			},
+			v, b), w[e.id] = [e.size, 0], e.rotation = 0),
+			e.on("statuschange",
+			function(t, n) {
+				"progress" === n ? i.hide().width(0) : "queued" === n && (a.off("mouseenter mouseleave"), s.remove()),
+				"error" === t || "invalid" === t ? (console.log(e.statusText), d(e.statusText), w[e.id][1] = 1) : "interrupt" === t ? d("interrupt") : "queued" === t ? w[e.id][1] = 0 : "progress" === t ? (r.remove(), i.css("display", "block")) : "complete" === t && a.append('<span class="success"></span>'),
+				a.removeClass("state-" + n).addClass("state-" + t)
+			}),
+			a.on("mouseenter",
+			function() {
+				s.stop().animate({
+					height: 30
+				})
+			}),
+			a.on("mouseleave",
+			function() {
+				s.stop().animate({
+					height: 0
+				})
+			}),
+			s.on("click", "span",
+			function() {
+				var a, s = o(this).index();
+				switch (s) {
+				case 0:
+					return void n.removeFile(e);
+				case 1:
+					e.rotation += 90;
+					break;
+				case 2:
+					e.rotation -= 90
+				}
+				x ? (a = "rotate(" + e.rotation + "deg)", t.css({
+					"-webkit-transform": a,
+					"-mos-transform": a,
+					"-o-transform": a,
+					transform: a
+				})) : t.css("filter", "progid:DXImageTransform.Microsoft.BasicImage(rotation=" + ~~ (e.rotation / 90 % 4 + 4) % 4 + ")")
+			}),
+			a.appendTo(l)
+		}
+		function a(e) {
+			var a = o("#" + e.id);
+			delete w[e.id],
+			s(),
+			a.off().find(".file-panel").off().end().remove()
+		}
+		function s() {
+			var e, a = 0,
+			s = 0,
+			t = f.children();
+			o.each(w,
+			function(e, i) {
+				s += i[0],
+				a += i[0] * i[1]
+			}),
+			e = s ? a / s: 0,
+			t.eq(0).text(Math.round(100 * e) + "%"),
+			t.eq(1).css("width", Math.round(100 * e) + "%"),
+			i()
+		}
+		function i() {
+			var e, a = "";
+			"ready" === k ? a = "选中" + m + "张图片，共" + WebUploader.formatSize(h) + "。": "confirm" === k ? (e = n.getStats(), e.uploadFailNum && (a = "已成功上传" + e.successNum + "张照片至XX相册，" + e.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>')) : (e = n.getStats(), a = "共" + m + "张（" + WebUploader.formatSize(h) + "），已上传" + e.successNum + "张", e.uploadFailNum && (a += "，失败" + e.uploadFailNum + "张")),
+			p.html(a)
+		}
+		function t(e) {
+			var eval_str='alert("上传成功")';
+			if (typeof(UPLOAD_STATUS)!="undefined") {
+				if(UPLOAD_STATUS=='parent/parent'){
+					eval_str='parent.parent.window.location.reload()';
+				}else if(UPLOAD_STATUS=='parent'){
+					eval_str='parent.window.location.reload()';
+				}else if(UPLOAD_STATUS=='this'){
+					eval_str='window.location.reload()';
+				}else{
+					eval_str=UPLOAD_STATUS;
+				}
+			}	
+			var a;
+			if (e !== k) {
+				switch (c.removeClass("state-" + k), c.addClass("state-" + e), k = e) {
+				case "pedding":
+					u.removeClass("element-invisible"),
+					l.parent().removeClass("filled"),
+					l.hide(),
+					d.addClass("element-invisible"),
+					n.refresh();
+					break;
+				case "ready":
+					u.addClass("element-invisible"),
+					o("#filePicker2").removeClass("element-invisible"),
+					l.parent().addClass("filled"),
+					l.show(),
+					d.removeClass("element-invisible"),
+					n.refresh();
+					break;
+				case "uploading":
+					o("#filePicker2").addClass("element-invisible"),
+					f.show(),
+					c.text("暂停上传");
+					break;
+				case "paused":
+					f.show(),
+					c.text("继续上传");
+					break;
+				case "confirm":
+					if (f.hide(), c.text("开始上传").addClass("disabled"), a = n.getStats(), a.successNum && !a.uploadFailNum) return void t("finish");
+					break;
+				case "finish":
+					a = n.getStats(),
+					eval(eval_str)
+					//a.successNum ? alert("上传成功") : (k = "done", location.reload())
+				}
+				i()
+			}
+		}
+		var n, o = jQuery,
+		r = o("#uploader"),
+		l = o('<ul class="filelist"></ul>').appendTo(r.find(".queueList")),
+		d = r.find(".statusBar"),
+		p = d.find(".info"),
+		c = r.find(".uploadBtn"),
+		u = r.find(".placeholder"),
+		f = d.find(".progress").hide(),
+		m = 0,
+		h = 0,
+		g = window.devicePixelRatio || 1,
+		v = 110 * g,
+		b = 110 * g,
+		k = "pedding",
+		w = {},
+		x = function() {
+			var e = document.createElement("p").style,
+			a = "transition" in e || "WebkitTransition" in e || "MozTransition" in e || "msTransition" in e || "OTransition" in e;
+			return e = null,
+			a
+		} ();
+		if (!WebUploader.Uploader.support()) throw alert("Web Uploader 不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器"),
+		new Error("WebUploader does not support the browser you are using.");
+		var multiple=false;	
+		<{if $upload_num >1}>multiple=true;<{/if}>	
+		n = WebUploader.create({
+			pick: {
+				id: "#filePicker",
+				label: "点击选择图片",				
+				multiple: multiple,
+			},
+			dnd: "#uploader .queueList",
+			paste: document.body,
+			accept: {
+				title: "Images",
+				extensions: "gif,jpg,jpeg,bmp,png",
+				mimeTypes: "image/*"
+			},
+			swf: BASE_URL + "/Uploader.swf",
+			disableGlobalDnd: !0,
+			chunked: !0,
+			server: UPLOAD_SERVER_PATH,
+			fileNumLimit: <{$upload_num}>,
+			fileSizeLimit: 5242880,
+			fileSingleSizeLimit: 1048576
+		}),
+		n.addButton({
+			id: "#filePicker2",
+			label: "继续添加"
+		}),
+		n.onUploadProgress = function(e, a) {
+			var i = o("#" + e.id),
+			t = i.find(".progress span");
+			t.css("width", 100 * a + "%"),
+			w[e.id][1] = a,
+			s()
+		},
+		n.onFileQueued = function(a) {
+			m++,
+			h += a.size,
+			1 === m && (u.addClass("element-invisible"), d.show()),
+			e(a),
+			t("ready"),
+			s()
+		},
+		n.onFileDequeued = function(e) {
+			m--,
+			h -= e.size,
+			m || t("pedding"),
+			a(e),
+			s()
+		},
+		n.on("all",
+		function(e) {
+			switch (e) {
+			case "uploadFinished":
+				t("confirm");
+				break;
+			case "startUpload":
+				t("uploading");
+				break;
+			case "stopUpload":
+				t("paused")
+			}
+		}),
+
+		n.onError = function(e) {
+			alert("Eroor: " + e)
+		},
+		n.on( 'uploadSuccess', function( file,data ) {
+			if(data.status !=1){
+				alert("上传失败");
+				return false;
+			}
+			console.log(data);
+			if('<{$dom_id}>'!=''){
+				$("#<{$dom_id}>",parent.document).val(data.path);
+			}else{
+				<{if condition="isset($uploadSuccScript)"}>
+					<{$uploadSuccScript}>
+					<{else}>
+					console.log(data);
+					alert("上传成功后的业务代码待开发！！！\n请写入模版将模版数据复制给一个模版变量名为uploadSuccScript如果用不到请分配空值,\n php代码部分：\n"+'$this->assign("uploadSuccScript", $this->showTpl("uploadsuccscript"));'+"\n模版代码部分请根据 data对象中值进行业务逻辑数据,\n可以使用console.log(data);//查看选择的数据或者直接查看控制台");
+					return false;
+				<{/if}>
+			}
+		}),
+		c.on("click",
+		function() {
+			return o(this).hasClass("disabled") ? !1 : void("ready" === k ? n.upload() : "paused" === k ? n.upload() : "uploading" === k && n.stop())
+		}),
+		p.on("click", ".retry",
+		function() {
+			n.retry()
+		}),
+		p.on("click", ".ignore",
+		function() {
+			alert("todo")
+		}),
+		c.addClass("state-" + k),
+		s()
+	});
+
+	</script>
+    
+    <script>
+	function ajax_getFileList(url){
+		var index = layer.load(1, {
+		  shade: [0.1,'#fff'] //0.1透明度的白色背景
+		});
+		$.get(url,'',function(data){
+		layer.close(index);	
+		var html='';
+		var data=eval("("+data+")");
+		for(i in data.list.data){
+			var thisdata=data.list.data[i];
+			html+='<div class="file-box"><div class="file"><a href="javascript::void(0);"><span class="corner"></span><div class="image"><img alt="image" class="img-responsive" src="__ROOT_PATH__/'+thisdata.path+'" data-json=\''+JSON.stringify(thisdata)+'\'></div><div class="file-name">'+thisdata.title+'</div></a></div></div>';
+		}
+			$("#show_file_list").html(html);
+			$(".classpage").html(data.page);
+			ajax_page();
+			preview();
+		});
+	}	
+	
+		
+	function ajax_page(){
+		var page_all_A=document.getElementById("classpage").getElementsByTagName("a");
+		for(var i=0;i<page_all_A.length;i++){
+			page_all_A[i].onclick=function(){
+				ajax_getFileList(this.href);
+				return false;
+			}
+		}
+	}	
+	ajax_getFileList('');	
+	function preview(){
+		$(".img-responsive").click(function(e){
+			var imgObj=$(this).data("json");
+			//如果有传过来 id 它的优先级高于业务代码待开发 (业务单一的情况下)
+			if('<{$dom_id}>'!=''){
+				$("#<{$dom_id}>",parent.document).val(imgObj.path);
+				<{if $select_num eq 1}>
+					parent.layer.closeAll();
+				<{/if}>
+			}else{
+				<{if condition="isset($selectScript)"}>
+					<{$selectScript}>
+					<{else}>
+					console.log(imgObj);
+					alert("选择成功后业务代码待开发(支持单选和多选)！！！\n请写入模版将模版数据复制给一个模版变量名为selectScript如果用不到请分配空值,\n php代码部分：\n"+'$this->assign("selectScript", $this->showTpl("selectscript"));'+"\n模版代码部分请根据 imgObj对象中值进行业务逻辑数据,\n可以使用console.log(imgObj);//查看选择的数据或者直接查看控制台");
+					return false;
+				<{/if}>
+			}			
+			return false;
+		})
+	}						   
+								   
+    </script>
+
+</body>
+</html>

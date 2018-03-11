@@ -1,0 +1,295 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>秀仙智能列表</title> 
+  <meta name="renderer" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all"> 
+  <link href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/iconfont.css" rel="stylesheet" type="text/css" /> 
+    <link href="__ROOT_PATH__/static/js/jquerytree/saas.css" rel="stylesheet" type="text/css" /> 
+    <script language="JavaScript" src="__ROOT_PATH__/static/js/jquerytree/jquery.js"></script> 
+    <script language="JavaScript" src="__ROOT_PATH__/static/js/jquerytree/saas.js"></script> 
+         <style> 
+             body{ 
+                 background: #fff; 
+             } 
+            #layui-icon-menu-lists{ 
+                float: right; 
+                cursor:pointer; 
+                position: absolute; 
+                right: 0px; 
+            } 
+            #set_show:hover{ 
+                color: #f33; 
+            } 
+            #window_reload:hover{ 
+                color: #f33; 
+            } 
+          #layui-menu_search{ 
+                  position: absolute; width: 25%; right: 5px; display: inline-block; text-align: right;min-width: 350px; 
+          } 
+          <{if condition="isset($arguments['fieldHeight'])"}> 
+          .layui-table-body .layui-table-cell { 
+                  height: <{$arguments['fieldHeight']}>; 
+                  line-height: <{$arguments['fieldHeight']}>; 
+                } 
+          <{/if}> 
+          .finder_detail{ 
+              cursor:pointer; 
+          } 
+          .layui-table-body .alert_iframe{ 
+              display:inline; 
+              padding:5px; 
+          } 
+          .layui-table-body .delconfirm_row{ 
+              display:inline; 
+              padding:5px; 
+          } 
+        </style> 
+    </head> 
+    <body> 
+     <fieldset class="layui-elem-field layui-field-title"> 
+        <legend><{$arguments.title}></legend> 
+</fieldset> 
+<div class="layui-tab"> 
+ <ul class="layui-tab-title"> 
+    <{if condition='isset($arguments["tag"])&&$arguments["tag"]&&is_array($arguments["tag"])'}> 
+  <{foreach name="arguments.tag" item="vo" key="k" }> 
+   <li <?php if(input('status','all')==$k.''){echo  ' class="layui-this"';$vo['url']='javascript:void(0);';}?>><a href="<{$vo.url}>"><{$vo.title}></a></li> 
+  <{/foreach}> 
+  <{else}> 
+  <li class="layui-this">全部</li> 
+  <{/if}> 
+  <b id="layui-icon-menu-lists"> 
+   <i class="layui-icon" id="window_reload" title="刷新" onclick="window.location.reload();">&nbsp;  &#x1002;  &nbsp;</i>    
+  </b> 
+ </ul> 
+ <div class="layui-tab-content"> 
+  <div class="layui-btn-group demoTable"> 
+                                                <{if condition="isset($arguments['actions'])&&$arguments['actions']&&is_array($arguments['actions'])"}> 
+         <{foreach name="arguments.actions" item="vo"  }> 
+   <button class="layui-btn layui-btn-primary <{$vo.iclass}>"  data-type="getCheckData" <{if $vo.type=='window_href'}>onclick="javascript:window.location='<{$vo.url}>'"<{/if}> data-url="<{$vo.url}>" <{if condition="isset($vo['width'])"}>data-width="<{$vo.width}>"<{/if}>  <{if condition="isset($vo['height'])"}> data-height="<{$vo.height}>" <{/if}>data-title="<{$vo.val}>" ><i class="layui-icon"><{if condition="isset($vo['icon'])"}><{$vo.icon}><{/if}></i> <{$vo.val}></button> 
+   <{/foreach}> 
+                                                <{/if}> 
+         <div id="layui-menu_search"> 
+   </div> 
+  </div>  
+                                <hr /> 
+  <div class="example table-responsive" id="examplew100" style="padding:10px 10px; background:#fff;">             
+                                        <ul id="browser"  class="treeview filetree"> 
+                                            <{if $tree_list_data eq '[]'}><h3><br /><br />无数据...</h3><{/if}> 
+                                        </ul> 
+                                </div> 
+ </div> 
+</div>    
+         
+    <script src="__ROOT_PATH__/static/layui-v2.1.1/layui/layui.all.js"></script> 
+    <script> 
+  
+function alert_iframe(obj){ 
+ var geturl=obj.getAttribute('data-url'); 
+ var title="编辑栏目"; 
+                 if(obj.getAttribute("data-title")!=undefined)title=obj.getAttribute("data-title"); 
+                layer.open({ 
+                    type: 2, 
+                    area: ['98%', '98%'], 
+                    fix: false, 
+                    maxmin: true, 
+                    shadeClose: true, 
+                    shade:0.4, 
+                    title: title, 
+                    content: geturl 
+                }); 
+}  
+function del_row(obj){ 
+ var dataurl=obj.getAttribute('data-url'); 
+ 
+ parent.layer.confirm('确定删除栏目？', { 
+  btn: ['是','否'], 
+  shade: false 
+ }, function(){ 
+                                var index = layer.load(1, { 
+                                    shade: [0.1,'#fff'] 
+                                  }); 
+  $.get(dataurl,'',function(data){ 
+                                                layer.closeAll();  
+   data=eval('('+data+')'); 
+   if(data.code==1){ 
+    parent.layer.msg(data.msg,{icon: 1}); 
+                                                                window.location.reload(); 
+   }else{ 
+    parent.layer.msg(data.msg,{anim: 6,icon: 2}); 
+   } 
+  }).error(function(error){ 
+                                                layer.closeAll(); 
+                                                console.log(error);     
+                                                alert("出错啦!!!\n"+error.statusText); 
+                               }); 
+ }, function(){ 
+  parent.layer.msg('操作取消',{icon: 2}); 
+ }); 
+}  
+var edit_url='<{$arguments.edit_url}>'; 
+var del_url='<{url link="finderDel"  vars="model=$model" suffix='true' domain='true'}>'; 
+var list_url='<{$arguments.list_url}>'; 
+$(function(){ 
+    var data=<{$tree_list_data}>; 
+    $('#browser').showTree({data:data,callback:function(t){ 
+   
+    }}); 
+     
+}); 
+</script> 
+ 
+<script> 
+             
+jQuery.fn.extend({ 
+  showTree:function(opt){ 
+   opt=opt||{}; 
+   var showDataObj=$(this).prev(); 
+   var fn,bindings,title,callbackAny,inputFlag; 
+   var _self=this; 
+   var dataList=opt.data||{}; 
+   opt.callback?fn=opt.callback:fn=function(t,o){ 
+    showDataObj.val($(t).html()); 
+    $.rmwin(); 
+   }; 
+   opt.bindings?bindings=opt.bindings:null; 
+   opt.callbackAny?callbackAny=opt.callbackAny:callbackAny=false; 
+   opt.inputFlag?inputFlag=opt.inputFlag:inputFlag=false; 
+   opt.title?title=opt.title:title='选择栏目'; 
+   var width=opt.width||210; 
+   var height=opt.height||460; 
+   var funcBefore=opt.before||function(){}; 
+   if(opt.alert=='alert'){ 
+     $(this).click(function(){ 
+    var html='<div  style="height:450px;width:200px;overflow:auto"><ul class="treeview filetree" id="showTreeSelectParent">'; 
+    $.each(dataList,function(i,n){ 
+     if(n.tree_parent_id==0){ 
+      html+='<li class="expandable"><div class="hitarea"></div><span class="folder" val="'+n.id+'" loaded="false">'+n.tree_title+'</span><span><a href="javascript:void(0);" class="alert_iframe"   onclick="alert_iframe(this);"  data-url="'+list_url+'<?php echo config("pathinfo_depr"); ?>tree_id<?php echo config("pathinfo_depr"); ?>'+n.id+'.<?php echo config("url_html_suffix"); ?>" data-title="内容管理&nbsp;&nbsp;'+n.source_tree_title+'">内容管理</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="alert_iframe"  onclick="alert_iframe(this);"  data-url="'+edit_url+'?parent_id='+n.id+'" data-title="新增子类">新增子类</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="alert_iframe" data-url="'+edit_url+'?id='+n.id+'" data-height="50%" data-width="50%" href="javascript:void(0);" >编辑栏目</a>&nbsp;|&nbsp;<a href="javascript:void(0);"  class="delconfirm_row" onclick="del_row(this);" data-url="'+del_url+'?id='+n.id+'" data-height="50%" data-width="50%" href="javascript:void(0);"  >删除栏目</a></span></li>'; 
+     } 
+    }); 
+    html+='</ul></div>'; 
+    html=$(html); 
+    var win=$.win({title:title,html:html,width:width,height:height}); 
+    initTree($('#showTreeSelectParent')); 
+    funcBefore(html); 
+   }); 
+  } 
+  else{ 
+   $.each(dataList,function(i,n){ 
+    if(n.tree_parent_id==0){ 
+     $(_self).append('<li class="expandable"><div class="hitarea"></div><span class="folder" val="'+n.id+'" loaded="false">'+n.tree_title+'</span><span><a href="javascript:void(0);" class="alert_iframe"   onclick="alert_iframe(this);"  data-url="'+list_url+'<?php echo config("pathinfo_depr"); ?>tree_id<?php echo config("pathinfo_depr"); ?>'+n.id+'.<?php echo config("url_html_suffix"); ?>" data-title="内容管理&nbsp;&nbsp;'+n.source_tree_title+'">内容管理</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="alert_iframe"   onclick="alert_iframe(this);"  data-url="'+edit_url+'?parent_id='+n.id+'" data-title="新增子类">新增子类</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="alert_iframe"   onclick="alert_iframe(this);"  data-url="'+edit_url+'?id='+n.id+'" data-height="50%" data-width="50%" href="javascript:void(0);" >编辑栏目</a>&nbsp;|&nbsp;<a href="javascript:void(0);"  class="delconfirm_row"  onclick="del_row(this);" data-url="'+del_url+'?id='+n.id+'" data-height="50%" data-width="50%" href="javascript:void(0);"  >删除栏目</a></span></li>'); 
+    } 
+   }); 
+   initTree($(_self)); 
+  } 
+  if(!inputFlag){ 
+    showDataObj.focus(function(){ 
+     $(this).next().click(); 
+    }); 
+   } 
+   function initTree(t){ 
+   t.find('span[loaded=false]').each(function(){ 
+    if(bindings){ 
+     $(this).unbind('contextmenu').contextMenu(this,'myTreeMenuGroup',{ 
+      bindings:bindings, 
+      clickFlag:true 
+     }); 
+    } 
+     
+    var id=$(this).attr('val'); 
+    var flag=false; 
+    
+    $.each(dataList,function(i,n){ 
+     if(n.tree_parent_id==id){ 
+      flag=true; 
+      return false; 
+     } 
+    }); 
+    
+    if(!flag){ 
+     $(this).unbind('click').bind('click',function(){ 
+      fn(this,_self); 
+     }).attr('loaded','true').removeClass('folder').addClass('file'); 
+     if($(this).parent().next().html()){ 
+      $(this).parent().removeClass(); 
+     } 
+     else{ 
+      $(this).parent().removeClass().addClass('last'); 
+     } 
+     return true; 
+    } 
+     
+    $(this).bind('click',this,addChindList).toggle(function(){ 
+     var o=$(this).parent(); 
+     o.find('>ul').show(); 
+     if(o.hasClass('lastExpandable')){ 
+      o.addClass('lastCollapsable').removeClass('lastExpandable'); 
+     } 
+     else{ 
+      o.addClass('collapsable').removeClass('expandable'); 
+     } 
+     o.siblings().each(function(){ 
+      if($(this).hasClass('collapsable')||$(this).hasClass('lastCollapsable')){ 
+       $(this).find('>span:first').click(); 
+      } 
+     }); 
+    },function(){ 
+     var o=$(this).parent(); 
+     o.find('>ul').hide(); 
+     if(o.hasClass('lastCollapsable')){ 
+      o.addClass('lastExpandable').removeClass('lastCollapsable'); 
+     } 
+     else{ 
+      o.addClass('expandable').removeClass('collapsable'); 
+     } 
+    }); 
+    $(this).prev().bind('click',function(){ 
+     $(this).next().click(); 
+    }); 
+   }); 
+   var o=t.find('>ul >li:last'); 
+   (o.html()==null)?o=t.find('>li:last'):null; 
+   if(o.hasClass('expandable')){ 
+    o.addClass('lastExpandable').removeClass('expandable'); 
+   } 
+   else{ 
+    o.addClass('lastCollapsable').removeClass('collapsable'); 
+   } 
+   t.find('.last').removeClass().addClass('last'); 
+    
+   <{if condition="isset($script)"}> 
+    <{$script}> 
+   <{/if}> 
+  } 
+  function addChindList(evt){ 
+   if(callbackAny) { 
+    fn(evt.data,_self); 
+   } 
+   var id=$(evt.data).attr('val'); 
+   var str=''; 
+   $.each(dataList,function(i,n){ 
+    if(n.tree_parent_id==id){ 
+     str+='<li class="expandable"><div class="hitarea"></div><span class="folder" val="'+n.id+'" loaded="false">'+n.tree_title+'</span><span><a href="javascript:void(0);" class="alert_iframe"   onclick="alert_iframe(this);"  data-url="'+list_url+'<?php echo config("pathinfo_depr"); ?>tree_id<?php echo config("pathinfo_depr"); ?>'+n.id+'.<?php echo config("url_html_suffix"); ?>" data-title="内容管理&nbsp;&nbsp;'+n.source_tree_title+'">内容管理</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="alert_iframe"   onclick="alert_iframe(this);"  data-url="'+edit_url+'?parent_id='+n.id+'" data-title="新增子类">新增子类</a>&nbsp;|&nbsp;<a href="javascript:void(0);" class="alert_iframe"  onclick="alert_iframe(this);"  data-url="'+edit_url+'?id='+n.id+'" data-height="50%" data-width="50%" href="javascript:void(0);" >编辑栏目</a>&nbsp;|&nbsp; <a href="javascript:void(0);"  class="delconfirm_row"  onclick="del_row(this);" data-url="'+del_url+'?id='+n.id+'" data-height="50%" data-width="50%" href="javascript:void(0);"  >删除栏目</a></span></li>'; 
+    } 
+   }); 
+   if(str){ 
+    $(evt.data).parent().append('<ul>'+str+'</ul>'); 
+   } 
+   $(evt.data).attr('loaded','true'); 
+   $(evt.data).unbind('click',addChindList); 
+   initTree($(evt.data).parent()); 
+  }  
+  } 
+}); 
+
+  $('.alert_iframe').click(function(){ 
+      alert_iframe(this); 
+  }); 
+</script> 
+ 
+</body> 
+</html> 

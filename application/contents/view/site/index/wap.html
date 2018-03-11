@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>扫描打开手机版</title>
+        <meta charset="UTF-8">
+        <style>
+            body{
+                background: #eee;
+            }
+            .main{
+               padding-top: 150px;
+               padding-bottom: 150px;
+                width: 600px;
+                height: auto;
+                overflow: hidden;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                background: #fff;
+                border:1px solid #eee;
+                border-radius:8px;
+                margin-top: 50px;
+                -moz-border-radius:8px; /* Old Firefox */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div id="my_code"></div>
+            <h3>使用手机扫描打开手机版<br />
+            <a href="/wap.php">直接打开</a>
+            </h3>
+        </div>
+        <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+        <script type="text/javascript" src="__ROOT_PATH__/static/js/jquery.qrcode.min.js"></script>
+        <script type="text/javascript">
+        $(function(){
+                var str = "<{url link="contents/Index/index" vars="" suffix='true' domain='true'}>";
+                $("#my_code").qrcode({
+                        render: "canvas",
+                        width: 400,
+                        height:500,
+                        text: str
+                });
+         });       
+        </script>
+    </body>
+</html>

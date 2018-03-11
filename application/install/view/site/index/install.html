@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>shopxian安装向导 - Powered by shopxian</title>
+<link rel="stylesheet" href="/static/css/install.css" />
+<script src="/static/js/install/jquery.js?v=9.0"></script> 
+</head>
+<body>
+<div class="wrap">
+    <div class="header" style="font-size: 16px;  padding-left: 10px; line-height: 5em;">
+      秀仙系统&nbsp;&nbsp;|&nbsp;&nbsp;安装向导
+</div>  <section class="section">
+    <div class="step">
+      <ul>
+        <li class="on"><em>1</em>检测环境</li>
+        <li class="on"><em>2</em>创建数据</li>
+        <li class="current"><em>3</em>完成安装</li>
+      </ul>
+    </div>
+    <div class="install" id="log">
+      <ul id="loginner">
+      </ul>
+    </div>
+    <div class="bottom tac"> <a href="javascript:;" class="btn_old"><img src="/static/images/install/loading.gif" align="absmiddle" />&nbsp;正在安装...</a> </div>
+  </section>
+  <script type="text/javascript">
+      var deploy='<{$deploy}>';
+      deploy=eval("("+deploy+")");
+      var innerhtml='';
+      var num=0;
+      var length=0;
+      for(i in deploy){
+          length++;
+      }
+      getinstall(deploy,0);
+      function getinstall(deploy,num){
+          $.get('<{url link="install/Index/installApp"}>',{'app':deploy[num]},function(data){
+              data=eval("("+data+")");
+              var innerhtml='<li><span class="correct_span">√</span>'+deploy[num]+'表构建成功!</li>';
+              $("#loginner").append(innerhtml);
+              num++;
+              if(deploy[num]==undefined||deploy[num]==false){
+                  intallDesktop(deploy,0);
+                  return false;
+              }
+              getinstall(deploy,num);
+          }).error(function(error){	
+                       alert("出错啦!!!\n"+error.statusText);
+           });
+      }
+      
+      function intallDesktop(deploy,num){
+              $.get('<{url link="install/Index/intallDesktop"}>',{'app':deploy[num]},function(data){
+                  innerhtml='<li><span class="correct_span">√</span>'+deploy[num]+'菜单写入成功!</li>';
+                  $("#loginner").append(innerhtml);
+                    num++;
+                    if(deploy[num]==undefined||deploy[num]==false){
+                        window.location="<{url link='install/Index/finish'}>";
+                        return false;
+                    }
+                    intallDesktop(deploy,num);
+              }).error(function(error){	
+                       alert("出错啦!!!\n"+error.statusText);
+                       return false;
+               });
+      } 
+</script> 
+</div>
+</body>
+</html>

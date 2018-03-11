@@ -1,0 +1,17 @@
+<div class="layui-tab"> 
+<ul class="layui-tab-title" id="butul"> 
+    <{foreach name="detail" item="d" key="k"}> 
+    <li onclick="detail_tr_click(this)" data-func="<{$k}>" data-app="<{$get.app}>"  data-finder="<{$get.finder}>" data-id="<{$get.id}>"><{$d}></li> 
+    <{/foreach}> 
+</ul> 
+</div> 
+<div style="float:left; width: 100%; height: auto; overflow: hidden;" class="finder_body"> 
+</div> 
+<script> 
+var finder_url="<{url link='detail'  vars='isAjax=1' suffix='true' domain='true'}>"; 
+$('#butul li').eq(0).click(); 
+</script> 
+ 
+ 
+ 
+ 

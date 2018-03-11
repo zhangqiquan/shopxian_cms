@@ -1,0 +1,11 @@
+.idea
+composer.lock
+*.log
+/nbproject/private/
+nbproject/
+runtime/
+public/*.html
+public/upload/
+public/uploads/
+tests/
+phpunit.xml

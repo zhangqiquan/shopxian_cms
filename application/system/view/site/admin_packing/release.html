@@ -1,0 +1,77 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="favicon.ico" >
+<link rel="Shortcut Icon" href="favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/h-ui.admin/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/h-ui.admin/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/h-ui.admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/h-ui.admin/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script><![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>打包发布</title>
+</head>
+<body>
+<article class="cl pd-20">
+            <form action="<{url link="add"}>" method="get" class="form form-horizontal" id="form-member-add">
+                                <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>版本名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                                                    <input name="version_name"  type="text"  class="input-text" value='' placeholder="">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>版本号：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                                                    <input name="version_num"  type="text"  class="input-text" value='' placeholder=" ">
+			</div>
+		</div>
+                                <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>版本更新说明：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+                                                    <textarea name="description" cols="" rows="" class="textarea" ></textarea>
+			</div>
+		</div>
+                                <div class="row cl">
+                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>发布目录(,分割)：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                                                <input name="add_path"  type="text"  class="input-text" value='' placeholder=" ">
+                                    </div>
+		</div>
+                                <div class="row cl">
+                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>目录目录(网站根目录)：</label>
+                                    <div class="formControls col-xs-8 col-sm-9">
+                                                                <input name="save_path"  type="text"  class="input-text" value='' placeholder=" ">
+                                    </div>
+		</div>
+                                <div class="row cl">
+                                    <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>压缩代码：</label>
+                                                <div class="formControls col-xs-8 col-sm-9 skin-minimal">
+                                                    <input name="compress" type="radio" value="1" checked>是&nbsp;&nbsp;&nbsp;
+                                                    <input type="radio"  name="compress" value="0">否
+			</div>
+                                </div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+    
+</body>
+</html>

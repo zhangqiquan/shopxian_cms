@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>配置列表项</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all"> 
+        <script src="__ROOT_PATH__/static/js/jquery.min.js"></script> 
+        <style> 
+            *{ 
+                padding: 0px; margin: 0px; 
+            } 
+                .wrap { 
+                   width: 100%; 
+                    height: auto; 
+                    padding-top: 3px; 
+                    border: 1px solid #eee; 
+                    border-radius:3px; 
+                    overflow: auto; 
+                    overflow-x: hidden; 
+                    position: relative; 
+              } 
+              ul { 
+                  padding: 0; 
+                  margin: 0; 
+              } 
+              li { 
+                padding: 5px; 
+                border-bottom: 1px solid #eee; 
+                border-radius:3px; 
+                font: 14px/1.5 "微软雅黑"; 
+                list-style: none; 
+                cursor: move; 
+              } 
+              li:hover { 
+                  background-color: #f6f6f6; 
+              } 
+              div[contenteditable] { 
+                  border: 1px solid #ececec; 
+              } 
+              .finder_key{ 
+                  width: 14px; 
+                  height: 14px; 
+                  padding: 5px; 
+              } 
+        </style> 
+    </head> 
+    <body> 
+        <div class="modal-dialog" role="document" style=" padding: 10px;"> 
+            <form action="<{url link='setFinderShow'}>" onsubmit="return finderShow(this);"s> 
+             <input type="hidden" class="app_name" name="app_name" value="<{$app_name}>" /> 
+    <input type="hidden" class="table_name" name="table_name" value="<{$table_name}>" /> 
+    <div class="wrap"> 
+                        <ul> 
+                                <{foreach name="getfield" item="vo" key="k"}> 
+                                <li><input class="finder_key" type="checkbox" name="<{$k}>" value="1" <{if condition="(isset($fieldShow[$k])&&$fieldShow[$k]==1)||isset($fieldShow[$k])==false"}> checked<{/if}>>&nbsp;<{$vo.label}></li> 
+                                <{/foreach}> 
+                        </ul> 
+    </div> 
+                <div style="width: 100%;text-align: center; padding: 5px;margin-bottom: 3px;"> 
+                    <button class="layui-btn layui-btn-lg layui-btn-normal" type="submit">确定</button> 
+                </div> 
+            </form> 
+        </div> 
+        <script src="__ROOT_PATH__/static/js/jquery.min.js"></script> 
+        <script type="text/javascript" src="__ROOT_PATH__/static/js/ddsort.min.js" charset="UTF-8"></script>    
+        <script> 
+        $('.wrap').DDSort({ 
+                target: 'li',  
+                floatStyle: { 
+                        'border': '1px solid #ccc', 
+                        'background-color': '#fff' 
+                }, 
+                
+                
+                move: function (left, top) { 
+                        $(this).css('left', left - $('.modal-dialog').offset().left); 
+                        $(this).css('top', top - $('.modal-dialog').offset().top); 
+                } 
+        }); 
+  function finderShow(obj){ 
+   var url=obj.action; 
+   var app_name=$(obj).find('.app_name').val(); 
+   var table_name=$(obj).find('.table_name').val(); 
+   var finder_str=''; 
+   var finder_key=$(obj).find('.finder_key').each(function(i){ 
+    if($(this).is(':checked')){ 
+     finder_str+=this.name+'=1&'; 
+    }else{ 
+     finder_str+=this.name+'=0&'; 
+    }    
+   }); 
+   finder_str+='app_name='+app_name+'&'; 
+   finder_str+='table_name='+table_name; 
+   var jsonData=finder_str; 
+ 
+   $.post(url,jsonData,function(data){ 
+    console.log(data); 
+    parent.window.location.reload(); 
+   }); 
+   return false; 
+  } 
+    </script> 
+    </body> 
+</html> 

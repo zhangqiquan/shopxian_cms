@@ -1,0 +1,113 @@
+<?php $ini_get_all=ini_get_all(); ?>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>zhanshop安装向导 - Powered by zhanshop</title>
+<link rel="stylesheet" href="/static/css/install.css" />
+<script src="__ROOT_PATH__/static/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="header" style="font-size: 16px;  padding-left: 10px; line-height: 5em;">
+      秀仙系统&nbsp;&nbsp;|&nbsp;&nbsp;安装向导
+</div>  <section class="section">
+    <div class="step">
+      <ul>
+        <li class="current"><em>1</em>检测环境</li>
+        <li><em>2</em>创建数据</li>
+        <li><em>3</em>完成安装</li>
+      </ul>
+    </div>
+    <div class="server">
+      <table width="100%">
+        <tr>
+          <td class="td1">环境检测</td>
+          <td class="td1" width="25%">推荐配置</td>
+          <td class="td1" width="25%">当前状态</td>
+          <td class="td1" width="25%">最低要求</td>
+        </tr>
+        <tr>
+          <td>操作系统</td>
+          <td>类UNIX</td>
+          <td> <{$data.PHP_OS}></td>
+          <td>不限制</td>
+        </tr>
+        <tr>
+          <td>PHP版本</td>
+          <td>>7.0</td>
+          <td><{$data.PHP_VERSION}></td>
+          <td>7.0以上</td>
+        </tr>
+        <tr>
+          <td>附件上传</td>
+          <td>>2M</td>
+          <td><{$data.upload_max_filesize}></td>
+          <td>不限制</td>
+        </tr>
+        <tr>
+          <td>GD库</td>
+          <td>必须开启</td>
+          <td><{$data.h_Gd}></td>
+          <td>支持</td>
+        </tr>
+        <tr>
+          <td>PDO</td>
+          <td>必须开启</td>
+          <td> <{$data.h_Pdo}></td>
+          <td>启用</td>
+        </tr>        
+        <tr>
+          <td>CURL</td>
+          <td>必须开启</td>
+          <td> <{$data.h_curl}></td>
+          <td>启用</td>
+        </tr>
+      </table>
+      <table width="100%">
+        <tr>
+          <td class="td1">目录、文件权限检查</td>
+          <td class="td1" width="25%">推荐配置</td>
+          <td class="td1" width="25%">写入</td>
+          <td class="td1" width="25%">读取</td>
+        </tr>
+            <tr>
+                <td>uploads</td>
+                <td>读写</td>
+                <td><?php if(is_writable('./uploads'))
+                    {
+                    echo "支持";
+                    }else{
+                    echo "不支持";
+                    } ?> </td>
+                <td>可读</td>
+              </tr>
+                              <tr>
+                <td>../runtime</td>
+                <td>读写</td>
+                <td><?php if(is_writable(RUNTIME_PATH)){echo "支持";}else{echo "不支持";} ?> </td>
+                <td>可读</td>
+              </tr>
+		   
+      </table>
+    </div>
+    <div class="bottom tac"> 
+	    <a href="javascript:window.location.reload();" class="btn">重新检测</a>
+                     <a onclick="check();" href="javascript:void(0);" class="btn">下一步</a> 
+	        </div>
+  </section>
+</div>
+<div class="footer"> &copy; <a href="http://www.shopxian.com" target="_blank">http://www.shopxian.com</a> 秀仙网络出品</div>
+<script>
+    function check(){
+        $.post('<{url link='install/Index/config'}>','',function(data){
+            if(1!=data){
+                alert(data.msg);
+            }else{
+                window.location='<{url link='install/Index/config'}>';
+            }
+        });
+    }
+</script>
+</body>
+</html>

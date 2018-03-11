@@ -1,0 +1,626 @@
+<!DOCTYPE html> 
+<html> 
+ 
+ <head> 
+  <meta charset="utf-8"> 
+  <title>秀仙智能表单</title> 
+  <meta name="renderer" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+                                  <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script> 
+  <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all"> 
+                                   <script src="__ROOT_PATH__/static/js/plugins/layer/laydate/laydate.js"></script> 
+                                   <link href="__ROOT_PATH__/static/themes/default/css/umeditor.min.css" type="text/css" rel="stylesheet"> 
+                                    <script type="text/javascript" charset="utf-8" src="__ROOT_PATH__/static/umeditor.config.js"></script> 
+                                    <script type="text/javascript" charset="utf-8" src="__ROOT_PATH__/static/umeditor.min.js"></script> 
+                                    <style> 
+                                        body{ 
+                                                background: #fff; 
+                                       } 
+                                    </style> 
+                                    <script> 
+                                        var imageVar={}; 
+                                        var imagesVar={}; 
+                                        var fileVar={}; 
+                                        var filesVar={}; 
+                                    </script> 
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 --> 
+ </head> 
+ 
+ <body style="width: 90%; margin-left: auto; margin-right: auto;"> 
+                                   <{if condition="isset($body)"}> 
+                                        <{$body}> 
+                                   <{/if}> 
+ 
+  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"> 
+   <legend>秀仙智能表单</legend> 
+  </fieldset> 
+ 
+                                   <form class="layui-form" id="layui-form" action="<{$submit_url}>"> 
+                                            <{foreach name="list" item="vo" key="k"}> 
+                                            <{if condition="isset($vo['input_type'])==false"}><{php}>return trigger_error('表'.$k.'表单域没有配置input_type',E_USER_WARNING);<{/php}><{/if}>          
+                                            <div class="layui-form-item" <{if condition="$vo['input_type']&&$vo['input_type']=='hidden'"}>style="display:none;"<{/if}>> 
+    <label class="layui-form-label"><{if condition="isset($vo['not_null'])&&$vo['not_null']!=false&&$vo['not_null']!='false'"}><a style="color:#f00;" title="必填"> * </a><{/if}><{$vo.label}></label> 
+    <div class="layui-input-block"> 
+                                                                                    <{switch $vo.input_type}> 
+                                                                                        <{case value="radio"}> 
+                                                                                        <{foreach name="vo.value" item="val" key="key"}> 
+                                                                                        <input  <{if condition="isset($vo['ignore'])&&$vo['ignore']"}>lay-ignore<{/if}>    name="<{$k}>" value="<{$key}>"  title="<{$val}>"  type="radio" <{if condition="isset($vo['default']) && $vo['default']==$key" }> checked=""<{/if}>  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"> 
+                                                                                        <{/foreach}> 
+                                                                                        <{/case}> 
+                                                                                         
+                                                                                        <{case value="checkbox"}> 
+                                                                                        <{foreach name="vo.value" item="val" key="key"}> 
+                                                                                        <input <{if condition="isset($vo['ignore'])&&$vo['ignore']"}>lay-ignore<{/if}>  name="<{$k}>[]" value="<{$key}>" title="<{$val}>" autocomplete="off" type="checkbox" <{if condition="isset($vo['default']) && is_array($vo['default']) && in_array($key,$vo['default'])" }>checked="" <{/if}>> 
+                                                                                        <{/foreach}> 
+                                                                                        <{/case}> 
+                                                                                         
+                                                                                        <{case value="select"}> 
+                                                                                        <select name="<{$k}>"  lay-search="" <{if condition="isset($vo['ignore'])&&$vo['ignore']"}>lay-ignore<{/if}>  > 
+                                                                                            <{if condition="isset($vo['value'])==false"}><{php}>return trigger_error('表'.$k.'表单域没有配置value',E_USER_WARNING);<{/php}><{/if}>          
+                                                                                            <{foreach name="vo.value" item="val" key="key"}>    
+                                                                                                <{if condition="isset($vo.builder_key)"}> 
+                                                                                                <option value="<{$key}>" <{if  condition="isset($vo.default)&&($key==$vo.default)"}>selected<{/if}> ><{if condition="isset($val.level_html)"}>|<{$val.level_html}><{/if}><{$val[$vo.builder_key]}></option> 
+                                                                                                <{else /}> 
+                                                                                                <option value="<{$key}>" <{if  condition="isset($vo.default)&&($key==$vo.default)"}>selected<{/if}> ><{$val}></option> 
+                                                                                                <{/if}> 
+                                                                                            <{/foreach}> 
+                                                                                        </select> 
+                                                                                        <{/case}> 
+                                                                                         
+                                                                                        <{case value="date"}> 
+                                                                                        <input type="text" id="<{$k}>" name="<{$k}>" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{else}><?php echo date('Y-m-d'); ?><{/if}>"  class="layui-input"   lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"  placeholder="YYYY-MM-DD" > 
+                                                                                        <script> 
+                                                                                                laydate.render({ 
+                                                                                                elem: '#<{$k}>' 
+                                                                                              }); 
+                                                                                        </script> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="datetime"}> 
+                                                                                        <input type="text" id="<{$k}>" name="<{$k}>" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{else}><?php echo date('Y-m-d H:i:s'); ?><{/if}>"  class="layui-input"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   > 
+                                                                                        <script> 
+                                                                                            laydate.render({ 
+                                                                                                 elem: '#<{$k}>' 
+                                                                                                 ,type: 'datetime' 
+                                                                                               });  
+                                                                                        </script> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="daterange"}> 
+                                                                                            <input type="text" placeholder="-"  id="<{$k}>" name="<{$k}>"  class="layui-input" lay-key="6"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"> 
+                                                                                        <script> 
+                                                                                            laydate.render({ 
+                                                                                              elem: '#<{$k}>' 
+                                                                                              ,range: true 
+                                                                                            }); 
+                                                                                        </script> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="file"}> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text" id="<{$k}>" name="<{$k}>"  style="float: left; margin-right: 3px; width: 70%;" class="layui-input"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"  value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"   /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <button type="button" id="inputbutton<{$k}>" class="layui-btn layui-btn-normal">上传文件</button>     
+                                                                                                </div>  
+                                                                                                <script> 
+                                                                                                    fileVar['<{$k}>']={ 
+                                                                                                                elem: '#inputbutton<{$k}>' 
+                                                                                                                ,url: '<{url link="finderUploadFile"  vars="" suffix="true" domain="true"}>' 
+                                                                                                                ,accept: 'file' 
+                                                                                                                ,done: function(res){ 
+                                                                                                                    if(res.path!=false){ 
+                                                                                                                       $("#<{$k}>").val(res.path); 
+                                                                                                                    }else{ 
+                                                                                                                        layer.msg(res.msg, {icon: 2}); 
+                                                                                                                        return false; 
+                                                                                                                    } 
+                                                                                                                } 
+                                                                                                              }; 
+                                                                                                </script>   
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="files"}> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;" class="layui-input"   lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"    value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <button type="button" id="inputbutton<{$k}>" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>  
+                                                                                                    <input type="button" value="开始上传"  id="inputstartbutton<{$k}>" class="layui-btn layui-btn-normal" >                                                                                                     
+                                                                                                </div>  
+                                                                                                <div class="layui-upload-list"> 
+                                                                                                    <table class="layui-table"> 
+                                                                                                      <thead> 
+                                                                                                        <tr><th>文件名</th> 
+                                                                                                        <th>大小</th> 
+                                                                                                        <th>状态</th> 
+                                                                                                        <th>操作</th> 
+                                                                                                      </tr></thead> 
+                                                                                                      <tbody id="fileList<{$k}>"></tbody> 
+                                                                                                    </table> 
+                                                                                                  </div> 
+                                                                                                <script> 
+                                                                                                    var fileList<{$k}>View = $('#fileList<{$k}>') 
+                                                                                                    filesVar['<{$k}>']={ 
+                                                                                                      elem: '#inputbutton<{$k}>' 
+                                                                                                      ,url: '<{url link="finderUploadFile"  vars="" suffix="true" domain="true"}>' 
+                                                                                                      ,accept: 'file' 
+                                                                                                      ,multiple: true 
+                                                                                                      ,auto: false 
+                                                                                                      ,bindAction: '#inputstartbutton<{$k}>' 
+                                                                                                      ,choose: function(obj){    
+                                                                                                        var files = this.files = obj.pushFile(); 
+                                                                                                        
+                                                                                                        obj.preview(function(index, file, result){ 
+                                                                                                          var tr = $(['<tr id="upload-'+ index +'">' 
+                                                                                                            ,'<td>'+ file.name +'</td>' 
+                                                                                                            ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>' 
+                                                                                                            ,'<td>等待上传</td>' 
+                                                                                                            ,'<td>' 
+                                                                                                              ,'<button class="layui-btn layui-btn-mini demo-reload layui-hide">重传</button>' 
+                                                                                                              ,'<button class="layui-btn layui-btn-mini layui-btn-danger demo-delete">删除</button>' 
+                                                                                                            ,'</td>' 
+                                                                                                          ,'</tr>'].join('')); 
+ 
+                                                                                                          
+                                                                                                          tr.find('.demo-reload').on('click', function(){ 
+                                                                                                            obj.upload(index, file); 
+                                                                                                          }); 
+ 
+                                                                                                          
+                                                                                                          tr.find('.demo-delete').on('click', function(){ 
+                                                                                                            delete files[index]; 
+                                                                                                            tr.remove(); 
+                                                                                                            uploadListIns.config.elem.next()[0].value = ''; 
+                                                                                                          }); 
+ 
+                                                                                                          fileList<{$k}>View.append(tr); 
+                                                                                                        }); 
+                                                                                                      } 
+                                                                                                      ,done: function(res, index, upload){ 
+                                                                                                        if(res.code != 0){ 
+                                                                                                          var tr = fileList<{$k}>View.find('tr#upload-'+ index) 
+                                                                                                          ,tds = tr.children(); 
+                                                                                                          tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>'); 
+                                                                                                          tds.eq(3).html(''); 
+                                                                                                          
+                                                                                                        var kkval=''; 
+                                                                                                        if($('#<{$k}>').val()!=''){ 
+                                                                                                            kkval+=$('#<{$k}>').val()+','; 
+                                                                                                        } 
+                                                                                                        $('#<{$k}>').val(kkval+res.path+','); 
+                                                                                                        $('#<{$k}>').val($('#<{$k}>').val().substr(0,$('#<{$k}>').val().length-1)); 
+                                                                                                          return delete this.files[index]; 
+                                                                                                        } 
+                                                                                                        this.error(index, upload); 
+                                                                                                      } 
+                                                                                                      ,error: function(index, upload){ 
+                                                                                                        var tr = fileList<{$k}>View.find('tr#upload-'+ index) 
+                                                                                                        ,tds = tr.children(); 
+                                                                                                      } 
+                                                                                                    }      
+                                                                                                </script> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="textarea"}> 
+                                                                                        <textarea   id="<{$k}>" name="<{$k}>" maxlength="<{$vo.length}>"   placeholder="<{if condition="isset($vo['placeholder'])"}><{$vo.placeholder}><{/if}>" class="layui-textarea" lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"><{if condition="isset($vo['default'])"}><{$vo.default}><{/if}></textarea> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="image"}> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   class="layui-input" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="上传图片"  id="inputbutton<{$k}>" class="layui-btn layui-btn-normal"> 
+                                                                                                </div>  
+                                                                                                <div style="width: 100%; float: left;"> 
+                                                                                                        <ul> 
+                                                                                                        </ul> 
+                                                                                                        <p id="pText<{$k}>"></p> 
+                                                                                                </div> 
+                                                                                                <script> 
+                                                                                                        
+                                                                                                        imageVar['<{$k}>']={ 
+                                                                                                          elem: '#inputbutton<{$k}>' 
+                                                                                                          ,url: '<{url link="finderUploadImg"  vars="" suffix="true" domain="true"}>' 
+                                                                                                          ,before: function(obj){ 
+                                                                                                            
+                                                                                                            obj.preview(function(index, file, result){ 
+                                                                                                              $('#imgsrc<{$k}>').attr('src', result); 
+                                                                                                            }); 
+                                                                                                          } 
+                                                                                                          ,done: function(res){ 
+                                                                                                            
+                                                                                                            if(res.code == 0){ 
+                                                                                                              return layer.msg(res.msg); 
+                                                                                                            } 
+                                                                                                            
+                                                                                                            $("#<{$k}>").val(res.path); 
+                                                                                                          } 
+                                                                                                          ,error: function(){ 
+                                                                                                            
+                                                                                                            var demoText = $('#pText<{$k}>'); 
+                                                                                                          } 
+                                                                                                        }; 
+                                                                                                </script> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="imageBrowser"}> 
+                                                                                        <!---由于该功能比较高级需要在当前控制器下建立imagesBrowser方法并实例化finder下的方法--> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   class="layui-input" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="上传图片"  id="inputbutton<{$k}>" onclick="layer_open('图片浏览器','<{url link="imagesBrowser" vars="dom_id=$k&upload_num=1" }>')" class="layui-btn layui-btn-normal"> 
+                                                                                                </div>  
+                                                                                                <div style="width: 100%; float: left;"> 
+                                                                                                        <ul> 
+                                                                                                        </ul> 
+                                                                                                        <p id="pText<{$k}>"></p> 
+                                                                                                </div> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="imagesBrowser"}> 
+                                                                                        <!---由于该功能比较高级需要在当前控制器下建立imagesBrowser方法并实例化finder下的方法--> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   class="layui-input" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="上传图片"  id="inputbutton<{$k}>" onclick="layer_open('图片浏览器','<{url link="imagesBrowser" vars="dom_id=$k&upload_num=300" }>')" class="layui-btn layui-btn-normal"> 
+                                                                                                </div>  
+                                                                                                <div style="width: 100%; float: left;"> 
+                                                                                                        <ul> 
+                                                                                                        </ul> 
+                                                                                                        <p id="pText<{$k}>"></p> 
+                                                                                                </div> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="imageSelectBrowser"}> 
+                                                                                        <!---由于该功能比较高级需要在当前控制器下建立imagesBrowser方法并实例化finder下的方法--> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   class="layui-input" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="上传图片"  id="inputbutton<{$k}>" onclick="layer_open('图片浏览器','<{url link="imagesBrowser" vars="dom_id=$k&upload_num=0&select_num=1" }>')" class="layui-btn layui-btn-normal"> 
+                                                                                                </div>  
+                                                                                                <div style="width: 100%; float: left;"> 
+                                                                                                        <ul> 
+                                                                                                        </ul> 
+                                                                                                        <p id="pText<{$k}>"></p> 
+                                                                                                </div> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="imagesSelectBrowser"}> 
+                                                                                        <!---由于该功能比较高级需要在当前控制器下建立imagesBrowser方法并实例化finder下的方法--> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;"  lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"   class="layui-input" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="上传图片"  id="inputbutton<{$k}>" onclick="layer_open('图片浏览器','<{url link="imagesBrowser" vars="dom_id=$k&upload_num=0&select_num=300" }>')" class="layui-btn layui-btn-normal"> 
+                                                                                                </div>  
+                                                                                                <div style="width: 100%; float: left;"> 
+                                                                                                        <ul> 
+                                                                                                        </ul> 
+                                                                                                        <p id="pText<{$k}>"></p> 
+                                                                                                </div> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="images"}> 
+                                                                                        <div style="height: auto; overflow: hidden; width: 70%;"> 
+                                                                                                <input type="text"  id="<{$k}>" name="<{$k}>"   style="float: left; margin-right: 3px; width: 70%;" class="layui-input"   lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"    value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="上传多图" id="inputbutton<{$k}>" class="layui-btn layui-btn-normal"> 
+                                                                                                </div>  
+                                                                                                <div style="width: 100%; float: left;"> 
+                                                                                                        <ul id="imgul<{$k}>"> 
+                                                                                                        </ul> 
+                                                                                                </div> 
+                                                                                                <script> 
+                                                                                                        
+                                                                                                        imagesVar['<{$k}>']={ 
+                                                                                                          elem: '#inputbutton<{$k}>' 
+                                                                                                          ,url: '<{url link="finderUploadImg"  vars="" suffix="true" domain="true"}>' 
+                                                                                                            ,multiple: true 
+                                                                                                            ,before: function(obj){ 
+                                                                                                              
+                                                                                                              obj.preview(function(index, file, result){ 
+                                                                                                                $('#imgul<{$k}>').append('<li style="float: left; padding: 3px;"><img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" width="100px" height="100px"></li>') 
+                                                                                                              }); 
+                                                                                                            } 
+                                                                                                            ,done: function(res){ 
+                                                                                                              
+                                                                                                              var kkval=''; 
+                                                                                                              if($('#<{$k}>').val()!=''){ 
+                                                                                                                  kkval+=$('#<{$k}>').val()+','; 
+                                                                                                              } 
+                                                                                                              $('#<{$k}>').val(kkval+res.path+','); 
+                                                                                                              $('#<{$k}>').val($('#<{$k}>').val().substr(0,$('#<{$k}>').val().length-1)); 
+                                                                                                            } 
+                                                                                                            ,size: 1000 
+                                                                                                            ,number:5, 
+                                                                                                            exts:"jpg|png|gif|bmp|jpeg|gif" 
+                                                                                                        }; 
+                                                                                                </script> 
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="window"}> 
+                                                                                        <div> 
+                                                                                                <input type="text" name="<{$k}>"  style="float: left; margin-right: 3px; width: 50%;" class="layui-input"   placeholder="<{if condition="isset($vo['placeholder'])"}><{$vo.placeholder}><{/if}>"   lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"  /> 
+                                                                                                <div style="position: relative;float: left;"> 
+                                                                                                    <input type="button" value="选择" class="layui-btn layui-btn-normal" onclick="window_open('<{url link="$vo[method]"}>')"> 
+                                                                                                </div>  
+                                                                                        </div> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="taglib"}> 
+                                                                                        <{if condition="isset($vo['tag_val'])==false"}><{php}>return trigger_error('表'.$k.'表单域没有配置tag_val',E_USER_WARNING);<{/php}><{/if}>        
+                                                                                        <?php  
+                                                                                        echo display($vo['tag_val']); 
+                                                                                        ?> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="switch"}> 
+                                                                                        <input  name="<{$k}>" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF" type="checkbox"> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="baiduUmeditor"}> 
+                                                                                        <textarea style="height: 450px;"  id="<{$k}>" name="<{$k}>"   placeholder="<{if condition="isset($vo['placeholder'])"}><{$vo.placeholder}><{/if}>" class="layui-textarea" lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true') ) "}>required|<{/if}>"><{if condition="isset($vo['default'])"}><{$vo.default}><{/if}></textarea> 
+                                                                                        <script> 
+                                                                                            
+                                                                                            var um = UM.getEditor('<{$k}>'); 
+                                                                                            um.addListener('blur',function(){ 
+                                                                                                $('#focush2').html('编辑器失去焦点了') 
+                                                                                            }); 
+                                                                                            um.addListener('focus',function(){ 
+                                                                                                $('#focush2').html('') 
+                                                                                            }); 
+                                                                                            
+                                                                                            function insertHtml() { 
+                                                                                                var value = prompt('插入html代码', ''); 
+                                                                                                um.execCommand('insertHtml', value) 
+                                                                                            } 
+                                                                                            function isFocus(){ 
+                                                                                                alert(um.isFocus()) 
+                                                                                            } 
+                                                                                            function doBlur(){ 
+                                                                                                um.blur() 
+                                                                                            } 
+                                                                                            function createEditor() { 
+                                                                                                enableBtn(); 
+                                                                                                um = UM.getEditor('<{$k}>'); 
+                                                                                            } 
+                                                                                            function getAllHtml() { 
+                                                                                                alert(UM.getEditor('<{$k}>').getAllHtml()) 
+                                                                                            } 
+                                                                                            function getContent() { 
+                                                                                                var arr = []; 
+                                                                                                arr.push("使用editor.getContent()方法可以获得编辑器的内容"); 
+                                                                                                arr.push("内容为："); 
+                                                                                                arr.push(UM.getEditor('<{$k}>').getContent()); 
+                                                                                                alert(arr.join("\n")); 
+                                                                                            } 
+                                                                                            function getPlainTxt() { 
+                                                                                                var arr = []; 
+                                                                                                arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容"); 
+                                                                                                arr.push("内容为："); 
+                                                                                                arr.push(UM.getEditor('<{$k}>').getPlainTxt()); 
+                                                                                                alert(arr.join('\n')) 
+                                                                                            } 
+                                                                                            function setContent(isAppendTo) { 
+                                                                                                var arr = []; 
+                                                                                                arr.push("使用editor.setContent('欢迎使用umeditor')方法可以设置编辑器的内容"); 
+                                                                                                UM.getEditor('<{$k}>').setContent('欢迎使用umeditor', isAppendTo); 
+                                                                                                alert(arr.join("\n")); 
+                                                                                            } 
+                                                                                            function setDisabled() { 
+                                                                                                UM.getEditor('<{$k}>').setDisabled('fullscreen'); 
+                                                                                                disableBtn("enable"); 
+                                                                                            } 
+ 
+                                                                                            function setEnabled() { 
+                                                                                                UM.getEditor('<{$k}>').setEnabled(); 
+                                                                                                enableBtn(); 
+                                                                                            } 
+ 
+                                                                                            function getText() { 
+                                                                                                
+                                                                                                var range = UM.getEditor('<{$k}>').selection.getRange(); 
+                                                                                                range.select(); 
+                                                                                                var txt = UM.getEditor('<{$k}>').selection.getText(); 
+                                                                                                alert(txt) 
+                                                                                            } 
+ 
+                                                                                            function getContentTxt() { 
+                                                                                                var arr = []; 
+                                                                                                arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容"); 
+                                                                                                arr.push("编辑器的纯文本内容为："); 
+                                                                                                arr.push(UM.getEditor('<{$k}>').getContentTxt()); 
+                                                                                                alert(arr.join("\n")); 
+                                                                                            } 
+                                                                                            function hasContent() { 
+                                                                                                var arr = []; 
+                                                                                                arr.push("使用editor.hasContents()方法判断编辑器里是否有内容"); 
+                                                                                                arr.push("判断结果为："); 
+                                                                                                arr.push(UM.getEditor('<{$k}>').hasContents()); 
+                                                                                                alert(arr.join("\n")); 
+                                                                                            } 
+                                                                                            function setFocus() { 
+                                                                                                UM.getEditor('<{$k}>').focus(); 
+                                                                                            } 
+                                                                                            function deleteEditor() { 
+                                                                                                disableBtn(); 
+                                                                                                UM.getEditor('<{$k}>').destroy(); 
+                                                                                            } 
+                                                                                            function disableBtn(str) { 
+                                                                                                var div = document.getElementById('btns'); 
+                                                                                                var btns = domUtils.getElementsByTagName(div, "button"); 
+                                                                                                for (var i = 0, btn; btn = btns[i++];) { 
+                                                                                                    if (btn.id == str) { 
+                                                                                                        domUtils.removeAttributes(btn, ["disabled"]); 
+                                                                                                    } else { 
+                                                                                                        btn.setAttribute("disabled", "true"); 
+                                                                                                    } 
+                                                                                                } 
+                                                                                            } 
+                                                                                            function enableBtn() { 
+                                                                                                var div = document.getElementById('btns'); 
+                                                                                                var btns = domUtils.getElementsByTagName(div, "button"); 
+                                                                                                for (var i = 0, btn; btn = btns[i++];) { 
+                                                                                                    domUtils.removeAttributes(btn, ["disabled"]); 
+                                                                                                } 
+                                                                                            } 
+                                                                                        </script> 
+                                                                                        <{/case}> 
+                                                                                        <{case value="readonly"}> 
+                                                                                        <input  name="<{$k}>" maxlength="<{$vo.length}>"  readonly="readonly"  placeholder="<{if condition="isset($vo['placeholder'])"}><{$vo.placeholder}><{/if}>" class="layui-input" type="text" lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true')&&$vo['input_type']!='hidden' ) "}>required|<{/if}>" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"> 
+                                                                                        <{/case}> 
+                                                                                        <{default /}> 
+                                                                                        <input name="<{$k}>" maxlength="<{$vo.length}>"  placeholder="<{if condition="isset($vo['placeholder'])"}><{$vo.placeholder}><{/if}>" class="layui-input" type="text" lay-verify="<{if condition="(isset($vo['not_null']) && ($vo['not_null']=='true')&&$vo['input_type']!='hidden' ) "}>required|<{/if}>" value="<{if condition="isset($vo['default'])"}><{$vo.default}><{/if}>"> 
+                                                                                    <{/switch}> 
+                                                                                     
+    </div> 
+                                                                    <{if condition="isset($vo['input_description'])"}> 
+                                                                    <div class="layui-input-block layui-word-aux"><{$vo['input_description']}></div> 
+                                                                    <{/if}> 
+   </div> 
+                                                    <{/foreach}> 
+   <div class="layui-form-item"> 
+                                                            <div class="layui-input-block"> 
+                                                                    <button class="layui-btn" id="on_submit" lay-submit="" lay-filter="demo1">立即提交</button> 
+                                                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button> 
+                                                            </div> 
+   </div> 
+  </form> 
+                                     
+  <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
+                                   
+                                  <script src="__ROOT_PATH__/static/layui-v2.1.1/layui/layui.all.js"></script> 
+  <script> 
+                                                                                     
+   layui.use(['form', 'layedit', 'laydate'], function() { 
+    var form = layui.form, 
+     layer = layui.layer, 
+     layedit = layui.layedit, 
+     laydate = layui.laydate;             
+                                                                                     
+    
+    form.on('submit(demo1)', function(data) { 
+                                                                                    var verify_pass=true; 
+                                                                                    $('select').each(function(){ 
+                                                                                        if($(this).attr("lay-verify")=='required'){ 
+                                                                                            if($(this).val()=='-1'){ 
+                                                                                                verify_pass=false; 
+                                                                                                $('html,body').animate({ 
+                                                                                                    scrollTop: $(this).offset().top 
+                                                                                                }, 300); 
+                                                                                                layer.msg('必选项不能为空,请选择!', {anim: 6,icon: 2}); 
+                                                                                                return false; 
+                                                                                            } 
+                                                                                        } 
+                                                                                    }); 
+                                                                                    if(verify_pass==true){ 
+                                                                                        delete(data.field["file"]); 
+                      delete(data.field["upfile"]); 
+                                                                                        console.log(data.field); 
+                                                                                        var submit_url=document.getElementById('layui-form').action; 
+                      var index = layer.load(30, { 
+                        shade: [0.1,'#fff'] 
+                      }); 
+                      $("#on_submit").attr({"disabled":"disabled"}); 
+                                                                                        $.post(submit_url,data.field,function(res){ 
+                       layer.close(index); 
+                                                                                            $("#on_submit").removeAttr("disabled"); 
+                                                                                            <{if condition="isset($script)"}><{$script}> 
+                                                                                             
+                                                                                            return false; 
+                                                                                            <{/if}> 
+                                                                                             
+                                                                                            if(res.code==100||res.msg==100){ 
+                                                                                                parent.layer.msg("成功", {icon: 1}); 
+                                                                                                  window.location=res.url; 
+                                                                                                  return false; 
+                                                                                              } 
+                                                                                              if(res.code==1){ 
+                                                                                                  
+                                                                                                  parent.layer.closeAll();  
+                                                                                                  parent.layer.msg(res.msg, {icon: 1}); 
+                                                                                                  parent.window.location.reload(); 
+                                                                                              }else{ 
+                                                                                                      if(res.msg){ 
+                                                                                                              parent.layer.msg(res.msg, {anim: 6,icon: 2}); 
+                                                                                                      }else{ 
+                                                                                                              parent.layer.msg('操作失败'+res, {anim: 6,icon: 2}); 
+                                                                                                      } 
+                                                                                              } 
+                                                                                        }).error(function(error){ 
+                       layer.close(index); 
+                       $("#on_submit").removeAttr("disabled"); 
+                                                                                            console.log(error); 
+                                                                                            alert("出错啦!!!\n"+error.statusText); 
+                                                                                          }); 
+                                                                                    } 
+ 
+     return false; 
+    }); 
+ 
+   }); 
+                                                    $(function(){ 
+                                                        $(".selectTop").css('display','inline'); 
+                                                        $(".selectTop").parent().find('div').remove(); 
+                                                    }); 
+                                                    
+                                                    for(i in imageVar){ 
+                                                        layui.use('upload', function(){ 
+                                                            var $ = layui.jquery 
+                                                            ,upload = layui.upload; 
+                                                            
+                                                            var uploadInst = upload.render(imageVar[i]); 
+                                                        }) 
+                                                        console.log(imageVar[i]); 
+                                                    } 
+                                                    
+                                                    for(i in imagesVar){ 
+                                                        layui.use('upload', function(){ 
+                                                            var $ = layui.jquery 
+                                                            ,upload = layui.upload; 
+                                                            
+                                                            var uploadInst = upload.render(imagesVar[i]); 
+                                                        }) 
+                                                        console.log(imagesVar[i]); 
+                                                    } 
+                                                     
+                                                     
+                                                    
+                                                    for(i in filesVar){ 
+                                                        layui.use('upload', function(){ 
+                                                            var $ = layui.jquery 
+                                                            ,upload = layui.upload; 
+                                                            var uploadListIns = upload.render(filesVar[i]); 
+                                                        }); 
+                                                        console.log(filesVar[i]); 
+                                                    } 
+                                                    
+                                                    for(i in fileVar){ 
+                                                        layui.use('upload', function(){ 
+                                                            var $ = layui.jquery 
+                                                            ,upload = layui.upload; 
+                                                            
+                                                            upload.render(fileVar[i]); 
+                                                        });        
+                                                        console.log(fileVar[i]); 
+                                                    } 
+                                                    function window_open(url){ 
+                                                        layer.open({ 
+                                                            type: 2, 
+                                                            title: '选择', 
+                                                            shadeClose: true, 
+                                                            shade: 0.8, 
+                                                            area: ['85%', '85%'], 
+                                                            content: url  
+                                                          }); 
+                                                    } 
+                                                     
+                                                  function layer_open(title,url){ 
+                                                    layer.open({ 
+                                                        type: 2, 
+                                                        title: title, 
+                                                        shadeClose: true, 
+                                                        shade: 0.3, 
+                                                        area: ['85%', '85%'], 
+                                                        content: url 
+                                                      });  
+                                                  }   
+                                                     
+                                                     
+  </script> 
+ 
+ </body> 
+ 
+</html>

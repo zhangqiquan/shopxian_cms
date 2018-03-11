@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<title><{$cat.cat_name}>-<{$cat.seo_title}></title>
+		<meta name="description" content="<{$cat.description}>" />
+		<meta name="keywords" content="<{$cat.keywords}>" />
+		<meta name="searchtitle" content="<{$cat.description}>" />
+		<link rel="stylesheet" type="text/css" href="<{$css_dir}>/cb950.css" media="all" />
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+		<meta name="format-detection" content="telephone=no">
+		<style id='rs-plugin-settings-inline-css' type='text/css'>
+			#rs-demo-id {}
+		</style>
+		<script type="text/javascript" src="<{$js_dir}>/10fd7.js"></script>
+		<meta name="applicable-device" content="pc,mobile" />
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<style>
+			a,
+			.header .nav>li.active>a,
+			.abs.menu-white .header .nav>li.active>a,
+			.header .dropdown-menu>.active>a {
+				color: #00a381
+			}
+			
+			a:hover,
+			.header .nav>li>a:hover,
+			.abs.menu-white .header .nav>li>a:hover,
+			.post-list .entry-title a:hover,
+			.widget ol a:hover,
+			.widget ul a:hover,
+			.search-icon:hover,
+			.abs.menu-white .search-icon:hover,
+			.p-item-wrap:hover .title a,
+			.abs.menu-white .shopping-cart a:hover,
+			.abs.menu-white .fixed .shopping-cart a:hover {
+				color: #0a8772
+			}
+			
+			.header .dropdown-menu>.active>a:focus,
+			.header .dropdown-menu>.active>a:hover,
+			.header .dropdown-menu>li>a:hover,
+			.pagination .current,
+			.form-submit .submit,
+			.swiper-pagination-bullet-active,
+			.swiper-pagination-progress .swiper-pagination-progressbar,
+			.hot-slider .swiper-button-next,
+			.hot-slider .swiper-button-prev,
+			.p-item-wrap .thumb:before,
+			.s-item-wrap .thumb:before,
+			.action .contact-title,
+			.search-form input.submit,
+			.carousel-review .carousel-indicators li.active,
+			.entry .btn-enquiry,
+			.n-item-wrap .thumb:before,
+			.sidebar .widget_nav_menu ul li.current-menu-item a,
+			.woocommerce a.button,
+			.woocommerce button.button,
+			.woocommerce input.button,
+			.woocommerce a.button.alt,
+			.woocommerce button.button.alt,
+			.woocommerce input.button.alt,
+			.woocommerce a.button.alt.disabled,
+			.woocommerce a.button.alt.disabled:hover,
+			.woocommerce a.button.alt:disabled,
+			.woocommerce a.button.alt:disabled:hover,
+			.woocommerce a.button.alt:disabled[disabled],
+			.woocommerce a.button.alt:disabled[disabled]:hover,
+			.woocommerce button.button.alt.disabled,
+			.woocommerce button.button.alt.disabled:hover,
+			.woocommerce button.button.alt:disabled,
+			.woocommerce button.button.alt:disabled:hover,
+			.woocommerce button.button.alt:disabled[disabled],
+			.woocommerce button.button.alt:disabled[disabled]:hover,
+			.woocommerce input.button.alt.disabled,
+			.woocommerce input.button.alt.disabled:hover,
+			.woocommerce input.button.alt:disabled,
+			.woocommerce input.button.alt:disabled:hover,
+			.woocommerce input.button.alt:disabled[disabled],
+			.woocommerce input.button.alt:disabled[disabled]:hover,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+			.shopping-count,
+			.social-login-form .sl-input-submit {
+				background-color: #00a381
+			}
+			
+			.form-submit .submit:hover,
+			.hot-slider .swiper-button-prev:hover,
+			.hot-slider .swiper-container-rtl .swiper-button-next:hover,
+			.hot-slider .swiper-button-next:hover,
+			.hot-slider .swiper-container-rtl .swiper-button-prev:hover,
+			.sidebar .widget_nav_menu ul li.current-post-parent a,
+			.sidebar .widget_nav_menu ul li.current-menu-item .sub-menu a:hover,
+			.sidebar .widget_nav_menu ul li.current-post-parent .sub-menu a:hover,
+			.sidebar .widget_nav_menu ul li a:hover,
+			.action .a-box:hover,
+			.widget-contact-wrap .widget-contact-sns .fa:hover,
+			.search-form input.submit:hover,
+			.more-link:hover,
+			.news-tab-item:hover,
+			.pagination a:hover,
+			.entry .btn-enquiry:hover,
+			.woocommerce a.button:hover,
+			.woocommerce button.button:hover,
+			.woocommerce input.button:hover,
+			.woocommerce a.button.alt:hover,
+			.woocommerce button.button.alt:hover,
+			.woocommerce input.button.alt:hover,
+			.woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content,
+			.social-login-form .sl-input-submit:hover {
+				background-color: #0a8772
+			}
+			
+			.comment-respond input:focus,
+			.comment-form-comment textarea:focus,
+			.carousel-review .carousel-indicators li.active {
+				border-color: #00a381
+			}
+			
+			.widget-title {
+				border-left-color: #00a381
+			}
+			
+			.header .nav>li>a:hover,
+			.widget-contact-wrap .widget-contact-sns .fa:hover,
+			.more-link:hover,
+			.news-tab-item:hover {
+				border-color: #0a8772
+			}
+			
+			.j-share {
+				position: fixed!important;
+				top: 50%!important
+			}
+			
+			@media (max-width: 1024px) {
+				.header .navbar-nav .active>.m-dropdown {
+					color: #00a381
+				}
+				.header .navbar-collapse {
+					background-color: #00a381
+				}
+				.header .navbar-nav .dropdown-menu li a:hover,
+				.header .navbar-nav .dropdown-menu .active .dropdown-menu a:hover,
+				.header .navbar-nav .dropdown-menu .active .dropdown-menu .active a,
+				.header .navbar-nav .dropdown-menu .active a:hover,
+				.header .navbar-nav .dropdown-menu .active a,
+				.header .navbar-nav>li.active>a:hover,
+				.header .nav.login>li .menu-item-user:hover {
+					color: #0a8772
+				}
+			}
+			
+			.header .logo img {
+				max-height: 40px
+			}
+			
+			.header.fixed .logo img {
+				max-height: 40px
+			}
+			
+			@media (max-width: 767px) {
+				.header .logo img {
+					max-height: 34px
+				}
+				.header.fixed .logo img {
+					max-height: 34px
+				}
+			}
+		</style>
+		<script type="text/javascript">
+			function setREVStartSize(e) {
+				try {
+					var i = jQuery(window).width(),
+						t = 9999,
+						r = 0,
+						n = 0,
+						l = 0,
+						f = 0,
+						s = 0,
+						h = 0;
+					if(e.responsiveLevels && (jQuery.each(e.responsiveLevels, function(e, f) {
+							f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
+						}), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
+						var u = (e.c.width(), jQuery(window).height());
+						if(void 0 != e.fullScreenOffsetContainer) {
+							var c = e.fullScreenOffsetContainer.split(",");
+							if(c) jQuery.each(c, function(e, i) {
+								u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
+							}), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
+						}
+						f = u
+					} else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
+					e.c.closest(".rev_slider_wrapper").css({
+						height: f
+					})
+				} catch(d) {
+					console.log("Failure at Presize of Slider:" + d)
+				}
+			};
+		</script>
+		<script>
+			(function() {
+				if(! /*@cc_on!@*/ 0) return;
+				var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+				var i = e.length;
+				while(i--) {
+					document.createElement(e[i])
+				}
+			})()
+		</script>
+		<!--[if lte IE 8]><script src="http://demo-src.wpcom.cn/module4/wp-content/themes/Module/js/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="archive category category-news category-2">
+		<{include file="./template/contents/default/site/header.html" /}>
+		<div id="wrap">
+			<{if $cat.image neq false}>
+		    <div class="banner"><img src="<{$cat.image|aimg}>" alt="banner"></div>
+		    <{/if}>
+			<div class="container wrap">
+				<div class="main">
+					<ol class="breadcrumb">
+						<li class="home"><i class="fa fa-map-marker"></i>
+							<a href='<{url link="contents/Index/index" vars="" suffix='true' domain='true'}>'><{$cfg_indexname}></a>
+						</li>
+						<{foreach name="parent_cat" item="vo"}>
+						<li class="active"><a href="<{url link="contents/Cat/index" vars="id=$vo[cat_id]"}>"><{$vo.cat_name}></a></li>
+						<{/foreach}>
+					</ol>
+					<ul class="post-list clearfix">
+						<{Cms:listcolumn pagesize="20" orderby="add_time desc" item="vo" key="k"}>
+						<li class="post-item clearfix">
+							<div class="entry-excerpt row">
+								<div class="col-md-12">
+									<h2 class="entry-title"><a rel="nofollow" href="<{url link="contents/Contents/download" vars="id=$vo[id]" suffix="true" domain="true"}>" title="<{$vo.title}>"><{$vo.title|mb_truncation=18}></a></h2>
+									<p><{$vo.description|mb_truncation=60}></p>
+									<div class="read-more">
+										<a rel="nofollow" class="entry-more" target="_blank" href="<{url link="contents/Contents/download" vars="id=$vo[id]" suffix="true" domain="true"}>" title="<{$vo.title}>">下载&raquo;</a>
+									</div>
+								</div>
+							</div>
+						</li>
+						<{/Cms:listcolumn}>
+					</ul>
+					<div class="zqqpage container wrap" style="text-align: center; padding-top: 20px;">
+						<?php 
+						$listcolumn_page=str_replace('<li>', '', $listcolumn_page);
+						$listcolumn_page=str_replace('</li>', '', $listcolumn_page);
+						$listcolumn_page=str_replace('<ul class="pagination">', '', $listcolumn_page);
+						$listcolumn_page=str_replace('</ul>', '', $listcolumn_page); 
+						$listcolumn_page=str_replace('<li class="active">', '', $listcolumn_page); 
+						$listcolumn_page=str_replace('<li class="disabled">', '', $listcolumn_page); 
+						?>
+						<{$listcolumn_page}>
+						<b>共 <{$listcolumn->lastPage()}>页<{$listcolumn->total()}>条</b>
+					</div>
+				</div>
+				<aside class="sidebar">
+					<div id="nav_menu-4" class="widget widget_nav_menu">
+						<div class="menu-%e5%85%b3%e4%ba%8e-container">
+							<ul id="menu-%e5%85%b3%e4%ba%8e" class="menu">
+								<{Cms:listnav orderby="rank asc" limit="20" item="vv" key="kk" }>
+								<li class="menu-item menu-item-176">
+									<a href="<{url link="contents/Cat/index" vars="id=$vv[cat_id]" suffix='true' domain='true'}>"><{$vv.cat_name}></a>
+								</li>
+								<{/Cms:listnav}>
+							</ul>
+						</div>
+					</div>
+					<div id="lastest-products-2" class="widget widget_lastest_products">
+						<{Cms:find assign="cat_cp" app="contents" model="ContentsCat"   where="cat_id=3"  field="*" /}>
+						<h3 class="widget-title"><span><{$cat_cp.cat_name}></span></h3>
+						<ul class="p-list clearfix">
+							<{Cms:listcolumn pagesize="10" cat_id="3" orderby="add_time desc" item="vo" key="k"}>
+							<li class="col-xs-12 col-md-6 p-item">
+								<div class="p-item-wrap">
+									<a class="thumb" href="<{url link="contents/Contents/index" vars="id=$vo[id]" suffix="true" domain="true"}>"> <img width="480" height="320" src="<{$img_dir}>/lazy.png" class="attachment-post-thumbnail size-post-thumbnail j-lazy wp-post-image" alt="<{$vo.title}>" data-original="<{$vo.images|aimg}>" /> </a>
+									<h4 class="title"> <a href="<{url link="contents/Contents/index" vars="id=$vo[id]" suffix="true" domain="true"}>" title="<{$vo.title}>"> <{$vo.title|mb_truncation=20}>                                
+									</a></h4></div>
+							</li>
+							<{/Cms:listcolumn}>
+						</ul>
+						</ul>
+					</div>
+					<div id="lastest-news-3" class="widget widget_lastest_news">
+						<{Cms:find assign="cat_xw" app="contents" model="ContentsCat"   where="cat_id=6"  field="*" /}>
+						<h3 class="widget-title"><span><{$cat_xw.cat_name}></span></h3>
+						<ul>
+							
+							<{Cms:listcolumn cat_id="6" pagesize="12" orderby="add_time desc" item="vo" key="k"}>
+							<li>
+								<a href="<{url link="contents/Contents/index" vars="id=$vo[id]" suffix="true" domain="true"}>" title="<{$vo.title}>"><{$vo.title|mb_truncation=20}> </a>
+							</li>
+							<{/Cms:listcolumn}>
+						</ul>
+					</div>
+				</aside>
+			</div>
+		</div>
+		<{include file="./template/contents/default/site/footer.html" /}>
+	</body>
+
+</html>

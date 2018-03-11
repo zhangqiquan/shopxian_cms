@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ROOT_PATH__/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/animate.min.css" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+    <div class=" animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal"  id="signupForm" action="<{url link="toConfig"  vars="" suffix='true' domain='true'}>">
+                              
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >站点根网址：</label>
+                                <div    class="col-sm-8">
+                                    <input id="cfg_basehost" name="cfg_basehost" class="layui-input"  minlength="2"  type="text" required value="<{if condition="isset($data['cfg_basehost'])"}><{$data.cfg_basehost.value}><{/if}>" >
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >网站名称：</label>
+                                <div    class="col-sm-8">
+                                    <input id="cfg_webname" name="cfg_webname" class="layui-input"  minlength="2"  type="text" required value="<{if  condition="isset($data['cfg_webname'])"}><{$data.cfg_webname.value}><{/if}>" >
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >文档HTML默认保存路径：</label>
+                                <div    class="col-sm-8">
+                                    <input id="cfg_arcdir" name="cfg_arcdir" class="layui-input"  minlength="2"  type="text" required value="<{if condition="isset($data['cfg_arcdir'])"}><{$data.cfg_arcdir.value}><{/if}>" >
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >网站版权信息：</label>
+                                <div    class="col-sm-8">
+                                    <input  name="cfg_powerby" class="layui-input"  minlength="2"  type="text" required value="<{if condition="isset($data['cfg_powerby'])"}><{$data.cfg_powerby.value}><{/if}>" >
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >站点关键字：</label>
+                                <div    class="col-sm-8">
+                                    <textarea class="layui-textarea" rows="3" name="cfg_keywords"><{if condition="isset($data['cfg_keywords'])"}><{$data.cfg_keywords.value}><{/if}></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >站点描述：</label>
+                                <div    class="col-sm-8">
+                                    <textarea class="layui-textarea" rows="3" name="cfg_description"><{if condition="isset($data['cfg_description'])"}><{$data.cfg_description.value}><{/if}></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label class="col-sm-3 control-label"   >网站备案号：</label>
+                                <div    class="col-sm-8">
+                                    <input id="cfg_beian" name="cfg_beian" class="layui-input"  minlength="2"  type="text" required value="<{if condition="isset($data['cfg_beian'])"}><{$data.cfg_beian.value}><{/if}>" >
+                                </div>
+                            </div>
+                                                       
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-3">
+                                    <button class="layui-btn layui-btn-normal" type="submit">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ROOT_PATH__/static/js/bootstrap.min.js?v=3.3.6"></script>
+<!--    <script src="__ROOT_PATH__/static/js/content.min.js?v=1.0.0"></script>-->
+    <script src="__ROOT_PATH__/static/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <script src="__ROOT_PATH__/static/js/plugins/layer/laydate/laydate.js"></script>
+    <script src="__ROOT_PATH__/static/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script src="__ROOT_PATH__/static/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+        <script>
+        $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+        $().ready(function() {
+            $("#signupForm").validate();
+        });
+    </script>
+</body>
+</html>

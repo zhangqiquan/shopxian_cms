@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/graph_echarts.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:59 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>百度ECHarts</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ROOT_PATH__/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__ROOT_PATH__/static/css/animate.min.css" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <?php $ini_get_all=ini_get_all(); ?>
+    <div class="row  border-bottom white-bg dashboard-header">
+        <div class="col-sm-12">
+            <p>首页
+            </p>
+
+        </div>
+
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>欢迎使用<{php}>echo config('shopxian.app_name');<{/php}></h5>
+                        <div class="ibox-tools">
+                            
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        登录次数：<?php echo cookie('login_count'); ?>
+
+                        上次登录IP：<?php echo cookie('last_login_ip'); ?> 上次登录时间：<?php echo date('Y-m-d H:i:s',cookie('last_login_time')); ?>
+                        <br /><br />
+                        <table class="table table-border table-bordered table-bg mt-20">
+                                <thead>
+                                        <tr>
+                                                <th colspan="2" scope="col">系统信息</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                                <td>服务器IP地址</td>
+                                                <td><?php echo $_SERVER['REMOTE_ADDR']; ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>服务器域名</td>
+                                                <td>__ROOT_PATH__</td>
+                                        </tr>
+                                        <tr>
+                                                <td>服务器端口 </td>
+                                                <td><?php echo $_SERVER['SERVER_PORT']?$_SERVER['SERVER_PORT']:80; ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>所在文件夹 </td>
+                                                <td><?php echo dirname($_SERVER['SCRIPT_FILENAME']).DIRECTORY_SEPARATOR; ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>服务器操作系统 </td>
+                                                <td><?php echo PHP_OS; ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>PHP版本 </td>
+                                                <td><?php echo phpversion(); ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>脚本所有者 </td>
+                                                <td><?php get_current_user(); ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>session保存位置 </td>
+                                                <td><?php echo $ini_get_all['session.save_path']['local_value'];?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>最大内存分配</td>
+                                                <td><?php echo $ini_get_all['memory_limit']['local_value'];?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>最大上传文件大小 </td>
+                                                <td><?php echo $ini_get_all['upload_max_filesize']['local_value'];?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>session有效期</td>
+                                                <td><?php echo $ini_get_all['session.gc_maxlifetime']['local_value'];?>秒</td>
+                                        </tr>
+                                        <tr>
+                                                <td>post请求大小 </td>
+                                                <td><?php echo $ini_get_all['post_max_size']['local_value'];?></td>
+                                        </tr>
+                                        <tr>
+                                                <td>服务器脚本超时时间 </td>
+                                                <td><?php echo ini_get('max_execution_time'); ?>秒</td>
+                                        </tr>                                        
+                                        <tr>
+                                                <td>服务器当前时间 </td>
+                                                <td><?php echo date('Y-m-d H:i:s'); ?></td>
+                                        </tr>
+                                </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ROOT_PATH__/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__ROOT_PATH__/static/js/plugins/echarts/echarts-all.js"></script>
+    <script src="__ROOT_PATH__/static/js/content.min.js?v=1.0.0"></script>
+    <script src="__ROOT_PATH__/static/js/demo/echarts-demo.min.js"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/graph_echarts.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:18:59 GMT -->
+</html>

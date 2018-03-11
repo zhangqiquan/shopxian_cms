@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all">
+    <style>
+        #listapp div{
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class=" animated fadeInRight" style="width: 85%; margin-left: auto; margin-right: auto;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal"  id="signupForm" action="<{url link="toAdd"  vars="" suffix='true' domain='true'}>" onSubmit="return false;">
+                              <input type="hidden" name="role_id" value="<{if condition='isset($shop_role["role_id"])'}><{$shop_role["role_id"]}><{/if}>" />      
+                        <{if  condition="isset($shop_role['role_id'])"}><input name="role_id" type="hidden" value="<{$shop_role.role_id}>"><{/if}>
+                            
+                                                        <div class="form-group"  >
+                                                            <label class="col-sm-3 control-label"   >角色名：</label><div    class="col-sm-8"><input required="" id="role_name" name="role_name" class="layui-input"    type="text"  value="<{if condition="isset($shop_role['role_name'])"}><{$shop_role.role_name}><{/if}>" ></div>
+                                                            </div>
+                                                        <div class="form-group" >
+                                                                <label class="col-sm-3 control-label"   >
+                                                            <br />角色权限：</label>
+                                                                <div    class="col-sm-8" id="listapp">
+                                                                    <{foreach name="menus" item="m" key="k"}>
+                                                                    <div>
+                                                                        <input name="menus[]" id="m_<{$k}>" class="menus_checkbox" type="checkbox" value="<{$m.menus_id}>"><{$m.name}>
+                                                                        <{if $m.menu_list}>
+                                                                        <div style="padding-left: 20px;">
+                                                                            <{foreach name="m.menu_list" item="menu_list" key="kk"}>
+                                                                            <input name="menus[]" id="m_<{$kk}>"  class="menus_checkbox" type="checkbox" value="<{$menu_list.menus_id}>"><{$menu_list.name}>
+                                                                            <{if condition="isset($menu_list['menu_list'])"}>
+                                                                            <div style="padding-left: 20px;">
+                                                                                <{foreach name="menu_list.menu_list" item="menuc" key="kkk"}>
+                                                                                <input name="menus[]" id="m_<{$kkk}>" class="menus_checkbox"  type="checkbox" value="<{$menuc.menus_id}>"><{$menuc.name}>
+                                                                                <{/foreach}>
+                                                                            </div>
+                                                                            <{/if}>
+                                                                            
+                                                                            <{/foreach}>
+                                                                        </div>
+                                                                        <{/if}>
+                                                                    </div>
+                                                                    <hr />
+                                                                    <{/foreach}>
+                                                                </div>
+                                                            </div>
+                                                        <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-3">
+                                    <button class="layui-btn" id="on_submit" type="submit">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+        <script>
+            $("#on_submit").click(function(){
+                    $.post($("#signupForm").attr('action'),$("#signupForm").serialize(),function(data){
+                                    if(data.code==1){
+                                        parent.layer.closeAll();	
+                                        parent.layer.msg(data.msg, {icon: 1});
+                                        parent.window.location.reload();
+                                    }else{
+                                            alert(data.msg);
+                                    }
+                })
+                return false;
+            });
+		$(".menus_checkbox").on('click',function(e){
+			if(this.checked){
+				$(this).next('div').find('input[type=checkbox]').prop("checked",true);
+			}else{
+				$(this).next('div').find('input[type=checkbox]').prop("checked",false);
+			}
+		});
+     try{
+         var role_menu='<{if condition="isset($shop_role['role_menu'])"}><{$shop_role.role_menu}><{/if}>';
+         role_menu=eval('('+role_menu+')');
+     }catch(e){
+         var role_menu=[];
+     }
+     console.log(role_menu);
+        for(ii in role_menu){
+                        $('#m_'+role_menu[ii]).prop('checked',true);
+        }
+    </script>
+
+</body>
+</html>

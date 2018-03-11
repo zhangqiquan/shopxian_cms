@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>状态消息</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>         
+    </head> 
+    <body> 
+        <script> 
+             
+            try{ 
+                <{if condition="$status ==true"}> 
+    parent.layer.closeAll();  
+                parent.layer.msg('<{$msg}>', {icon: 1}); 
+                parent.window.location.reload(); 
+                <{else /}> 
+    window.history.go(-1); 
+                parent.layer.msg('<{$msg}>', {anim: 6,icon: 2}); 
+                <{/if}> 
+            }catch(e){} 
+             
+        </script> 
+    </body> 
+</html> 

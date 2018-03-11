@@ -1,0 +1,58 @@
+<table width="100%" class="layui-table">
+  <tbody>
+    <tr>
+      <td align="right">版本</td>
+      <td align="left"><{$version}>&nbsp;&nbsp;<button class="layui-btn layui-btn-sm" type="button" onclick="sys_update('<{$id}>');">检查更新</button></td>
+    </tr>
+    <tr>
+      <td align="right">应用名</td>
+      <td><{$name}></td>
+    </tr>
+    <tr>
+      <td align="right">应用描述</td>
+      <td><{$description}></td>
+    </tr>
+    <tr>
+      <td align="right">作者</td>
+      <td><{$author.name}>,<{$author.email}>,<{$author.url}></td>
+    </tr>
+  </tbody>
+</table>
+<script>
+    function sys_update(app){
+        $.post('<{url link="appUpdate"}>','app='+app,function(data){
+            data=eval('('+data+')');
+            if(data.code==1){
+                //询问框
+                layer.confirm(data.msg, {
+                  btn: ['更新','不更新'] //按钮
+                }, function(){
+                    layer.closeAll();	
+                    var index = layer.load(1, {
+                    shade: [0.1,'#fff'] //0.1透明度的白色背景
+                  });
+                    $.post('<{url link="appUpdate"}>','app='+app+'&code=1',function(update){
+                        layer.closeAll();
+                        //更新等待
+                        update=eval('('+update+')');
+                        if(update.code==1){
+                            layer.msg(update.msg, {icon: 1});
+                        }else{
+                            layer.msg(update.msg,{anim: 6,icon: 2});
+                        }
+                    }).error(function(error){
+                        layer.closeAll();
+                        alert("出错啦!!!\n"+error.statusText);
+                      });
+                }, function(){
+                  layer.msg('已取消更新');
+                });
+            }else{
+                layer.alert(data.msg)
+            }
+        }).error(function(error){
+            layer.closeAll();
+            alert("出错啦!!!\n"+error.statusText);
+          });
+    }
+</script>

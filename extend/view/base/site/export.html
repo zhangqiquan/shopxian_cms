@@ -1,0 +1,19 @@
+<fieldset class="layui-elem-field layui-field-title"> 
+        <legend>导出数据列表</legend> 
+</fieldset> 
+  <div class="layui-tab-content"> 
+    <div class="layui-tab-item layui-show"> 
+        <h3>当前选择<?php echo count($ids); ?>条需要导出的数据,点击确定下载完成导出!</h3> 
+        <br /> 
+        <p> 
+            <form action="<{url link='exportId' vars='' suffix='true' domain='true'}>" method="post"> 
+                <input type="hidden" name="table_name" value='<?php echo input('table_name',''); ?>' /> 
+                <input type="hidden" name="element_id" value='<?php echo input('element_id',''); ?>' /> 
+                <input type="hidden" name="id" value='<?php echo json_encode($ids);?>' /> 
+                <button type="submit" class="layui-btn layui-btn-normal" onClick="allClose();">确定下载</button> 
+            </form> 
+ 
+        </p> 
+    </div> 
+       
+  </div>

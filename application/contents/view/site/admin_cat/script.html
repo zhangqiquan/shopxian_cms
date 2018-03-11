@@ -1,0 +1,10 @@
+var contents_num=$("#examplew100").find('.contents_num');
+contents_num.each(function(i){
+    var obj=this;
+    if($(obj).html()==''){
+        $.post('<{url link="contentsCount"}>','id='+this.getAttribute("data-tree_id"),function(data){
+            $(obj).html(data);
+        });
+    }
+    
+});

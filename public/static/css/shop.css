@@ -1,0 +1,30 @@
+.h5div{
+	 background: #ccc;
+	 width: 100%;
+	 float: left;
+	 height: 32px;
+	margin-bottom: 5px;;
+}
+.h5left1{
+	background: #fff;
+	float: left;
+	width: 80px;
+	height: 30px;
+	margin: 0px 8px;
+	line-height: 2em;
+	text-align: center;
+}
+.h5left2{
+	background: #ccc;
+	float: left;
+	width: 80px;
+	height: 30px;
+	margin: 0px 8px;
+	line-height: 2em;
+	text-align: center;
+}
+*{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}

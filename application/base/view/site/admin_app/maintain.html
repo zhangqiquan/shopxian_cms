@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>维护</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+    <body style="padding: 8px;">
+    <h3>系统维护配置项</h3>
+    <hr />
+		<button class="btn btn-default" type="submit" onClick="maintain(this);">维护</button>
+       <br /><br />
+        <textarea class="layui-textarea" id="text_list" rows="20" style="width:100%;"  placeholder="等待执行"></textarea>
+        <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4" type="application/javascript"></script>
+        <script>
+			var data=<{$data}>;
+			function maintain(ts){
+				
+				ts.disabled=true;
+                                                                if(data.length==0){
+                                                                    alert("没有可维护的APP");
+                                                                    return false;
+                                                                }
+				ajaxPost1(0);
+				ajaxPost2(0);
+			}
+			function ajaxPost1(key){
+				var app=data[key];
+				var post_data={
+					'app':app,
+				};
+				$.post('<{url link="dbUpdate" vars="" suffix="true" domain="true" }>',post_data,function(d){
+					$('#text_list').append(d+'<br />');
+					var obj = document.getElementById("text_list");   
+					obj.scrollTop = obj.scrollHeight; // good  
+                                                                                if(key>=data.length-1){
+                                                                                    $('#text_list').append('ok ! dbUpdate维护完成'+"\n");
+                                                                                    return false;
+                                                                                }
+					ajaxPost1(key+1);
+				});
+			}
+			var in_app=[];
+			function ajaxPost2(key){
+				var app=data[key];
+				var post_data={
+					'app':app,
+				};
+				$.post('<{url link="menuUpdate" vars="" suffix="true" domain="true" }>',post_data,function(d){
+					$('#text_list').append(d+'<br />');
+					var obj = document.getElementById("text_list");   
+					obj.scrollTop = obj.scrollHeight; // good  
+                                                                                if(key>=data.length-1){
+                                                                                    
+                                                                                    $('#text_list').append('ok！menuUpdate维护完成'+"\n");
+                                                                                    return false;
+                                                                                }
+					ajaxPost2(key+1);
+				});
+			}
+		</script>
+    </body>
+</html>

@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/form_webuploader.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:29 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>文件上传选择demo</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ROOT_PATH__/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="__ROOT_PATH__/static/css/demo/webuploader-demo.min.css">
+    <link href="__ROOT_PATH__/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/plugins/jsTree/style.min.css" rel="stylesheet">
+	<style>
+		*{
+			list-style:none;
+		}
+		.file_list{
+			width: 80%; 
+			float: left;
+		}
+	.file_list ul .file_list_li {
+		float: left;
+		width: 120px;
+		height: 120px;
+		overflow: hidden;
+		padding: 6px;
+		border: 2px solid #FFFFFF;
+		cursor:pointer;
+		padding: 0px;
+		position: relative;
+	}
+		.file_list ul .file_list_li:hover {
+		border: 2px solid #F55;
+	}
+		.file_list ul .file_list_li p {
+		position:absolute;
+		bottom: 0px;
+		background: #000;
+		color: #fff;	
+		width: 100%;
+		opacity: 0.3;
+		text-align: center;	
+		padding: 0px;	
+	}
+		.file_list_page{
+			width: 100%;
+			float: right;
+			text-align: center;
+			margin-top: 20px;
+		}
+		.file-name{
+			width: 200px; height: 80px; overflow: hidden;
+		}
+    </style>
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeIn">
+		<div class="col-sm-12">
+			<div class="ibox float-e-margins">
+
+				  <div class="col-sm-12">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li  class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">图片空间</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab-1" class="tab-pane active">
+								<div class="panel-body">
+
+									<!---------------------->
+										<div id="jstree1"  style="width: 16%; float: left;">
+											<ul>
+												<li class="jstree-open">我的图片
+													<ul>
+														<li><a href="javascript:void(0);" data-url="<{url limk='admin/Imgspace/fileList'  vars='dir=default' suffix='true' domain='true' }>" class="ajax_href" data-dir="default"><i class="fa fa-folder"></i> 宝贝图片</a></li>
+														<{foreach name="dir" item="vo"}>
+                               							<li><a href="javascript:void(0);" data-url="<{url limk='admin/Imgspace/fileList'  vars='dir=$vo[dir]' suffix='true' domain='true' }>" class="ajax_href" data-dir="<{$vo.dir}>"><i class="fa fa-folder"></i> <{$vo.dir_name}></a></li>
+                               							<{/foreach}>
+													</ul>
+												</li>
+											</ul>
+
+										</div>
+										<!------------文件列表------------->
+										<div class="col-sm-10 animated fadeInRight" style="width: 82%;">
+											<div class="row">
+												<div class="col-sm-12" id="show_file_list">
+													<div class="file-box">
+														<div class="file">
+															<a href="file_manager.html#">
+																<span class="corner"></span>
+
+																<div class="icon">
+																	<i class="fa fa-file"></i>
+																</div>
+																<div class="file-name">
+																	Document_2014.doc
+																	<br/>
+																	<small>添加时间：2014-10-13</small>
+																</div>
+															</a>
+														</div>
+
+													</div>
+
+												</div>
+												<div class="classpage" style="text-align: center;" id="classpage">123456</div>
+											</div>
+										</div>
+										<!-----------文件列表-------------->
+
+									<!--------------------->
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ROOT_PATH__/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript">
+        var BASE_URL = '/';
+		var UPLOAD_SERVER_PATH='<{url link="files/Imgupload/submit"}>';
+		var DOMAIN='<{php}>echo config("site.domain");<{/php}>';
+		var UPLOAD_STATUS="var index = parent.layer.getFrameIndex(window.name);parent.$('.btn-refresh').click();parent.layer.close(index);";	
+		document.domain = DOMAIN;
+    </script>
+    <script src="__ROOT_PATH__/static/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="__ROOT_PATH__/static/js/demo/webuploader-demo.min.js"></script>
+    <script src="__ROOT_PATH__/static/js/plugins/jsTree/jstree.min.js"></script>
+    <style>
+        .jstree-open>.jstree-anchor>.fa-folder:before{content:"\f07c"}.jstree-default .jstree-icon.none{width:0}
+    </style>
+    <script>
+//        $(document).ready(function(){$("#jstree1").jstree({"core":{"check_callback":true},"plugins":["types","dnd"],"types":{"default":{"icon":"fa fa-folder"},"html":{"icon":"fa fa-file-code-o"},"svg":{"icon":"fa fa-file-picture-o"},"css":{"icon":"fa fa-file-code-o"},"img":{"icon":"fa fa-file-image-o"},"js":{"icon":"fa fa-file-text-o"}}});$("#using_json").jstree({"core":{"data":["Empty Folder",{"text":"Resources","state":{"opened":true},"children":[{"text":"css","children":[{"text":"animate.css","icon":"none"},{"text":"bootstrap.css","icon":"none"},{"text":"main.css","icon":"none"},{"text":"style.css","icon":"none"}],"state":{"opened":true}},{"text":"js","children":[{"text":"bootstrap.js","icon":"none"},{"text":"hplus.min.js","icon":"none"},{"text":"jquery.min.js","icon":"none"},{"text":"jsTree.min.js","icon":"none"},{"text":"custom.min.js","icon":"none"}],"state":{"opened":true}},{"text":"html","children":[{"text":"layout.html","icon":"none"},{"text":"navigation.html","icon":"none"},{"text":"navbar.html","icon":"none"},{"text":"footer.html","icon":"none"},{"text":"sidebar.html","icon":"none"}],"state":{"opened":true}}]},"Fonts","Images","Scripts","Templates",]}})});
+		
+		
+	var Gdir='';	
+	$(".ajax_href ").click(function(e){
+		var dir=$(this).data("dir");
+		Setcookie("dir",dir);
+		Gdir=dir;
+		ajax_getFileList("<{url link='getFile'  vars='' suffix='true' domain='true' }>",{'dir':dir});
+		
+	});
+	function Setcookie (name, value)
+	{ 
+		//设置名称为name,值为value的Cookie
+		var expdate = new Date();   //初始化时间
+		expdate.setTime(expdate.getTime() + 10*24*60*60*1000);   //时间 10天
+		document.cookie = name+"="+value+";expires="+expdate.toGMTString()+";path=/";
+	   //即document.cookie= name+"="+value+";path=/";   时间可以不要，但路径(path)必须要填写，因为JS的默认路径是当前页，如果不填，此cookie只在当前页面生效！~
+	}	
+	function ajax_getFileList(url,json){
+		$.get(url,json,function(data){
+			/*
+			<div class="file-box"><div class="file"><a href="file_manager.html#"><span class="corner"></span><div class="image"><img alt="image" class="img-responsive" src="img/p1.jpg"></div><div class="file-name">Italy street.jpg<br><small>添加时间：2014-10-13</small></div></a></div></div>
+			*/
+			var html='';
+			var data=eval("("+data+")");
+			for(i in data.list.data){
+				var thisdata=data.list.data[i];
+				html+='<div class="file-box"><div class="file"><a href="javascript::void(0);"><span class="corner"></span><div class="image"><img alt="image" class="img-responsive" src="/'+thisdata.adj_path+'"></div><div class="file-name">'+thisdata.file_name+'<br><small>添加时间：2014-10-13</small></div></a></div></div>';
+			}
+			$("#show_file_list").html(html);
+			$(".classpage").html(data.page);
+			ajax_page();
+			preview();
+		});
+	}	
+	function ajax_page(){
+		var page_all_A=document.getElementById("classpage").getElementsByTagName("a");
+		for(var i=0;i<page_all_A.length;i++){
+			page_all_A[i].onclick=function(){
+				ajax_getFileList(this.href,{'dir':Gdir});
+				return false;
+			}
+		}
+	}	
+	$(".ajax_href").eq(0).click();
+	function preview(){
+		$(".img-responsive").click(function(e){
+			var all_NoNull=true;
+			var img_src=this.src.replace("http://","");
+			img_src=img_src.replace('https://','');
+			img_src=img_src.replace(window.location.host,'');
+                                                    if(window.location.port)img_src=img_src.replace(':'+window.location.port,'');
+                                                   //是否包含端口信息
+			var classObj=parent.$('.<{$class}>').parent();
+			classObj.find('img').css('display','');
+			classObj.find('img').prop('src',this.src);
+			classObj.find('input[type=hidden]').val(img_src);
+			parent.$('.<{$class}>').removeClass('<{$class}>');
+			if(all_NoNull){
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.$('.btn-refresh').click();
+				parent.layer.close(index);
+			}
+			return false;
+		})
+	}
+    </script>
+
+</body>
+</html>

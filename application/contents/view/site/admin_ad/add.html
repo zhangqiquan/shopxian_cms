@@ -1,0 +1,98 @@
+<div class="layui-tab">
+ <input type="hidden" id="ad_type" name="ad_type" value="<{if condition="isset($row['ad_type'])"}><{$row['ad_type']}><{else}>code<{/if}>">
+  <ul class="layui-tab-title" id="ad_type_tag">
+    <li <{if condition="isset($row['ad_type'])==false||$row['ad_type']=='code'"}> class="layui-this"<{/if}> data-val="code">代码</li>
+    <li <{if condition="isset($row['ad_type'])&&$row['ad_type']=='text'"}> class="layui-this"<{/if}> data-val="text">文字</li>
+    <li <{if condition="isset($row['ad_type'])&&$row['ad_type']=='aimg'"}> class="layui-this"<{/if}> data-val="aimg">单图</li>
+    <li <{if condition="isset($row['ad_type'])&&$row['ad_type']=='imgs'"}> class="layui-this"<{/if}> data-val="imgs">幻灯片</li>
+  </ul>
+  <div class="layui-tab-content" style="border-bottom: 1px solid #eee;border-left: 1px solid #eee;border-right: 1px solid #eee;">
+    <div class="layui-tab-item  <{if condition="isset($row['ad_type'])==false||$row['ad_type']=='code'"}>layui-show<{/if}>">
+    	<textarea name="__code" placeholder="请输入广告代码" class="layui-textarea" maxlength="1000"><{if condition="isset($row['ad_type'])&&$row['ad_type']=='code'"}><{$row.ad_body}><{/if}></textarea>
+    </div>
+    <div class="layui-tab-item <{if condition="isset($row['ad_type'])&&$row['ad_type']=='text'"}>layui-show<{/if}>">
+    	<table width="100%" class="layui-table">
+		  <tbody>
+			<tr>
+			  <td width="120px" align="right">文字内容</td>
+			  <td><input type="text" name="__text_body" placeholder="请输入文字广告" maxlength="255" value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='text'"}><{$row.ad_body.text}><{/if}>" autocomplete="off" class="layui-input"></td>
+			</tr>
+			<tr>
+			  <td width="120px" align="right">文字链接</td>
+			  <td><input type="url" name="__text_link" value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='text'"}><{$row.ad_body.link}><{/if}>"   placeholder="请输入链接地址" maxlength="255" autocomplete="off" class="layui-input"></td>
+			</tr>
+			<tr>
+			  <td width="120px" align="right">文字颜色</td>
+			  <td><input type="color" name="__text_color" value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='text'"}><{$row.ad_body.color}><{/if}>"  placeholder="请输入颜色" value="#000000" maxlength="10" autocomplete="off"></td>
+			</tr>
+			<tr>
+			  <td width="120px" align="right">文字大小(px)</td>
+			  <td><input type="number" name="__text_font_size" value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='text'"}><{$row.ad_body.font_size}><{/if}>"  placeholder="请输入大小" maxlength="2" value="14" autocomplete="off" class="layui-input"></td>
+			</tr>
+		  </tbody>
+		</table>    	
+    </div>
+    <div class="layui-tab-item <{if condition="isset($row['ad_type'])&&$row['ad_type']=='aimg'"}>layui-show<{/if}>">
+    	<table width="100%" class="layui-table">
+		  <tbody>
+			<tr>
+			  <td width="120px" align="right">图片地址</td>
+			  <td><div style="height: auto; overflow: hidden; width: 70%;"><input value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='aimg'"}><{$row.ad_body.path}><{/if}>" type="text" id="__aimg_path" name="__aimg_path" style="float: left; margin-right: 3px; width: 70%;" lay-verify="" class="layui-input" value=""><div style="position: relative;float: left;"><input type="button" value="上传图片" id="inputbuttonimage" onclick="layer_open('图片浏览器','<{url link="imagesBrowser"}>?dom_id=__aimg_path&upload_num=1')" class="layui-btn layui-btn-normal"></div><div style="width: 100%; float: left;"></div></div></td>
+			</tr>
+			<tr>
+			  <td width="120px" align="right">图片链接</td>
+			  <td><input type="url" name="__aimg_link" value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='aimg'"}><{$row.ad_body.link}><{/if}>"  placeholder="请输入图片链接" maxlength="255" autocomplete="off" class="layui-input"></td>
+			</tr>
+			<tr>
+			  <td width="120px" align="right">图片描述</td>
+			  <td><input type="text" name="__aimg_alt" value="<{if condition="isset($row['ad_type'])&&$row['ad_type']=='aimg'"}><{$row.ad_body.alt}><{/if}>"  placeholder="请输入图片描述" value="" maxlength="60"  class="layui-input"></td>
+			</tr>
+		  </tbody>
+		</table>
+    	
+    	
+    </div>    
+    <div class="layui-tab-item <{if condition="isset($row['ad_type'])&&$row['ad_type']=='imgs'"}>layui-show<{/if}>">
+		<div style="text-align: right;"><input class="layui-btn layui-btn-sm layui-btn-normal" type="button" onClick="add_hd_imgs();" value="添加更多"></div>
+		<div id="add_hd_imgs">
+			<{if condition="isset($row['ad_type'])&&$row['ad_type']=='imgs'"}>
+			<{foreach name="row.ad_body.path" item="vo" key="k"}>
+			<table width="100%" class="layui-table">
+			<tbody>
+			<tr><td colspan="2"  bgcolor="#A0D0F4" align="right"><input type="button" onclick="del_hd_imgs(this);" class="layui-btn layui-btn-sm layui-btn-danger" value="删除"></td></tr>
+			<tr>
+				<td width="120px" align="right">幻灯片图片地址</td><td><div style="height: auto; overflow: hidden; width: 70%;"><input type="text" id="__imgs_path<{$k}>" value="<{$vo}>" name="__imgs[]" style="float: left; margin-right: 3px; width: 70%;" lay-verify="" class="layui-input" ><div style="position: relative;float: left;"><input type="button" value="上传图片" id="inputbuttonimage" onclick="layer_open('图片浏览器','<{url link="imagesBrowser"}>?dom_id=__imgs_path<{$k}>&upload_num=1')" class="layui-btn layui-btn-normal"></div><div style="width: 100%; float: left;"></div></div></td>
+			</tr>
+			<tr>
+				<td width="120px" align="right">图片链接</td><td><input type="url" name="__imgs_link[]" value="<{$row['ad_body']['link'][$k]}>"  placeholder="请输入图片链接" maxlength="255" autocomplete="off" class="layui-input"></td>
+			</tr>
+			<tr>
+				<td width="120px" align="right">图片描述</td><td><input type="text" name="__imgs_alt[]" value="<{$row['ad_body']['alt'][$k]}>"  placeholder="请输入图片描述" value="" maxlength="60"  class="layui-input"></td>
+			</tr>
+			</tbody></table>			
+			<{/foreach}>
+			<{else}>
+			<table width="100%" class="layui-table"><tbody><tr><td colspan="2"  bgcolor="#A0D0F4" align="right"><input type="button" onclick="del_hd_imgs(this);" class="layui-btn layui-btn-sm layui-btn-danger" value="删除"></td></tr><tr><td width="120px" align="right">幻灯片图片地址</td><td><div style="height: auto; overflow: hidden; width: 70%;"><input type="text" id="__imgs_path0" name="__imgs[]" style="float: left; margin-right: 3px; width: 70%;" lay-verify="" class="layui-input" value=""><div style="position: relative;float: left;"><input type="button" value="上传图片" id="inputbuttonimage" onclick="layer_open('图片浏览器','<{url link="imagesBrowser"}>?dom_id=__imgs_path0&upload_num=1')" class="layui-btn layui-btn-normal"></div><div style="width: 100%; float: left;"></div></div></td></tr><tr><td width="120px" align="right">图片链接</td><td><input type="url" name="__imgs_link[]"  placeholder="请输入图片链接" maxlength="255" autocomplete="off" class="layui-input"></td></tr><tr><td width="120px" align="right">图片描述</td><td><input type="text" name="__imgs_alt[]"  placeholder="请输入图片描述" value="" maxlength="60"  class="layui-input"></td></tr></tbody></table>
+			<{/if}>
+		</div>
+	</div>
+  </div>
+</div>
+<script>
+function add_hd_imgs(){
+	var length=$("#add_hd_imgs").find("table").length;
+	if(length>8){
+		parent.layer.msg('最大允许添加8个', {anim: 6,icon: 2});
+		return false;
+	}
+	length=Date.parse(new Date())+''+length;
+	var hd_imgs_html='<table width="100%" class="layui-table"><tbody><tr><td colspan="2"  bgcolor="#A0D0F4" align="right"><input type="button" onclick="del_hd_imgs(this);" class="layui-btn layui-btn-sm layui-btn-danger" value="删除"></td></tr><tr><td width="120px" align="right">幻灯片图片地址</td><td><div style="height: auto; overflow: hidden; width: 70%;"><input type="text" id="__imgs_path'+length+'" name="__imgs[]" style="float: left; margin-right: 3px; width: 70%;" lay-verify="" class="layui-input" value=""><div style="position: relative;float: left;"><input type="button" value="上传图片" id="inputbuttonimage" onclick="layer_open(\'图片浏览器\',\'<{url link="imagesBrowser"}>?dom_id=__imgs_path'+length+'&upload_num=1\')" class="layui-btn layui-btn-normal"></div><div style="width: 100%; float: left;"></div></div></td></tr><tr><td width="120px" align="right">图片链接</td><td><input type="url" name="__imgs_link[]"  placeholder="请输入图片链接" maxlength="255" autocomplete="off" class="layui-input"></td></tr><tr><td width="120px" align="right">图片描述</td><td><input type="text" name="__imgs_alt[]"  placeholder="请输入图片描述" value="" maxlength="60"  class="layui-input"></td></tr></tbody></table>';
+	$("#add_hd_imgs").append(hd_imgs_html);
+}	
+function del_hd_imgs(obj){
+	$(obj).parent().parent().parent().remove();
+}	
+$("#ad_type_tag").find("li").click(function(){
+	$("#ad_type").val($(this).data("val"));
+})
+</script>

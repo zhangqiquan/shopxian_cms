@@ -1,0 +1,98 @@
+<footer class="footer">
+	<div class="container">
+		<div class="footer-widget row hidden-xs">
+			<{Cms:nav parent_id="0" orderby="rank asc" limit="4" item="vo" key="k" }>
+				<div class="col-md-2 col-sm-4 hidden-xs widget widget_pages">
+					<h3 class="widget-title"><{$vo.cat_name}></h3>
+					<ul>
+						<{Cms:nav parent_id="$vo['cat_id']" orderby="rank asc" limit="5" item="vv" key="kk" }>
+							<li class="page_item page-item-26">
+								<a href="<{url link="contents/Cat/index" vars="id=$vv[cat_id]" suffix='true' domain='true'}>">
+									<{$vv.cat_name}>
+								</a>
+							</li>
+							<{/Cms:nav}>
+					</ul>
+				</div>
+				<{/Cms:nav}>
+					<div class="col-md-3 col-md-offset-1 col-sm-8 col-xs-12 widget widget_contact">
+						<h3 class="widget-title">服务热线</h3>
+						<div class="widget-contact-wrap">
+							<div class="widget-contact-tel">
+								<{Cms:config code="cfg_contents_tel" /}>
+							</div>
+							<div class="widget-contact-time">客服服务时段：
+								<{Cms:config code="cfg_contents_gzsj" /}>
+							</div>
+							<div class="widget-contact-sns">
+								<a rel="nofollow" target="_blank" href="<{Cms:config code="cfg_contents_weibo" /}>" rel="nofollow"><i class="fa fa-weibo"></i></a>
+								<a class="sns-wx" id="j-weixin" href="javascript:;"> <i class="fa fa-weixin"></i> <span style="background-image:url(<{Cms:config code="cfg_contents_weixin" /}>);"></span> </a>
+								<a target="_blank" href="<{Cms:config code="cfg_contents_txweibo" /}>" rel="nofollow"><i class="fa fa-tencent-weibo"></i></a>
+							</div>
+						</div>
+					</div>
+		</div>
+		<div class="copyright">
+			<{$cfg_powerby}>
+				<{$cfg_beian}>
+		</div>
+	</div>
+</footer>
+<div class="action" style="top:50%;">
+	<div class="a-box contact">
+		<div class="contact-wrap">
+			<h3 class="contact-title">联系我们</h3>
+			<h4 style="text-align: center;"><span style="color: #2d6ded;"><strong><{Cms:config code="cfg_contents_tel" /}></strong></span></h4>
+			<p>在线咨询：
+				<a rel="nofollow" href="http://wpa.qq.com/msgrd?uin=<{Cms:config code="cfg_contents_qq1" /}>" target="_blank" rel="noopener noreferrer"><img class="alignnone" title="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:<{Cms:config code="cfg_contents_qq1 " /}>:51" alt="点击这里给我发消息" border="0" /></a>
+			</p>
+			<p>在线咨询：
+				<a rel="nofollow" href="http://wpa.qq.com/msgrd?uin=<{Cms:config code="cfg_contents_qq2" /}>" target="_blank" rel="noopener noreferrer"><img class="alignnone" title="点击这里给我发消息" src="http://wpa.qq.com/pa?p=2:<{Cms:config code="cfg_contents_qq2" /}>:51" alt="点击这里给我发消息" border="0" /></a>
+			</p>
+			<p>邮件：
+				<{Cms:config code="cfg_contents_youxiang" /}>
+			</p>
+			<p>工作时间：
+				<{Cms:config code="cfg_contents_gzsj" /}>
+			</p>
+		</div>
+	</div>
+	<div class="a-box wechat">
+		<div class="wechat-wrap"> <img src="<{Cms:config code="cfg_contents_weixin" /}>" alt="QR code"></div>
+	</div>
+<!--	<div class="bdsharebuttonbox" data-tag="global">
+		<a href="#" class="a-box share bds_more" data-cmd="more"></a>
+	</div>-->
+	<div class="a-box gotop" id="j-top" style="display: none;"></div>
+</div>
+<div class="footer-bar">
+	<div class="fb-item">
+		<a rel="nofollow" href="tel:<{Cms:config code="cfg_contents_tel" /}>"> <i class="fa fa-phone"></i> <span>电话</span> </a>
+	</div>
+	<div class="fb-item">
+		<a rel="nofollow" href="mailto:<{Cms:config code="cfg_contents_youxiang" /}>"> <i class="fa fa-envelope"></i> <span>邮箱</span> </a>
+	</div>
+	<div class="fb-item">
+		<a rel="nofollow" href="http://wpa.qq.com/msgrd?v=3&uin=<{Cms:config code="cfg_contents_qq1" /}>&site=qq&menu=yes" target="_blank"> <i class="fa fa-qq"></i> <span>QQ</span> </a>
+	</div>
+	<!--
+	<div class="fb-item">
+		<a rel="nofollow" href="http://j.map.baidu.com/hUrCk" target="_blank"> <i class="fa fa-map"></i> <span>地图</span> </a>
+	</div>
+-->
+</div>
+<script type='text/javascript'>
+	/*  */
+	var _wpcom_js = {
+		"ajaxurl": "",
+		"slide_speed": "5000"
+	};
+	/*  */
+</script>
+<script type="text/javascript" src="<{$js_dir}>/465e0.js"></script>
+<!--
+<script type='text/javascript' src='//api.map.baidu.com/api?v=2.0&#038;ak=l2ixui3oC448HEtHBGsDZtK7ax52h7mv&#038;ver=4.9.4'></script>
+<script>
+	baidu_map('map-163724095641', '<h3 class=\"map-title\">秀仙网络</h3><p class=\"map-address\">上海市松江区</p>', [116.403963, 39.915119], 0);
+</script>
+-->

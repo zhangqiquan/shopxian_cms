@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>导出列表</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="__ROOT_PATH__/static/css/bootstrap.min.css"> 
+    </head> 
+    <body> 
+        <table width="100%"  class="table table-bordered" border="1" cellspacing="1" cellpadding="1"> 
+        <thead> 
+               <tr style="background-color: #414040;color: #fff;"> 
+                       <{foreach name="field" item="vo" key="k"}> 
+                       <{if $k eq 'id'}> 
+                       <td align="center">id</td> 
+                       <{else}> 
+                       <td  align="center"><{$vo}></td> 
+                       <{/if}> 
+ 
+                       <{/foreach}> 
+               </tr> 
+         </thead> 
+         <tbody> 
+           <?php  $field_key=array_keys($field); ?> 
+           <{foreach name="list.data" item="vo" key="k"}> 
+           <tr class="dataList"> 
+             <{foreach name="vo" item="vv" key="k1"}> 
+             <{if $k1 eq 'id'}> 
+             <td align="center">,<{$vo.id}></td> 
+             <{else}> 
+                   <{if  condition="in_array($k1,$field_key)"}> 
+                       <td align="center"> 
+                             <{if condition="isset($getfield[$k1]['fun'])"}> 
+                               <?php echo $getfield[$k1]['fun']($vv); ?> 
+                             <{else}> 
+                               <?php if(is_array($vv)){echo json_encode($vv,JSON_UNESCAPED_UNICODE);}else{ if(isset($getfield[$k1]['value'][$vv])){echo $getfield[$k1]['value'][$vv];}else{echo $vv;}} ?> 
+                             <{/if}> 
+                     </td> 
+                   <{/if}> 
+             <{/if}> 
+             <{/foreach}> 
+           </tr> 
+           <{/foreach}> 
+         </tbody> 
+       </table> 
+    </body> 
+</html> 

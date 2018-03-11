@@ -1,0 +1,28 @@
+<style>
+    select[name=channeltype_id]{
+            height: 38px;
+            line-height: 1.3;
+            line-height: 38px\9;
+            border-width: 1px;
+            border-style: solid;
+            background-color: #fff;
+            border-radius: 2px;
+            width:100%;
+    }
+</style>
+<script>
+    $(function(){
+        channeltype_id();
+        $("select[name=channeltype_id]").change(function(){
+			channeltype_id();
+		});
+        function channeltype_id(){
+            $.post('<{url link="AdminChanneltype/get"}>','id='+$("select[name=channeltype_id]").val(),function(data){
+                data=eval('('+data+')');
+                if('<?php echo input('id',''); ?>'=='')$("input[name=tempindex]").val(data.tempindex);
+                if('<?php echo input('id',''); ?>'=='')$("input[name=templist]").val(data.templist);
+                if('<?php echo input('id',''); ?>'=='')$("input[name=temparticle]").val(data.temparticle);
+            });
+        }
+    })
+</script>

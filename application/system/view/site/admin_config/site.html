@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>finder</title>
+
+    <link rel="stylesheet" href="__ROOT_PATH__/static/css/bootstrap.min.css">
+    <link href="__ROOT_PATH__/static/css/animate.min.css" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        
+        <!-- End Panel Columns & Select -->
+
+        <!-- Panel Other -->
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5><{$title}></h5>
+                <div class="ibox-tools">
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-refresh" title="刷新" onclick="window.location.reload();">   </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+            <!---------------内容部分---------------->
+            	<form id="fm" action="<{url link="logistics/Shoptool/totrace"  vars="" suffix='true' domain='true'}>" method="post">
+                <table width="100%" class="layui-table">
+                 <{foreach name="data" item="vo" key="k"}>
+                 <tr>
+                    <td align="right">运单号</td>
+                    <td><input name="<{$k}>" id="number" type="text"  class="layui-input" value="<{$vo}>"></td>
+                  </tr>
+                 <{/foreach}>
+                  
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td><input value="保存" type="submit" class="layui-btn layui-btn-normal"></td>
+                  </tr>
+                </table>
+                </form>
+                <div id="list_body" style="padding:10px;">
+                </div>
+            <!---------------内容部分---------------->
+            </div>
+        </div>
+        <!-- End Panel Other -->
+    </div>
+</body>
+</html>

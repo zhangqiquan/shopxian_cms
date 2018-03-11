@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>高级筛选</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all"> 
+        <script src="__ROOT_PATH__/static/js/jquery.min.js"></script> 
+  <style> 
+   *{padding:0px; margin: 0px;} 
+  </style> 
+    </head> 
+    <body style="width: 400px; height: auto; overflow: hidden;">     
+    <form class="layui-form layui-form" method="post" onSubmit="return onSubmit(this);"> 
+       <table width="100%" style="border-collapse:separate; 
+  border-spacing:0px 15px;"> 
+    <tbody> 
+    <{foreach name="field_more_so" item="vo" key="k"}> 
+   <tr> 
+     <td width="80px" style="min-width: 80px;" align="right"><{$vo.label}>&nbsp;</td> 
+     <td width="80px" align="center" style="min-width: 80px;"> 
+    <select name="<{$k}>[rule]" style="padding: 3px;" lay-ignore> 
+     <option value="eq">&nbsp;等于&nbsp;</option> 
+     <option value="like">&nbsp;包含&nbsp;</option> 
+     <option value="neq">&nbsp;不等于&nbsp;</option> 
+     <{if condition="in_array($vo['input_type'],['number','date','datetime'])"}> 
+     <option value="egt">大于等于</option> 
+     <option value="elt">小于等于</option> 
+     <option value="between">介于之间</option> 
+     <{/if}>      
+      </select> 
+     </td> 
+     <td width="270px" align="left" style="min-width: 250px;"> 
+      <{if condition="isset($vo['value'])&&is_array($vo['value'])"}> 
+      <select name="<{$k}>[val]" style="padding: 3px;" lay-ignore> 
+       <{foreach name="vo.value" item="vv" key="kk"}> 
+        <option value="<{$kk}>"><{$vv}></option> 
+       <{/foreach}>        
+      </select> 
+      <{else}> 
+      <input name="<{$k}>[val]" type="text" style=" padding: 3px; display: inline-block; width: 200px;"> 
+      <{/if}>      
+     </td> 
+   </tr> 
+    <{/foreach}> 
+    </tbody> 
+  </table> 
+     <div style="width:270px; margin-left: auto; margin-right: auto; "> 
+      <button class="layui-btn" type="submit" lay-filter="formDemo">立即提交</button> 
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button> 
+     </div> 
+ </form> 
+    <script> 
+  
+ function onSubmit(obj){ 
+  var url=obj.action; 
+  var arrData=$(obj).serializeArray(); 
+  var arrDataTmp=[]; 
+  for(i in arrData){ 
+   if(arrData[i].value==''){ 
+    
+    var rule_k=arrData[i].name; 
+    rule_k=rule_k.replace('[val]', '[rule]'); 
+    for(j in arrData){ 
+     if(arrData[j].name==rule_k)delete arrData[j]; 
+    } 
+    
+    delete arrData[i]; 
+   } 
+  } 
+  for(k in arrData){ 
+   arrDataTmp.push(arrData[k]); 
+  } 
+  
+  
+  parent.window.location=parent.window.location.pathname+'?'+$.param(arrDataTmp); 
+  return false; 
+ } 
+ </script> 
+    </body> 
+</html> 

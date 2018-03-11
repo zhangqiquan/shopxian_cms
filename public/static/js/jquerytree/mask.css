@@ -1,0 +1,87 @@
+.mask-msg {
+    width: 100px;
+    height: 25px;
+    background: #FFFFFF url(i_loading.gif) no-repeat 7px center;
+    border: #ccc 1px solid;
+}
+/* www.mb5u.com */
+.mask-msg div {
+    margin: 3px 3px 3px 27px;
+    font-family: Arial;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.mask {
+    position: absolute;
+    background: #000;
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    filter: alpha(opacity=40);
+}
+
+.ajax-content {
+    display: none;
+}
+
+.win {
+    width: 400px;
+    height: 250px;
+    position: absolute;
+    border: #2D91CD 1px solid;
+    background: #ffffff;
+}
+
+.win-head {
+    background: url(t_bg.gif) repeat-x;
+    height: 24px;
+    line-height: 24px;
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.win-top-left {
+    background: url(i_write.gif) no-repeat 3px center;
+    font-size: 12px;
+    padding-left: 25px;
+}
+
+.win-top-right {
+    display: inline;
+    float: right;
+    text-align: right;
+    height: 24px;
+    margin-right: 2px;
+    padding-left: 17px;
+    background: url(i_close.gif) no-repeat left center;
+    cursor: pointer;
+}
+
+.minwin {
+    background: url(i_minwin.gif) no-repeat center center;
+}
+
+.maxwin {
+    background: url(i_maxwin.gif) no-repeat center center;
+}
+
+.normalwin {
+    background: url(i_normalwin.gif) no-repeat center center;
+}
+
+.closewin {
+    background: url(i_closewin.gif) no-repeat center center;
+}
+.win .td{
+	padding:1px;
+}
+.alert-body{
+	height:40px;
+	background:url(i_warning.gif) no-repeat 15px center;
+	padding:20px 10px 5px 60px;
+}
+.btn-sub,.btn-search{ width:80px; height:22px; border:0; cursor:pointer; background:url(btn_sub.gif); padding-left:20px !important; padding-left:15px; line-height:22px; color:#000000}

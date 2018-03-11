@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>批量添加</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all">
+        <script src="__ROOT_PATH__/static/js/jquery.min.js"></script>
+    </head>
+    <body>
+       <form method="post" onSubmit="return formsubmit(this);" action="<{url link="toPadd"}>">
+			<table width="100%" class="layui-table">
+			  <tbody id="tbody">
+				<tr>
+				  <td width="18%">顶级栏目名称</td>
+				  <td>子栏目(用"目录名称1,目录名称2..."这样表示多个栏目)</td>
+				  <td width="15%"><button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onClick="addhtml();">添加</button></td>
+				</tr>
+				<tr>
+				  <td><input class="layui-input" name="cat_name[]" type="text"></td>
+				  <td><input class="layui-input" name="parent_name[]" type="text"></td>
+				  <td><button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onClick="delhtml(this);">删除</button></td>
+				</tr>
+			  </tbody>
+			</table>
+			<div style="text-align: center;">
+				<input type="submit" id="submit" class="layui-btn layui-btn-normal" value="确定批量添加">
+			</div>
+		</form>
+		<script>
+		function addhtml(){
+			$("#tbody").append($("#tbody").find('tr').eq(1).prop("outerHTML"));
+		}
+		function delhtml(obj){
+			if($(obj).parent().parent().parent().find('tr').length>2){
+				$(obj).parent().parent().remove();
+			}
+		}	
+		function formsubmit(obj){
+			parent.layer.load(1, {
+			  shade: [0.1,'#fff']
+			});
+			$.post($(obj).prop('action'),$(obj).serialize(),function(data){
+				$("#submit").prop('disabled',false);
+				data=eval("("+data+")");
+				parent.layer.closeAll();	
+				if(data.code==1){
+				  parent.layer.msg(res.msg, {icon: 1});
+				  parent.window.location.reload();
+				}else{
+					parent.layer.msg(res.msg, {icon: 2});
+				}
+			}).error(function(error){
+				parent.layer.closeAll();	
+				alert("出错啦!!!\n"+error.statusText);
+		  });
+			return false;
+		}	
+		</script>
+    </body>
+</html>

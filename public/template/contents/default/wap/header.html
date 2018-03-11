@@ -1,0 +1,32 @@
+<header id="header" class="header">
+        <div class="container clearfix">
+                <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-menu"> <span class="icon-bar icon-bar-1"></span> <span class="icon-bar icon-bar-2"></span> <span class="icon-bar icon-bar-3"></span> </button>
+                        <h1 class="logo"> <a href="<{url link="contents/Index/index" vars="" suffix='true' domain='true'}>" rel="home"><img src="<{$cfg_logo|aimg}>" alt="Module"></a></h1></div>
+                <nav class="collapse navbar-collapse navbar-right navbar-menu">
+                        <div class="navbar-action pull-right">
+                                <div class="search-index pull-left">
+                                        <a class="search-icon" href="javascript:;"><i class="fa fa-search"></i></a>
+                                        <form class="search-form" action="<{url link="contents/Contents/so" vars="" suffix="true" domain="true"}>" method="get" role="search"> <input type="text" class="keyword" name="q" placeholder="输入关键词搜索..." value=""> <input type="submit" class="submit" value="&#xf002;"></form>
+                                </div>
+                        </div>
+                        <ul id="menu-module-4-menu" class="nav navbar-nav main-menu">
+                                <li class="menu-item <{if condition="$outermost_cid eq 0"}>active<{/if}>">
+                                        <a href="<{url link="contents/Index/index" vars=" " suffix='true' domain='true'}>">首页</a>
+                                </li>
+                                <{Cms:nav parent_id="0" orderby="rank asc" limit="10" item="vo" key="k" }>
+                                <li class="menu-item  dropdown <{if condition="$outermost_cid eq $vo['cat_id']"}>active<{/if}>">
+                                        <a href="<{url link="contents/Cat/index" vars="id=$vo[cat_id]" suffix='true' domain='true'}>">
+                                                <{$vo.cat_name}>
+                                        </a>
+                                        <ul role="menu" class=" dropdown-menu">
+                                                <{Cms:nav parent_id="$vo['cat_id']" orderby="rank asc" limit="8" item="vv" key="kk" }>
+                                                <li class="menu-item">
+                                                        <a href="<{url link="contents/Cat/index" vars="id=$vv[cat_id]" suffix='true' domain='true'}>"><{$vv.cat_name}></a>                                       </li>
+                                                <{/Cms:nav}>
+                                        </ul>
+                                </li>
+                                <{/Cms:nav}>
+                        </ul>
+                </nav>
+        </div>
+</header>

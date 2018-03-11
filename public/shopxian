@@ -1,0 +1,7 @@
+<?php
+//使用方式 php -S 127.0.0.1:8888 shopxian
+if (is_file($_SERVER["DOCUMENT_ROOT"] . $_SERVER["SCRIPT_NAME"])) {
+    return false;
+} else {
+    require __DIR__ . "/index.php";
+}

@@ -1,0 +1,106 @@
+<div id="widgets_edit_frame" style='position:absolute; z-index: 99999; display: none; background: #999; opacity: 0.7; height: 200px;font-size: 16px; line-height: 4em;font-weight: 900;'> 
+    <div style="float: left; width: 32%; text-align:center;"><a class="btn btn-info"  href="jascript:void(0);" id="widgets_edit_frame_edit" style="color: #FFF;text-decoration: none;">编辑</a></div><div style="float: right; width: 40%; text-align:center;"><button type="button" class="btn btn-default" id="widgets_edit_frame_top" >&nbsp;▲&nbsp; </button><button type="button" class="btn btn-default" id="widgets_edit_frame_below" >&nbsp;▼ &nbsp;</button><button type="button" style="color: #FFF;text-decoration: none;" id="widgets_edit_frame_del" class="btn btn-info"> 删除</button></div>    
+    <div style="position: absolute; bottom: 2px; width: 100%; text-align: right;"><div class="btn-group open"> 
+                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="true">添加模块 <span class="caret"></span> 
+                                </button><div class="dropdown-backdrop"></div> 
+                                <ul class="dropdown-menu"> 
+                                    <li><a  href="javascript:void(0);" class="add_widgets" id="add_shang_widgets" data-push="1">添加到上方</a> 
+                                    </li> 
+                                    <li><a   href="javascript:void(0);" class="add_widgets" id="add_xia_widgets"  data-push="1">添加到下方</a> 
+                                    </li> 
+                                </ul> 
+                            </div></div> 
+</div> 
+<script src="__ROOT_PATH__/static/js/layer/layer.js"></script> 
+<script> 
+ (function(){ 
+ $('#widgets_edit_frame_edit').click(function(){ 
+   var href_url=$(this).attr('href'); 
+   layer.open({ 
+     type: 2, 
+     title: '挂件编辑', 
+     shadeClose: true, 
+     shade: 0.8, 
+     area: ['60%', '60%'], 
+     content: href_url 
+   });  
+   
+   return false; 
+  } 
+ ); 
+ $('#widgets_edit_frame_top').click(function(){ 
+   return false; 
+  } 
+ ); 
+ $('#widgets_edit_frame_below').click(function(){ 
+   return false; 
+  } 
+ ); 
+ $('#widgets_edit_frame_del').click(function(){ 
+   $.get($(this).attr('href'),'',function(data){ 
+    if(data==1){ 
+     window.location.reload(); 
+    } 
+   }); 
+   return false; 
+  } 
+ ); 
+ 
+}()); 
+ $('.widgets_edit').on("mouseenter", function () { 
+ 
+   $(this).css({"border":"1px solid blue"}); 
+}); 
+$('.widgets_edit').on("mouseleave", function () { 
+ console.log('挂件'); 
+ $(this).css({"border":"none"}); 
+}); 
+$('.widgets_edit_dd').on("mouseenter", function () { 
+ $('#widgets_edit_frame_edit').attr('href',"<?php echo url('tpl/Shop/pc_edit','',true,true) ?>"+'?code_id='+$(this).data('code_id')+'&core_file='+$(this).data('core_file')+'&type='+$(this).data('type')+'&widgets='+$(this).data('widgets')); 
+ $('#widgets_edit_frame_top').attr('href',"<?php echo url('tpl/Shop/top1','',true,true) ?>"+'?code_id='+$(this).data('code_id')+'&core_file='+$(this).data('core_file')+'&type='+$(this).data('type')+'&widgets='+$(this).data('widgets')); 
+ $('#widgets_edit_frame_below').attr('href',"<?php echo url('tpl/Shop/below1','',true,true) ?>"+'?code_id='+$(this).data('code_id')+'&core_file='+$(this).data('core_file')+'&type='+$(this).data('type')+'&widgets='+$(this).data('widgets')); 
+ $('#widgets_edit_frame_del').attr('href',"<?php echo url('tpl/Shop/widgets_del','',true,true) ?>"+'?code_id='+$(this).data('code_id')+'&core_file='+$(this).data('core_file')+'&type='+$(this).data('type')+'&widgets='+$(this).data('widgets')+'&widgets_data_id='+$(this).data('widgets_data_id')); 
+        
+                document.getElementById("add_shang_widgets").setAttribute('data-widgetsid',$(this).data('code_id')); 
+                document.getElementById("add_shang_widgets").setAttribute('data-core_file',$(this).data('core_file')); 
+                document.getElementById("add_shang_widgets").setAttribute('data-rank',$(this).data('rank')-1); 
+                 
+                document.getElementById("add_xia_widgets").setAttribute('data-widgetsid',$(this).data('code_id')); 
+                document.getElementById("add_xia_widgets").setAttribute('data-core_file',$(this).data('core_file')); 
+                document.getElementById("add_xia_widgets").setAttribute('data-rank',$(this).data('rank')+1); 
+ $('#widgets_edit_frame').css({ 
+  'top':$(this).offset().top, 
+  'left':$(this).offset().left, 
+  'width':$(this).width(), 
+  'display':'', 
+  'height':$(this).height(), 
+ }); 
+}); 
+$('#widgets_edit_frame').on("mouseleave", function () { 
+ $('#widgets_edit_frame').css({ 
+  'top':$(this).offset().top, 
+  'left':$(this).offset().left, 
+  'width':$(this).width(), 
+  'display':'none', 
+  'height':$(this).height(), 
+ }); 
+}); 
+
+$('.add_widgets').click(function(){ 
+ var code_id=$(this).data('widgetsid'); 
+ var core_file=$(this).data('core_file'); 
+                var rank=$(this).data("rank")?$(this).data("rank"):100; 
+                var push=$(this).data("push")?$(this).data("push"):0; 
+ var href_url="<?php echo url('tpl/Shop/pc_widgets_list','',true,true) ?>?code_id="+code_id+"&core_file="+core_file+'&type=pc&rank='+rank+'&push='+push; 
+ layer.open({ 
+   type: 2, 
+   title: '挂件编辑', 
+   shadeClose: true, 
+   shade: 0.8, 
+   area: ['60%', '60%'], 
+   content: href_url 
+ });  
+  
+}); 
+ </script> 
+ <script src="__ROOT_PATH__/static/js/bootstrap.min.js?v=3.3.6"></script>

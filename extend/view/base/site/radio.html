@@ -1,0 +1,399 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>layui</title> 
+  <meta name="renderer" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all"> 
+  <link href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/iconfont.css" rel="stylesheet" type="text/css" /> 
+  <style> 
+      #layui-icon-menu-lists{ 
+          float: right; 
+          cursor:pointer; 
+      } 
+      #set_show:hover{ 
+          color: #f33; 
+      } 
+      #window_reload:hover{ 
+          color: #f33; 
+      } 
+    #layui-menu_search{ 
+            position: absolute; width: 25%; right: 5px; display: inline-block; text-align: right;min-width: 350px; 
+    } 
+    <{if condition="isset($arguments['fieldHeight'])"}> 
+    .layui-table-cell { 
+            height: <{$arguments['fieldHeight']}>; 
+            line-height: <{$arguments['fieldHeight']}>; 
+          } 
+    <{/if}> 
+    .finder_detail{ 
+        cursor:pointer; 
+    }    
+  </style> 
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 --> 
+</head> 
+<body>  
+<!--<div class="demoTable"> 
+  搜索ID： 
+  <div class="layui-inline"> 
+    <input class="layui-input" name="id" id="demoReload" autocomplete="off"> 
+  </div> 
+  <button class="layui-btn" data-type="reload">搜索</button> 
+</div>--> 
+<fieldset class="layui-elem-field layui-field-title"> 
+        <legend><{$arguments.title}></legend> 
+        <{if $so}> 
+        <legend><span style="color: #f00; font-size: 12px; border: double 1px #f33; padding: 3px;border-radius: 5px;">筛选处理结果 <a href="javascript:window.location=window.location.pathname;">返回全部列表</a></span></legend> 
+        <{/if}> 
+</fieldset> 
+<div class="layui-tab"> 
+ <ul class="layui-tab-title"> 
+    <{if condition='isset($arguments["tag"])&&$arguments["tag"]&&is_array($arguments["tag"])'}> 
+  <{foreach name="arguments.tag" item="vo" key="k" }> 
+   <li <?php if(input('status','all')==$k.''){echo  ' class="layui-this"';$vo['url']='javascript:void(0);';}?>><a href="<{$vo.url}>"><{$vo.title}></a></li> 
+  <{/foreach}> 
+  <{else}> 
+  <li class="layui-this">全部</li> 
+  <{/if}> 
+  <b id="layui-icon-menu-lists"> 
+   <i class="layui-icon" id="window_reload" title="刷新" onclick="window.location.reload();">&nbsp;  &#x1002;  &nbsp;</i>    
+   <i class="layui-icon" id="set_show" title="配置列表项">&nbsp;  &#xe614;  &nbsp;</i>  
+  </b> 
+ </ul> 
+ <div class="layui-tab-content"> 
+  <div class="layui-btn-group demoTable"> 
+   <{if condition="isset($arguments['actions'])&&is_array($arguments['actions'])"}> 
+         <{foreach name="arguments.actions" item="vo"  }> 
+   <button class="layui-btn layui-btn-primary <{$vo.iclass}>"  data-type="getCheckData" <{if $vo.type=='window_href'}>onclick="javascript:window.location='<{$vo.url}>'"<{/if}> data-url="<{$vo.url}>" <{if condition="isset($vo['width'])"}>data-width="<{$vo.width}>"<{/if}>  <{if condition="isset($vo['height'])"}> data-height="<{$vo.height}>" <{/if}>data-title="<{$vo.val}>" ><i class="layui-icon"><{if condition="isset($vo['icon'])"}><{$vo.icon}><{/if}></i> <{$vo.val}></button> 
+   <{/foreach}> 
+                                                <{elseif  $findersearchkey.field_so}> 
+                                                <button class="layui-btn layui-btn-primary" type="button" style="opacity: 0;cursor:default;" ></button> 
+         <{/if}> 
+          
+         <{if $findersearchkey.field_so}> 
+         <div id="layui-menu_search"> 
+              <form method="post" action="<{url link=''}>" onsubmit="return so(this);"> 
+    <select id="field_key" class="layui-btn layui-btn-primary" style="max-width: 30%;"> 
+    <{foreach name="findersearchkey.field_so" item="vo" key="k"}> 
+    <option value="<{$k}>"><{$vo}></option> 
+    <{/foreach}> 
+    </select> 
+    <input type="text" id="field_val" style="text-align: left;width: 25%;" class="layui-btn layui-btn-primary"> 
+    <button  class="layui-btn layui-btn-normal" type="submit" style="max-width: 20%;"> 
+      <i class="layui-icon">&#xe615;</i>搜索 
+    </button> 
+    <{if $findersearchkey.field_more_so eq true}> 
+    <button type="button" id="advancedSo" class="layui-btn layui-btn-warm" style="max-width: 20%;"> 
+      <i class="layui-icon">&#xe63c;</i>高级 
+    </button> 
+    <{/if}>     
+     </form> 
+   </div> 
+         <{/if}> 
+    
+  </div>   
+  <table class="layui-hide" id="test"  lay-filter="demo"></table> 
+ </div> 
+</div> 
+ 
+                
+ 
+<!--查看明细---> 
+<div id="tx_div" style="position: absolute; top: 30%;width: 99.8%; height: auto; overflow: hidden; min-height: 300px;  background: #fff;border: 2px solid #bce8f1; display: none;z-index: 99999;"> 
+ <div class="alert-warning alert-dismissable" style="background-color:#bce8f1; padding-top: 8px; padding-bottom: 8px; padding-left: 5px;"> 
+  <a class="alert-link" href="javascript:void(0);">查看明细</a>   
+                                <a href="javascript:void(0);"style="color: #f00; font-size: 30px; line-height: 0.5em; float: right;" title="关闭" onClick="detailsColse();">×</a> 
+ </div> 
+ <div id="tx_content" style="padding: 5px;"> 
+  ... 
+ </div> 
+</div> 
+<!--查看明细---> 
+<p style="text-align: center; position: fixed; bottom: 0px; width: 100%; opacity: 0.8; background: #eee; padding: 20px; display: block; overflow: hidden;"> 
+  <button type="button" class="layui-btn layui-btn-normal" onClick="verification_radio();">确定选择</button> 
+  <button type="button" class="layui-btn layui-btn-danger" onClick="parent.layer.closeAll();">关闭窗口</button> 
+</p> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br>                                                
+             
+<script src="__ROOT_PATH__/static/layui-v2.1.1/layui/layui.all.js"></script> 
+<script src="__ROOT_PATH__/static/js/jquery.min.js"></script> 
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 --> 
+<script>  
+layui.use('table', function(){ 
+  var table = layui.table; 
+  var url='<{url link=""}><{$so}>'; 
+  table.render({ 
+    elem: '#test' 
+    ,url:url 
+    ,width: '100%' 
+    ,height: 700 
+    ,cols: [<{$tablefield_json}>] 
+    ,page: true 
+    ,id:'idTest' 
+ ,even:true 
+ ,limit:20 
+    ,limits:[10,20,30,40,50,60,80,100,120,160,200] 
+  }); 
+}); 
+</script> 
+ 
+<script> 
+layui.use('table', function(){ 
+  var table = layui.table; 
+  
+  table.on('checkbox(demo)', function(obj){ 
+    console.log(obj) 
+  }); 
+  
+  table.on('tool(demo)', function(obj){ 
+    var data = obj.data; 
+    if(obj.event === 'finder_edit'){ 
+  alert_iframe(this); 
+  return false; 
+    } else if(obj.event === 'finder_del'){ 
+        lay_confirm(this); 
+  return false; 
+    } else if(obj.event === 'edit'){ 
+       alert_iframe(this); 
+  return false;s 
+    } 
+  });   
+  var $ = layui.$, active = { 
+    getCheckData: function(){ 
+       
+    } 
+    ,getCheckLength: function(){ 
+      var checkStatus = table.checkStatus('idTest') 
+      ,data = checkStatus.data; 
+      layer.msg('选中了：'+ data.length + ' 个'); 
+    } 
+    ,isAll: function(){ 
+      var checkStatus = table.checkStatus('idTest'); 
+      layer.msg(checkStatus.isAll ? '全选': '未全选') 
+    } 
+  }; 
+  $('.demoTable .layui-btn').on('click', function(){ 
+    var type = $(this).data('type'); 
+    active[type] ? active[type].call(this) : ''; 
+  }); 
+  
+  $('.alert_iframe').on('click', function(){ 
+   alert_iframe(this); 
+  }); 
+  
+  
+  $('.location').on('click', function(){ 
+   var geturl=$(this).data('url'); 
+   window.location=geturl; 
+  })  
+  
+  
+  $('.delconfirm').on('click', function(){ 
+   var checkStatus = table.checkStatus('idTest') 
+      ,dataJson = checkStatus.data; 
+   var form_data=''; 
+   if(dataJson.length==0){ 
+  parent.layer.msg('没有选择任何记录', {anim: 6,icon: 2}); 
+  return false; 
+   }else{ 
+    for(idk in dataJson){ 
+     form_data+='id['+idk+']='+dataJson[idk].id+'&'; 
+    } 
+   } 
+   lay_confirm(this,form_data); 
+  }); 
+  
+  
+ $('.delconfirm_row').on('click', function(){ 
+  lay_confirm(this); 
+ }); 
+  
+   
+  
+ $('.submitOpen').on('click', function(){ 
+  var ids=''; 
+  var checkStatus = table.checkStatus('idTest') 
+      ,dataJson = checkStatus.data; 
+  for(i in dataJson){ 
+   ids+=dataJson[i].id+','; 
+  } 
+  $(this).data('url',$(this).data('url')+'?id='+ids); 
+  alert_iframe(this); 
+ }) 
+  
+}); 
+  
+
+function lay_confirm(obj,dataJson=''){ 
+   var dataurl=$(obj).data('url'); 
+   parent.layer.confirm('确定'+$(obj).data("title")+'？', { 
+  btn: ['是','否'], 
+  shade: false 
+  }, function(){ 
+   var form_data=dataJson; 
+   $.post(dataurl,form_data,function(data){ 
+    if(data.code==false){ 
+     parent.layer.msg(data.msg, {anim: 6,icon: 2}); 
+    }else{ 
+     parent.layer.msg(data.msg, {icon: 1}); 
+     window.location.reload(); 
+    } 
+   }).error(function(error){ 
+    console.log(error); 
+                alert("出错啦!!!\n"+error.statusText); 
+   }); 
+  }, function(){ 
+  parent.layer.msg('操作已取消', {icon: 2}); 
+ }); 
+} 
+
+function alert_iframe(obj){ 
+ parent.layer.closeAll();  
+ var fwidth='80%'; 
+ var fheight='80%'; 
+ if($(obj).data('width')&&$(obj).data('height')){ 
+  fwidth=$(obj).data('width'); 
+  fheight=$(obj).data('height'); 
+ } 
+ 
+ var geturl=$(obj).data('url'); 
+ var title=$(obj).data('title'); 
+ layer.open({ 
+  type: 2, 
+  title: false, 
+  closeBtn: true, 
+  shade: [0], 
+  area: ['80%', '80%'], 
+  offset: 'rb', 
+  time: 1, 
+  shift: 2, 
+  content: ['', 'no'], 
+  end: function(){ 
+   layer.open({ 
+    type: 2, 
+    title: title, 
+    shadeClose: true, 
+    shade: false, 
+    maxmin: true, 
+    area: [fwidth, fheight], 
+    content: geturl, 
+   }); 
+  } 
+ }); 
+}  
+
+document.getElementById("set_show").onclick=function(){ 
+ if (window.innerWidth) 
+ winWidth = window.innerWidth; 
+ else if ((document.body) && (document.body.clientWidth)) 
+ winWidth = document.body.clientWidth; 
+ var getw=winWidth*0.15; 
+ if(getw<300)getw='300px'; 
+ layer.open({ 
+   title: '配置列表项', 
+   type: 2, 
+   shadeClose: true, 
+   anim: 2, 
+   shade: 0, 
+   offset: 'rt', 
+   area: [getw, '100%'], 
+   'scrollbar':false, 
+   content: '<{url link="setFinder" vars="app_name={$app_name}&table_name={$table_name}&element_id={$element_id}&out_field=$out_field"}>' 
+ });   
+}  
+
+document.getElementById("advancedSo").onclick=function(){ 
+  
+ layer.open({ 
+   type: 2, 
+   title: '<i class="layui-icon">&#xe63c;</i>高级筛选', 
+   shadeClose: true, 
+   shade: 0, 
+   anim: 2, 
+   offset: 'rt', 
+   area: ['380px', '100%'], 
+   content: '<{url link="advancedSearch" vars="app_name={$app_name}&table_name={$table_name}&element_id={$element_id}&out_field=$out_field"}>' 
+ }); 
+} 
+function so(obj){ 
+ var url=obj.action; 
+ var fk=document.getElementById("field_key").value.replace(/\s+/g,""); 
+ var fv=document.getElementById("field_val").value.replace(/\s+/g,""); 
+ if(fv==''){ 
+  parent.layer.msg('没有输出搜索关键词', {anim: 6,icon: 2}); 
+ }else{ 
+  window.location=url+"?"+encodeURI(fk+"[rule]=like&"+fk+"[val]="+fv); 
+ } 
+ return false; 
+} 
+<{if condition="isset($arguments['finder_app'])&&isset($arguments['finder_name'])"}> 
+function selectDetails(obj){ 
+ var url='<{url link="finderDetailHtml"   vars="app=$arguments[finder_app]&finder=$arguments[finder_name]" suffix="true" domain="true" }>?id='+$(obj).data('id'); 
+ $.post(url,'',function(data){ 
+  $("#tx_div").css('display',''); 
+  $("#tx_div").css('top',$(obj).offset().top+35); 
+  $('#tx_content').html(data); 
+  $(document.body).css({   
+            "overflow": "hidden"   
+        });  
+  $('.layui-table-main').css({   
+            "overflow": "hidden"   
+        });  
+ }).error(function(error){ 
+  console.log(error); 
+  alert("出错啦!!!\n"+error.statusText); 
+ }); 
+} 
+function detailsColse(){ 
+ $("#tx_div").css('display','none'); 
+ $(document.body).css({   
+  "overflow": "auto"   
+ });   
+ $('.layui-table-main').css({   
+            "overflow": ""   
+ });  
+} 
+function detail_tr_click(ts){ 
+ $(ts).parent().find("li").each(function(index){ 
+  $(this).removeClass("layui-this"); 
+  this.disabled=false; 
+ }) 
+ $(ts).addClass("layui-this"); 
+ ts.disabled=true; 
+ var id=$(ts).data("id"); 
+ layer.load(1, { 
+   shade: [0.1,'#fff'] 
+ }); 
+ $.get(finder_url,'app='+$(ts).data("app")+'&finder='+$(ts).data("finder")+'&func='+$(ts).data("func")+'&id='+id,function(data){ 
+  layer.closeAll(); 
+  console.log($(ts).parent().parent().parent()); 
+  $(ts).parent().parent().parent().find('.finder_body').html(data); 
+ }).error(function(error){ 
+  console.log(error); 
+  alert("出错啦!!!\n"+error.statusText); 
+ }); 
+}  
+<{/if}>  
+function verification_radio(){ 
+        if($("input:radio[name='id']:checked").val()==undefined){ 
+                parent.layer.msg('请先选择一个值', {anim: 6,icon: 2}); 
+                return false; 
+        } 
+                          var id=$("input:radio[name='id']:checked").val(); 
+                          console.log(id); 
+                           <{if condition="isset($script)"}><{$script}><{else}>alert("请写入模版将模版数据复制给一个模版变量名为script,\n php代码部分："+'$this->assign("script", $this->showTpl());'+"\n模版代码部分请根据 id的值进行业务逻辑数据\n获取单选列表已经选择到的id:\n alert(id) \n您选择的结果id为"+id);return false;<{/if}> 
+} 
+</script> 
+ 
+ 
+</body> 
+</html>

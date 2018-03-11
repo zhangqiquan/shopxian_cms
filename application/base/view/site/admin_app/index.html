@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__ROOT_PATH__/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__ROOT_PATH__/static/css/animate.min.css" rel="stylesheet">
+    <link href="__ROOT_PATH__/static/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>所有应用</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row m-b-sm m-t-sm">
+                            <div class="col-md-1">
+                                <button type="button" id="loading-example-btn" class="btn btn-white btn-sm" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                                <button type="button" class="btn btn-default alert_iframe"  data-url="<{url link="maintain" vars="" suffix="true" domain="true" }>" data-width="90%" data-height="90%" data-title="维护" >维护</button>
+                            </div>
+                        </div>
+
+                        <div class="project-list">
+                            <?php $base_app=config('app.base_app'); ?>
+                            <table class="table table-hover">
+                                <tbody>
+                                    <{foreach name="app" item="v" key='k'}>
+                                    <tr>
+                                        <td class="project-status">
+                                            <img src="<{$v.img}>" width="80px" />
+                                        </td>
+                                        <td class="project-title">
+                                            <a href="javascript:void(0);"><{$v.name}></a>
+                                            <br/>
+                                            <small><{$v.description}></small>
+                                        </td>
+                                        <td class="project-completion">
+                                            <small>
+                                            </small>
+                                        </td>
+                                        <td class="project-people">
+                                            
+                                        </td>
+                                        <td class="project-actions">
+                                            <{if condition="!in_array($k,$base_app)"}>
+                                                <{if condition="isset($data[$k])"}>
+                                                <a href="<{url link='unInstall'   vars='name=$k' suffix='true' domain='true'}>" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> 卸载 </a>
+                                                <{else}>
+                                                <a href="<{url link='install'   vars='name=$k' suffix='true' domain='true'}>" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> 安装 </a>
+                                                <{/if}>
+                                            <{/if}>
+                                        </td>
+                                    </tr>
+                                    <{/foreach}>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__ROOT_PATH__/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="__ROOT_PATH__/static/js/zhanshop.js" charset="UTF-8"></script>    
+    </body>
+</html>

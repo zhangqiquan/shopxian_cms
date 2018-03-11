@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>TODO supply a title</title> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="
+         
+    </head> 
+    <body> 
+        <div style="float:left; width: 20%; height: 100%;"> 
+            <table   class="table table-bordered table-hover"> 
+                <{foreach name="detail" item="d" key="k"}> 
+                <tr> 
+                    <td align="center"  class="detail_tr_1" data-finder_path="<{$get.finder_path}>/<{$k}>" data-id="<{$get.id}>"> 
+                    <button type="button" class="btn btn-primary btn-lg btn-block"><{$d}></button></td> 
+                </tr> 
+                <{/foreach}> 
+              </table> 
+        </div> 
+        <div style="float:left; width: 75%; margin-left:1%; height: auto; overflow: hidden;" id="finder_body"> 
+        </div> 
+        <script> 
+            var finder_url="<{url link='detail'  vars='' suffix='true' domain='true'}>"; 
+        </script> 
+        <script> 
+            $('table td').eq(0).click(); 
+        </script> 
+    </body> 
+</html> 

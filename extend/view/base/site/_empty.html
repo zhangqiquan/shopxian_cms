@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf-8"> 
+<title><{$title}> - shopxian</title> 
+<meta name="renderer" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">  
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="format-detection" content="telephone=no"> 
+  <link rel="stylesheet" href="/static/layui-v2.1.1/layui/css/layui.css"  media="all"> 
+  <style> 
+      .hover_info{ 
+          opacity: 0.1; 
+      } 
+      .hover_info:hover{ 
+          opacity: 0.1; 
+          cursor:default; 
+      } 
+  </style> 
+</head> 
+<body> 
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 --> 
+<!--[if lt IE 9]> 
+  <script src="https:
+  <script src="https:
+<![endif]-->  
+<div style="padding: 50px 0; height: 600px; text-align: center;"> 
+  <h1> 
+    <i class="layui-icon" style="line-height: 500px; font-size: 500px; color: #393D50;"><{$icon}></i> 
+  </h1> 
+    <p style="font-size: 20px; font-weight: 300; color: #999;"> 
+        <h3><{$title}><h3> 
+        <div class="hover_info"> 
+        <{$info}> 
+        </div>   
+</div> 
+    <script> 
+        var LINE = 535; 
+ 
+        function $(selector, node){ 
+            var elements; 
+ 
+            node = node || document; 
+            if(document.querySelectorAll){ 
+                elements = node.querySelectorAll(selector); 
+            } else { 
+                switch(selector.substr(0, 1)){ 
+                    case '#': 
+                        elements = [node.getElementById(selector.substr(1))]; 
+                        break; 
+                    case '.': 
+                        if(document.getElementsByClassName){ 
+                            elements = node.getElementsByClassName(selector.substr(1)); 
+                        } else { 
+                            elements = get_elements_by_class(selector.substr(1), node); 
+                        } 
+                        break; 
+                    default: 
+                        elements = node.getElementsByTagName(); 
+                } 
+            } 
+            return elements; 
+ 
+            function get_elements_by_class(search_class, node, tag) { 
+                var elements = [], eles,  
+                    pattern  = new RegExp('(^|\\s)' + search_class + '(\\s|$)'); 
+ 
+                node = node || document; 
+                tag  = tag  || '*'; 
+ 
+                eles = node.getElementsByTagName(tag); 
+                for(var i = 0; i < eles.length; i++) { 
+                    if(pattern.test(eles[i].className)) { 
+                        elements.push(eles[i]) 
+                    } 
+                } 
+ 
+                return elements; 
+            } 
+        } 
+ 
+        $.getScript = function(src, func){ 
+            var script = document.createElement('script'); 
+             
+            script.async  = 'async'; 
+            script.src    = src; 
+            script.onload = func || function(){}; 
+             
+            $('head')[0].appendChild(script); 
+        } 
+ 
+        ;(function(){ 
+            var files = $('.toggle'); 
+            var ol    = $('ol', $('.prettyprint')[0]); 
+            var li    = $('li', ol[0]);    
+ 
+            
+            for(var i = 0; i < files.length; i++){ 
+                files[i].ondblclick = function(){ 
+                    var title = this.title; 
+ 
+                    this.title = this.innerHTML; 
+                    this.innerHTML = title; 
+                } 
+            } 
+ 
+            
+            var err_line = $('.line-' + LINE, ol[0])[0]; 
+            err_line.className = err_line.className + ' line-error'; 
+ 
+            $.getScript('
+                prettyPrint(); 
+ 
+                
+                
+                
+                if(window.navigator.userAgent.indexOf('Firefox') >= 0){ 
+                    ol[0].innerHTML = ol[0].innerHTML; 
+                } 
+            }); 
+ 
+        })(); 
+    </script> 
+</body> 
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<style type="text/css">
+*{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+.style_top .left {
+	float: left;
+	width: 60%;
+}
+.style_top .right {
+	float: right;
+	width: 35%;
+}
+.style_top {
+	width: 800px;
+}
+.style_top .right ul {
+	width: 100%;
+	height: 480px;
+	float: left;
+	line-height: 3em;
+}
+.foot_list {
+	float: left;
+	width: 800px;
+}
+.w100 {
+	width: 100%;
+	margin-top: 10px;
+	float:left;
+}
+.w100 .foot_list h3 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #E9E9E9;
+	float: left;
+	opacity: 0.7;
+	width: 100%;
+}
+.w100 .foot_list ul li {
+	float: left;
+	margin: 8px;
+}
+</style>
+<title>模板列表</title>
+
+</head>
+
+<body>
+<div class="style_top">
+	<div class="left">
+    	<img src="<{$selectTpl.img}>" width="100%" height="600" /> </div>
+    <div class="right">
+    	<h3></h3>
+    	<ul>
+    		<li>模板名称： <{$selectTpl.name}></li>
+        	<li>模板类型： <{$selectTpl.id}></li>
+            <li> 设计师： <{$selectTpl.author}></li>
+            <li>模板价格： 免费</li>
+            <li>到期时间： 永久使用</li>
+        </ul>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="openurl('<{url link='sitevisual' vars='' suffix='true' domain='true'}>');">可视化编辑</button>
+            <button type="button" class="btn btn-default btn-lg" onclick="openurl('<{url link='tplManage' vars='' suffix='true' domain='true'}>');">页面管理</button>
+        </div>
+    </div>
+</div>
+<div class="w100">
+    <div class="foot_list">
+        <h3><button type="button" class="btn btn-default btn-lg">可用的模板</button></h3>
+        <ul>
+        	<{foreach name="tplliest" item="vo"}>
+        	<li>
+            	<a href="<{url link='change' vars='type=$vo[platform]&name=$vo[tpl_dir]' suffix='true' domain='true'}>" title="<{$vo.name}>"><img src="<{$vo.img}>" width="250px" height="400" /></a>
+            </li>
+            <{/foreach}>
+    </div>
+</div>
+    <script>
+        function openurl(url){
+            window.open (url, "", "height="+window.screen.height+", width="+window.screen.width+", top=0, left=0,toolbar=no, menubar=no, scrollbars=yes, resizable=no, loca tion=no, status=no")//写成一行  
+        }
+    </script>
+</body>
+</html>

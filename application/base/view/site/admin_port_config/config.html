@@ -1,0 +1,41 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="favicon.ico" >
+<link rel="Shortcut Icon" href="favicon.ico" />
+<link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all">
+
+<title><{$title}></title>
+</head>
+<body>
+ <h3></h3>
+<article class="cl pd-20">
+	<form action="<{$action}>" method="post" class="form form-horizontal" id="form-member-add">
+                            <table width="100%"    class="layui-table" lay-size="sm">
+		<tbody>
+                                <{foreach name="data" item="vo" key="k"}>
+                                <?php if(is_array($vo))continue; ?>
+		<tr>
+			<td align="right" width="15%">
+			<{if condition="isset($lang[$k])"}><{$lang[$k]}><{else}><{$k}><{/if}>
+			</td>
+			<td>
+			<input name="<{$k}>"  type="text"  class="layui-input" value='<?php if(is_array($vo)){echo json_encode($vo);}else{echo $vo;} ?>' placeholder="填写 <{if condition="isset($lang[$k])"}><{$lang[$k]}><{else}><{$k}><{/if}>">
+			</td>
+		</tr>
+		<{/foreach}>
+		<td align="right"></td>
+		<td><input class="layui-btn layui-btn-normal" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;"></td>
+		</tbody>
+		</table>
+	</form>
+</article>
+
+</body>
+</html>

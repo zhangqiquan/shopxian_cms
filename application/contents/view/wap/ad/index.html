@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	*{padding:0px; margin: 0px;}
+</style>
+</head>
+
+<body>
+<{if condition="$data['timeset']!='0'&&($data['starttime']<time()||$data['endtime']<time())"}>
+	广告已过期
+	<{exit()}>
+<{/if}>
+<{if condition="$data['ad_type']=='code'"}>
+<{$data['ad_body']}>
+<{else}>
+<{php}>$ad_body=json_decode($data['ad_body'],true);<{/php}>
+<{switch name="data.ad_type"}>
+    <{case value="text"}>    	
+    	<marquee width="100%"  scrollamount=7 onMouseOver="this.stop()" onMouseOut="this.start()">
+		 <a href="<{$ad_body.link}>" style="text-decoration:none; font-size:<{$ad_body.font_size}>px ; color: <{$ad_body.color}>;" target="_blank"><{$ad_body.text}></a>
+   		</marquee>
+    <{/case}>
+    <{case value="aimg"}>
+    	<a href="<{$ad_body.link}>" target="_blank"><img width="100%" src="<{$ad_body.path|aimg}>" alt="<{$ad_body.alt}>" /></a>
+    <{/case}>
+    <{case value="imgs"}>
+    <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all">
+	<script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+	<script src="__ROOT_PATH__/static/layui-v2.1.1/layui/layui.all.js"></script>
+    <{foreach name="ad_body" item="vv"}>
+    <div class="layui-carousel" id="test1">
+	  <div carousel-item>
+	  	<{foreach name="ad_body.path" item="vv" key="kk"}>	  	
+		<div>
+			<a href="<{$ad_body['link'][$kk]}>" target="_blank">
+				<img src="<{$vv}>" width="100%" alt="<{$ad_body['alt'][$kk]}>" />
+			</a>
+		</div>
+		<{/foreach}>
+	  </div>
+	</div>
+   <script>
+	layui.use('carousel', function(){
+	  var carousel = layui.carousel;
+	  //建造实例
+	  carousel.render({
+		elem: '#test1'
+		,width: '100%' //设置容器宽度
+		,arrow: 'always' //始终显示箭头
+		,interval:3000
+		//,anim: 'updown' //切换动画方式
+	  });
+	});
+	</script>
+   <{/foreach}>
+    <{/case}>
+    <{default /}>未知的广告类型
+<{/switch}>
+<{/if}>
+</body>
+</html>
+
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>发布</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico"> <link href="__ROOT_PATH__/static/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    </head>
+    <body>
+        <table width="100%" class="layui-table">
+			<tbody>
+			  <tr>
+				<td align="right" width="20%">版本名称</td>
+				<td><{$post.version_name}></td>
+			  </tr>
+			  <tr>
+				<td align="right" width="20%">版本号</td>
+				<td><{$post.version_num}></td>
+			  </tr>
+			  <tr>
+				<td align="right" width="20%">版本更新说明</td>
+				<td><{$post.description}></td>
+			  </tr>
+			  <tr>
+				<td align="right">进度</td>
+				<td>
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="60" 
+							 aria-valuemin="0" aria-valuemax="100" id="value" style="width: 0%;">
+							<span class="sr-only">进行中</span>
+						</div>
+						<div id="title">0%</div>
+					</div>
+				</td>
+			  </tr>
+			  <tr>
+				<td align="right" width="20%"></td>
+				<td><button type="button" class="layui-btn layui-btn-warm" onClick="clickTo(this);">开始发布</button></td>
+			  </tr>
+			</tbody>
+	  	</table>
+	  	<script src="__ROOT_PATH__/static/js/jquery.min.js?v=2.1.4"></script>
+	  	<script>
+		function clickTo(obj){	
+			obj.disabled=true;
+			var zongshu=0;
+			var infos=<{$files}>;	
+			zongshu=infos.length;
+			var currentIndex=0;
+			function newRequest(){
+				if(currentIndex>=infos.length){ 
+					return;
+				}
+				var vmName = infos[currentIndex];
+					$.ajax({
+						url:"<{url link="toAdd"  vars="" suffix="true" domain="true"}>?path="+vmName,   
+						contentType:'application/json;charset=UTF-8',
+						type:"get",
+						dataType:"json",
+						complete:function(a,b){
+							currentIndex++;
+							var json = $.parseJSON(a.responseText);
+							if(json.code==true){
+								var baifenbi=currentIndex/zongshu*100;
+								console.log(baifenbi);
+								$('#value').css('width',baifenbi+'%');
+								$('#title').html(baifenbi+'%');
+								if(baifenbi==100)alert("操作成功");
+							}
+							newRequest();
+						}
+					});
+			}
+			newRequest();
+		}
+		</script>
+    </body>
+</html>

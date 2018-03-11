@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<title><{$cfg_webname}></title>
+		<meta name="description" content="<{$cfg_description}>" />
+		<meta name="keywords" content="<{$cfg_keywords}>" />
+		<meta name="searchtitle" content="<{$cfg_description}>" />
+		<link rel="stylesheet" type="text/css" href="<{$css_dir}>/cb950.css" media="all" />
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+		<meta name="format-detection" content="telephone=no">
+		<style id='rs-plugin-settings-inline-css' type='text/css'>
+			#rs-demo-id {}
+		</style>
+		<script type="text/javascript" src="<{$js_dir}>/10fd7.js"></script>
+		<meta name="applicable-device" content="pc,mobile" />
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<style>
+			a,
+			.header .nav>li.active>a,
+			.abs.menu-white .header .nav>li.active>a,
+			.header .dropdown-menu>.active>a {
+				color: #00a381
+			}
+			
+			a:hover,
+			.header .nav>li>a:hover,
+			.abs.menu-white .header .nav>li>a:hover,
+			.post-list .entry-title a:hover,
+			.widget ol a:hover,
+			.widget ul a:hover,
+			.search-icon:hover,
+			.abs.menu-white .search-icon:hover,
+			.p-item-wrap:hover .title a,
+			.abs.menu-white .shopping-cart a:hover,
+			.abs.menu-white .fixed .shopping-cart a:hover {
+				color: #0a8772
+			}
+			
+			.header .dropdown-menu>.active>a:focus,
+			.header .dropdown-menu>.active>a:hover,
+			.header .dropdown-menu>li>a:hover,
+			.pagination .current,
+			.form-submit .submit,
+			.swiper-pagination-bullet-active,
+			.swiper-pagination-progress .swiper-pagination-progressbar,
+			.hot-slider .swiper-button-next,
+			.hot-slider .swiper-button-prev,
+			.p-item-wrap .thumb:before,
+			.s-item-wrap .thumb:before,
+			.action .contact-title,
+			.search-form input.submit,
+			.carousel-review .carousel-indicators li.active,
+			.entry .btn-enquiry,
+			.n-item-wrap .thumb:before,
+			.sidebar .widget_nav_menu ul li.current-menu-item a,
+			.woocommerce a.button,
+			.woocommerce button.button,
+			.woocommerce input.button,
+			.woocommerce a.button.alt,
+			.woocommerce button.button.alt,
+			.woocommerce input.button.alt,
+			.woocommerce a.button.alt.disabled,
+			.woocommerce a.button.alt.disabled:hover,
+			.woocommerce a.button.alt:disabled,
+			.woocommerce a.button.alt:disabled:hover,
+			.woocommerce a.button.alt:disabled[disabled],
+			.woocommerce a.button.alt:disabled[disabled]:hover,
+			.woocommerce button.button.alt.disabled,
+			.woocommerce button.button.alt.disabled:hover,
+			.woocommerce button.button.alt:disabled,
+			.woocommerce button.button.alt:disabled:hover,
+			.woocommerce button.button.alt:disabled[disabled],
+			.woocommerce button.button.alt:disabled[disabled]:hover,
+			.woocommerce input.button.alt.disabled,
+			.woocommerce input.button.alt.disabled:hover,
+			.woocommerce input.button.alt:disabled,
+			.woocommerce input.button.alt:disabled:hover,
+			.woocommerce input.button.alt:disabled[disabled],
+			.woocommerce input.button.alt:disabled[disabled]:hover,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+			.shopping-count,
+			.social-login-form .sl-input-submit {
+				background-color: #00a381
+			}
+			
+			.form-submit .submit:hover,
+			.hot-slider .swiper-button-prev:hover,
+			.hot-slider .swiper-container-rtl .swiper-button-next:hover,
+			.hot-slider .swiper-button-next:hover,
+			.hot-slider .swiper-container-rtl .swiper-button-prev:hover,
+			.sidebar .widget_nav_menu ul li.current-post-parent a,
+			.sidebar .widget_nav_menu ul li.current-menu-item .sub-menu a:hover,
+			.sidebar .widget_nav_menu ul li.current-post-parent .sub-menu a:hover,
+			.sidebar .widget_nav_menu ul li a:hover,
+			.action .a-box:hover,
+			.widget-contact-wrap .widget-contact-sns .fa:hover,
+			.search-form input.submit:hover,
+			.more-link:hover,
+			.news-tab-item:hover,
+			.pagination a:hover,
+			.entry .btn-enquiry:hover,
+			.woocommerce a.button:hover,
+			.woocommerce button.button:hover,
+			.woocommerce input.button:hover,
+			.woocommerce a.button.alt:hover,
+			.woocommerce button.button.alt:hover,
+			.woocommerce input.button.alt:hover,
+			.woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content,
+			.social-login-form .sl-input-submit:hover {
+				background-color: #0a8772
+			}
+			
+			.comment-respond input:focus,
+			.comment-form-comment textarea:focus,
+			.carousel-review .carousel-indicators li.active {
+				border-color: #00a381
+			}
+			
+			.widget-title {
+				border-left-color: #00a381
+			}
+			
+			.header .nav>li>a:hover,
+			.widget-contact-wrap .widget-contact-sns .fa:hover,
+			.more-link:hover,
+			.news-tab-item:hover {
+				border-color: #0a8772
+			}
+			
+			.j-share {
+				position: fixed!important;
+				top: 50%!important
+			}
+			
+			@media (max-width: 1024px) {
+				.header .navbar-nav .active>.m-dropdown {
+					color: #00a381
+				}
+				.header .navbar-collapse {
+					background-color: #00a381
+				}
+				.header .navbar-nav .dropdown-menu li a:hover,
+				.header .navbar-nav .dropdown-menu .active .dropdown-menu a:hover,
+				.header .navbar-nav .dropdown-menu .active .dropdown-menu .active a,
+				.header .navbar-nav .dropdown-menu .active a:hover,
+				.header .navbar-nav .dropdown-menu .active a,
+				.header .navbar-nav>li.active>a:hover,
+				.header .nav.login>li .menu-item-user:hover {
+					color: #0a8772
+				}
+			}
+			
+			.header .logo img {
+				max-height: 40px
+			}
+			
+			.header.fixed .logo img {
+				max-height: 40px
+			}
+			
+			@media (max-width: 767px) {
+				.header .logo img {
+					max-height: 34px
+				}
+				.header.fixed .logo img {
+					max-height: 34px
+				}
+			}
+		</style>
+		<style>
+			#modules-12 .service-item p {
+				color: ;
+				border-top-color:
+			}
+			
+			#modules-12 .service-item:hover {
+				background-color:
+			}
+		</style>
+		<script type="text/javascript">
+			function setREVStartSize(e) {
+				try {
+					var i = jQuery(window).width(),
+						t = 9999,
+						r = 0,
+						n = 0,
+						l = 0,
+						f = 0,
+						s = 0,
+						h = 0;
+					if(e.responsiveLevels && (jQuery.each(e.responsiveLevels, function(e, f) {
+							f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
+						}), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
+						var u = (e.c.width(), jQuery(window).height());
+						if(void 0 != e.fullScreenOffsetContainer) {
+							var c = e.fullScreenOffsetContainer.split(",");
+							if(c) jQuery.each(c, function(e, i) {
+								u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
+							}), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
+						}
+						f = u
+					} else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
+					e.c.closest(".rev_slider_wrapper").css({
+						height: f
+					})
+				} catch(d) {
+					console.log("Failure at Presize of Slider:" + d)
+				}
+			};
+		</script>
+		<script>
+			(function() {
+				if(! /*@cc_on!@*/ 0) return;
+				var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+				var i = e.length;
+				while(i--) {
+					document.createElement(e[i])
+				}
+			})()
+		</script>
+		<!--[if lte IE 8]><script src="http://demo-src.wpcom.cn/module4/wp-content/themes/Module/js/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="home page-template page-template-page-home page-template-page-home-php page page-id-269">
+		<{include file="./template/contents/default/site/header.html" /}>
+		<div id="wrap">
+			<section class="section wpcom-modules modules-swiper swiper-container swiper-full" id="modules-1" style="margin-top: 0;margin-bottom: 20px;">
+				<div class="swiper-wrapper">
+					<{Cms:aditem cat_id="0" orderby="rank asc" ad_type="imgs" item="imgs" /}>
+						<{if condition="isset($imgs['path'])"}>
+						<{foreach name="imgs.path" item="p" key="k" }>
+							<div class="swiper-slide">
+								<a href="<{$imgs['link'][$k]}>" target="_blank">
+								<div class="slide-img" style="background-image: url('<{$p}>');"></div>
+								</a>
+							</div>
+						<{/foreach}>
+						<{/if}>						
+				</div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-prev swiper-button-white"></div>
+				<div class="swiper-button-next swiper-button-white"></div>
+			</section>
+			<section class="section wpcom-modules modules-service container" id="modules-12" style="margin-top: 20px;margin-bottom: 30px;">
+				<h2 class="sec-title">产品类目</h2>
+				<div class="row">
+					<ul class="service-list">
+						<{Cms:nav parent_id="3" orderby="rank asc" limit="4" item="vv" key="kk" }>
+						<li class="service-item col-xs-6 col-sm-3 col-md-3 text-center">
+							<a href="<{url link="contents/Cat/index" vars="id=$vv[cat_id]" suffix='true' domain='true'}>" target="_blank"> <img src="<{$vv.image|aimg}>" alt="<{$vv.cat_name}>"> </a>
+							<h3 class="service-item-title"> <a href="<{url link="contents/Cat/index" vars="id=$vv[cat_id]" suffix='true' domain='true'}>" target="_blank"><{$vv.cat_name}></a></h3>
+							<p><{$vv.description|mb_truncation=100}></p>
+						</li>
+						<{/Cms:nav}>
+					</ul>
+				</div>
+			</section>
+			<{Cms:find assign="cat_lxwm" app="contents" model="ContentsCat"   where="cat_id=1"  field="*" /}>
+			<section class="section wpcom-modules modules-fullwidth" id="modules-5" style="position: relative;margin-top: 0;margin-bottom: 0;padding-top: 50px;padding-bottom: 50px;background-image: url(<{$cat_lxwm.image|aimg}>);background-repeat: no-repeat;background-size: cover;background-position: center center;background-attachment: fixed;">
+				<div class="module-shadow"></div>
+				<div class="modules-fw-inner container" style="position: relative;">
+					<section class="section wpcom-modules modules-gird" id="modules-2" style="margin-top: 0;margin-bottom: 0;">
+						<div class="col-md-6 modules-gird-inner">
+							<style>
+								#modules-3 .about-desc {
+									color: #fff
+								}
+								
+								#modules-3 .more-link {
+									color: #fcfcfc;
+									border-color: #fcfcfc
+								}
+								
+								#modules-3 .more-link:hover {
+									color: #fff;
+									background-color: #00a381;
+									border-color: #00a381
+								}
+								
+								#modules-3 .more-link:hover i {
+									color: #fff
+								}
+							</style>
+							<section class="section wpcom-modules modules-desc" id="modules-3" style="margin-top: 0;margin-bottom: 20px;color: #ffffff;">
+								<h2 class="sec-title" style="text-align:left;"><{$cat_lxwm.cat_name}></h2>
+								<div class="about-desc">
+									<p><{$cat_lxwm.description}></p>
+								</div>
+								<a class="more-link" href="<{url link="contents/Cat/index" vars="id=$cat_lxwm[cat_id]" suffix='true' domain='true'}>">查看更多 <i class="fa fa-angle-right"></i></a>
+							</section>
+						</div>
+						<div class="col-md-6 modules-gird-inner">
+							<section class="section wpcom-modules modules-video " id="modules-4" style="margin-top: 0;margin-bottom: 0;">
+								<style>
+									#modules-4 .video-wrap {
+										height: 300px;
+										background-image: url('<{$img_dir}>/free-macbook-mockup-1024x683.jpg')
+									}
+									
+									#modules-4 .modal-body {
+										height: 550px
+									}
+									
+									#modules-4 .modal-lg {
+										width: 900px
+									}
+									
+									@media (max-width: 1199px) {
+										#modules-4 .video-wrap {
+											height: 249px
+										}
+									}
+									
+									@media (max-width: 991px) {
+										#modules-4 .video-wrap {
+											height: 189px
+										}
+										#modules-4 .modal-body {
+											height: 346.5px
+										}
+										#modules-4 .modal-lg {
+											width: 567px
+										}
+									}
+									
+									@media (max-width: 767px) {
+										#modules-4 .video-wrap {
+											height: 150px
+										}
+										#modules-4 .modal-body {
+											height: 330px
+										}
+										#modules-4 .modal-lg {
+											width: auto
+										}
+									}
+								</style>
+								<div class="video-wrap">
+									<div class="modal-player" data-toggle="modal" data-target="#vModal-4"></div>
+									<script class="video-code" type="text/html"><iframe height=498 width=510 src='<{$cat_lxwm.redirecturl}>' frameborder=0 'allowfullscreen'></iframe></script>
+									<div class="modal fade modal-video" id="vModal-4" tabindex="-1" role="dialog" aria-hidden="true">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-header"> <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></div>
+												<div class="modal-body"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</section>
+				</div>
+			</section>
+			<section class="section wpcom-modules modules-fullwidth" id="modules-14" style="margin-top: 0;margin-bottom: 0;padding-top: 20px;padding-bottom: 20px;background-color: #fff;background-repeat: no-repeat;background-position: center center;">
+				<div class="modules-fw-inner container">
+					<style>
+						#modules-13 .news-tab-item,
+						#modules-13 .more-link {
+							color:
+						}
+						
+						#modules-13 .news-tab-item.active,
+						#modules-13 .more-link {
+							border-color:
+						}
+						
+						#modules-13 .news-tab-item:hover,
+						#modules-13 .more-link:hover {
+							color: ;
+							background-color: ;
+							border-color:
+						}
+						
+						#modules-13 .more-link:hover i {
+							color:
+						}
+					</style>
+					<{Cms:find assign="cat_cpzz" app="contents" model="ContentsCat"   where="cat_id=3"  field="*" /}>
+					<section class="section wpcom-modules modules-product products container" id="modules-8" style="margin-top: 0;margin-bottom: 40px;">
+						<h2 class="sec-title"><{$cat_cpzz.cat_name}></h2>
+						<div class="news-tab">
+							<{Cms:nav parent_id="3" orderby="rank asc" limit="3" item="vo" key="k" }>
+							<div class="news-tab-item <{if $k eq 0}>active<{/if}>">
+								<{$vo.cat_name}>
+							</div>
+							<{/Cms:nav}>
+						</div>
+						<{Cms:nav parent_id="3" orderby="rank asc" limit="8" item="vo" key="k" }>
+						<div class="news-wrap  <{if $k eq 0}>active<{/if}>"">
+							<ul class="p-list clearfix">
+								<{Cms:column limit="20" cat_id="$vo['cat_id']" orderby="add_time desc" item="vv" key="kk" }>
+								<li class="col-xs-6 col-md-3 col-sm-6 p-item">
+									<div class="n-item-wrap">
+										<a class="thumb" href="<{url link="contents/Contents/index" vars="id=$vv[id]" suffix="true " domain="true "}>"> <img width="480" height="320" src="<{$img_dir}>/lazy.png" class="attachment-post-thumbnail size-post-thumbnail j-lazy wp-post-image" alt="<{$vv.title}>" data-original="<{$vv.images|aimg}>" /> </a>
+										<h3 class="title"> <a href="<{url link="contents/Contents/index" vars="id=$vv[id]" suffix="true " domain="true "}>" title="<{$vv.title}>"><{$vv.title|mb_truncation=12}></a></h3></div>
+								</li>
+								<{/Cms:column}>
+						</div>
+						<{/Cms:nav}>
+					</section>
+					<{Cms:find assign="cat_khan" app="contents" model="ContentsCat"   where="cat_id=10"  field="*" /}>
+					<section class="section wpcom-modules modules-hot" id="modules-9" style="margin-top: 0;margin-bottom: 20px;">
+						<h2 class="sec-title"><{$cat_khan.cat_name}></h2>
+						<div class="hot-slider j-slider">
+							<ul class="swiper-wrapper">
+								<{Cms:column limit="200" cat_id="10" orderby="add_time desc" item="vv" key="kk" }>
+								<li class="swiper-slide col-xs-6 col-md-3 col-sm-6 p-item">
+									<div class="s-item-wrap">
+										<a class="thumb" href="<{url link="contents/Contents/index" vars="id=$vv[id]" suffix="true " domain="true "}>"><img width="480" height="320" src="<{$img_dir}>/lazy.png" class="attachment-post-thumbnail size-post-thumbnail j-lazy wp-post-image" alt="<{$vv.title}>" data-original="<{$vv.images|aimg}>" /></a>
+										<h2 class="title"> <a href="<{url link="contents/Contents/index" vars="id=$vv[id]" suffix="true " domain="true "}>l" title="<{$vv.title}>"> <{$vv.title|mb_truncation=12}>                                </a></h2></div>
+								</li>
+								<{/Cms:column}>
+							</ul>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
+						</div>
+					</section>
+				</div>
+			</section>
+			<section class="section wpcom-modules modules-fullwidth" id="modules-10" style="margin-top: 0;margin-bottom: 0;padding-top: 30px;padding-bottom: 30px;background-color: #0bba85;background-repeat: no-repeat;background-size: cover;background-position: center center;">
+				<div class="modules-fw-inner container">
+					<style>
+						#modules-11 .news-tab-item,
+						#modules-11 .more-link {
+							color: #fff
+						}
+						
+						#modules-11 .news-tab-item.active,
+						#modules-11 .more-link {
+							border-color: #ace5c3
+						}
+						
+						#modules-11 .news-tab-item:hover,
+						#modules-11 .more-link:hover {
+							color: #00a381;
+							background-color: #fff;
+							border-color: #fff
+						}
+						
+						#modules-11 .more-link:hover i {
+							color: #00a381
+						}
+						
+						#modules-11 .news-item-title {
+							color: #e8f2ec
+						}
+						
+						#modules-11 .news-item-title:hover {
+							color: #fff
+						}
+						
+						#modules-11 .news-item-content,
+						#modules-11 .news-item-month {
+							color: #cce2d1
+						}
+						
+						#modules-11 .news-item-day:after {
+							background-color: #ace5c3
+						}
+					</style>
+					<{Cms:find assign="cat_xwdt" app="contents" model="ContentsCat"   where="cat_id=6"  field="*" /}>
+					<section class="section wpcom-modules modules-news news" id="modules-11" style="margin-top: 0;margin-bottom: 20px;color: #ffffff;">
+						<h2 class="sec-title"><{$cat_xwdt.cat_name}></h2>
+						<div class="news-tab">
+							<{Cms:nav parent_id="6" orderby="rank asc" limit="3" item="vo" key="k" }>
+							<div class="news-tab-item <{if $k eq 0}>active<{/if}>">
+								<{$vo.cat_name}>
+							</div>
+							<{/Cms:nav}>
+						</div>
+						<{Cms:nav parent_id="6" orderby="rank asc" limit="3" item="vo" key="k" }>
+						<div class="news-wrap  <{if $k eq 0}>active<{/if}>"">
+							<ul class="news-list row">
+							    <{Cms:column limit="10" cat_id="$vo['cat_id']" orderby="add_time desc" item="vv" key="kk" }>
+								<li class="news-list-item col-sm-6">
+									<div class="news-item-time"><span class="news-item-day"><{$vv.add_time|date='d'}></span><span class="news-item-month"><{$vv.add_time|date='Y-m'}></span></div>
+									<div class="news-item-text">
+										<a class="news-item-title" href="<{url link="contents/Contents/index" vars="id=$vv[id]" suffix="true " domain="true "}>" title="<{$vv.title|mb_truncation=12}>">
+											<{$vv.title|mb_truncation=12}>
+										</a>
+										<div class="news-item-content">
+											<p>
+											<{$vv.description|mb_truncation=80}>
+											</p>
+										</div>
+									</div>
+								</li>
+								<{/Cms:column}>	
+							</ul>
+							<div class="text-center">
+								<a class="more-link" href="<{url link="contents/Cat/index" vars="id=$vo[cat_id]" suffix="true" domain="true "}>">查看更多 <i class="fa fa-angle-right"></i></a>
+							</div>
+						</div>
+						<{/Cms:nav}>
+					</section>
+				</div>
+			</section>
+			<{Cms:find assign="cat_hzhb" app="contents" model="ContentsCat"   where="cat_id=11"  field="*" /}>
+			<section class="section wpcom-modules modules-fullwidth" id="modules-9" style="margin-top: 0;margin-bottom: 0;padding-top: 30px;padding-bottom: 30px;background-color: #f9f9f9;background-repeat: no-repeat;background-position: center center;">
+				<div class="modules-fw-inner container">
+					<section class="section wpcom-modules modules-carousel_slider" id="modules-8" style="margin-top: 0;margin-bottom: 40px;">
+						<h2 class="sec-title"><{$cat_hzhb.cat_name}></h2>
+						<div class="carousel-slider">
+							<div class="j-slider-8 cs-inner">
+								<ul class="swiper-wrapper">
+									<{Cms:column limit="200" cat_id="11" orderby="add_time desc" item="vv" key="kk" }>
+									<li class="swiper-slide"> <img src="<{$vv.images|aimg}>" title="<{$vv.title}>" alt="<{$vv.title}>"></li>
+									<{/Cms:column}>	
+								</ul>
+							</div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
+						</div>
+						<script>
+							jQuery(document).ready(function() {
+								new Swiper('.j-slider-8', {
+									paginationClickable: true,
+									autoplay: 4000,
+									loop: true,
+									effect: 'slide',
+									slidesPerView: 6,
+									spaceBetween: 10,
+									slidesPerGroup: 3,
+									nextButton: '.swiper-button-next',
+									prevButton: '.swiper-button-prev',
+									// Responsive breakpoints
+									breakpoints: {
+										480: {
+											slidesPerView: 2,
+											spaceBetweenSlides: 10
+										},
+										767: {
+											slidesPerView: 3,
+											spaceBetweenSlides: 10
+										},
+										1024: {
+											slidesPerView: 4,
+											spaceBetweenSlides: 15
+										}
+									},
+									onSlideChangeEnd: function() {
+										jQuery(window).trigger('scroll');
+									}
+								});
+							})
+						</script>
+					</section>
+				</div>
+			</section>
+			<{Cms:find assign="ad_db" app="contents" model="ContentsAd"   where='title="底部广告"'  field="*" /}>
+			<{if condition="isset($ad_db['ad_body'])&&$ad_db_img=json_decode($ad_db['ad_body'],true)"}>
+				<section class="section wpcom-modules modules-fullwidth" id="modules-6" style="position: relative;margin-top: 0;margin-bottom: 0;padding-top: 50px;padding-bottom: 63px;background-image: url(<{$ad_db_img.path}>);background-repeat: no-repeat;background-size: cover;background-position: center center;background-attachment: fixed;">
+				<div class="module-shadow"></div>
+				<div class="modules-fw-inner container-fluid" style="position: relative;">
+					<section class="section wpcom-modules modules-text" id="modules-7" style="margin-top: 0;margin-bottom: 0;">						
+						<h3 style="text-align: center;"><span style="color: #f3f3f3;"><a style="color: #fff;" href="<{$ad_db_img.link}>" target="_blank"><{$ad_db_img.alt}></a></span></h3> </section>
+				</div>
+				</section>
+			<{/if}>
+			
+		</div>
+		<{include file="./template/contents/default/site/footer.html" /}>
+	</body>
+
+</html>

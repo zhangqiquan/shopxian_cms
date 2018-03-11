@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+                                  <title><{$content.title}></title>
+                                <meta name="description" content="<{$content.description}>" />
+		<meta name="keywords" content="<{$content.keywords}>" />
+		<meta name="searchtitle" content="<{$content.description}>" />
+		<link rel="stylesheet" type="text/css" href="<{$css_dir}>/cb950.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="<{$css_dir}>/basic.css">
+		<link rel="stylesheet" type="text/css" href="<{$css_dir}>/showproduct.css"/>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+		<meta name="format-detection" content="telephone=no">
+		<style id='rs-plugin-settings-inline-css' type='text/css'>
+			#rs-demo-id {}
+		</style>
+		<script type="text/javascript" src="<{$js_dir}>/10fd7.js"></script>
+		<style>
+			a,
+			.header .nav>li.active>a,
+			.abs.menu-white .header .nav>li.active>a,
+			.header .dropdown-menu>.active>a {
+				color: #00a381
+			}
+			
+			a:hover,
+			.header .nav>li>a:hover,
+			.abs.menu-white .header .nav>li>a:hover,
+			.post-list .entry-title a:hover,
+			.widget ol a:hover,
+			.widget ul a:hover,
+			.search-icon:hover,
+			.abs.menu-white .search-icon:hover,
+			.p-item-wrap:hover .title a,
+			.abs.menu-white .shopping-cart a:hover,
+			.abs.menu-white .fixed .shopping-cart a:hover {
+				color: #0a8772
+			}
+			
+			.header .dropdown-menu>.active>a:focus,
+			.header .dropdown-menu>.active>a:hover,
+			.header .dropdown-menu>li>a:hover,
+			.pagination .current,
+			.form-submit .submit,
+			.swiper-pagination-bullet-active,
+			.swiper-pagination-progress .swiper-pagination-progressbar,
+			.hot-slider .swiper-button-next,
+			.hot-slider .swiper-button-prev,
+			.p-item-wrap .thumb:before,
+			.s-item-wrap .thumb:before,
+			.action .contact-title,
+			.search-form input.submit,
+			.carousel-review .carousel-indicators li.active,
+			.entry .btn-enquiry,
+			.n-item-wrap .thumb:before,
+			.sidebar .widget_nav_menu ul li.current-menu-item a,
+			.woocommerce a.button,
+			.woocommerce button.button,
+			.woocommerce input.button,
+			.woocommerce a.button.alt,
+			.woocommerce button.button.alt,
+			.woocommerce input.button.alt,
+			.woocommerce a.button.alt.disabled,
+			.woocommerce a.button.alt.disabled:hover,
+			.woocommerce a.button.alt:disabled,
+			.woocommerce a.button.alt:disabled:hover,
+			.woocommerce a.button.alt:disabled[disabled],
+			.woocommerce a.button.alt:disabled[disabled]:hover,
+			.woocommerce button.button.alt.disabled,
+			.woocommerce button.button.alt.disabled:hover,
+			.woocommerce button.button.alt:disabled,
+			.woocommerce button.button.alt:disabled:hover,
+			.woocommerce button.button.alt:disabled[disabled],
+			.woocommerce button.button.alt:disabled[disabled]:hover,
+			.woocommerce input.button.alt.disabled,
+			.woocommerce input.button.alt.disabled:hover,
+			.woocommerce input.button.alt:disabled,
+			.woocommerce input.button.alt:disabled:hover,
+			.woocommerce input.button.alt:disabled[disabled],
+			.woocommerce input.button.alt:disabled[disabled]:hover,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-handle,
+			.woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+			.shopping-count,
+			.social-login-form .sl-input-submit {
+				background-color: #00a381
+			}
+			
+			.form-submit .submit:hover,
+			.hot-slider .swiper-button-prev:hover,
+			.hot-slider .swiper-container-rtl .swiper-button-next:hover,
+			.hot-slider .swiper-button-next:hover,
+			.hot-slider .swiper-container-rtl .swiper-button-prev:hover,
+			.sidebar .widget_nav_menu ul li.current-post-parent a,
+			.sidebar .widget_nav_menu ul li.current-menu-item .sub-menu a:hover,
+			.sidebar .widget_nav_menu ul li.current-post-parent .sub-menu a:hover,
+			.sidebar .widget_nav_menu ul li a:hover,
+			.action .a-box:hover,
+			.widget-contact-wrap .widget-contact-sns .fa:hover,
+			.search-form input.submit:hover,
+			.more-link:hover,
+			.news-tab-item:hover,
+			.pagination a:hover,
+			.entry .btn-enquiry:hover,
+			.woocommerce a.button:hover,
+			.woocommerce button.button:hover,
+			.woocommerce input.button:hover,
+			.woocommerce a.button.alt:hover,
+			.woocommerce button.button.alt:hover,
+			.woocommerce input.button.alt:hover,
+			.woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content,
+			.social-login-form .sl-input-submit:hover {
+				background-color: #0a8772
+			}
+			
+			.comment-respond input:focus,
+			.comment-form-comment textarea:focus,
+			.carousel-review .carousel-indicators li.active {
+				border-color: #00a381
+			}
+			
+			.widget-title {
+				border-left-color: #00a381
+			}
+			
+			.header .nav>li>a:hover,
+			.widget-contact-wrap .widget-contact-sns .fa:hover,
+			.more-link:hover,
+			.news-tab-item:hover {
+				border-color: #0a8772
+			}
+			
+			.j-share {
+				position: fixed!important;
+				top: 50%!important
+			}
+			
+			@media (max-width: 1024px) {
+				.header .navbar-nav .active>.m-dropdown {
+					color: #00a381
+				}
+				.header .navbar-collapse {
+					background-color: #00a381
+				}
+				.header .navbar-nav .dropdown-menu li a:hover,
+				.header .navbar-nav .dropdown-menu .active .dropdown-menu a:hover,
+				.header .navbar-nav .dropdown-menu .active .dropdown-menu .active a,
+				.header .navbar-nav .dropdown-menu .active a:hover,
+				.header .navbar-nav .dropdown-menu .active a,
+				.header .navbar-nav>li.active>a:hover,
+				.header .nav.login>li .menu-item-user:hover {
+					color: #0a8772
+				}
+			}
+			
+			.header .logo img {
+				max-height: 40px
+			}
+			
+			.header.fixed .logo img {
+				max-height: 40px
+			}
+			
+			@media (max-width: 767px) {
+				.header .logo img {
+					max-height: 34px
+				}
+				.header.fixed .logo img {
+					max-height: 34px
+				}
+			}
+		</style>
+		<script type="text/javascript">
+			function setREVStartSize(e) {
+				try {
+					var i = jQuery(window).width(),
+						t = 9999,
+						r = 0,
+						n = 0,
+						l = 0,
+						f = 0,
+						s = 0,
+						h = 0;
+					if(e.responsiveLevels && (jQuery.each(e.responsiveLevels, function(e, f) {
+							f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
+						}), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
+						var u = (e.c.width(), jQuery(window).height());
+						if(void 0 != e.fullScreenOffsetContainer) {
+							var c = e.fullScreenOffsetContainer.split(",");
+							if(c) jQuery.each(c, function(e, i) {
+								u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
+							}), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
+						}
+						f = u
+					} else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
+					e.c.closest(".rev_slider_wrapper").css({
+						height: f
+					})
+				} catch(d) {
+					console.log("Failure at Presize of Slider:" + d)
+				}
+			};
+		</script>
+		<script>
+			(function() {
+				if(! /*@cc_on!@*/ 0) return;
+				var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video".split(', ');
+				var i = e.length;
+				while(i--) {
+					document.createElement(e[i])
+				}
+			})()
+		</script>
+		<!--[if lte IE 8]><script src="http://demo-src.wpcom.cn/module4/wp-content/themes/Module/js/respond.min.js"></script><![endif]-->
+	</head>
+
+	<body class="post-template-default single single-post postid-93 single-format-standard">
+		<{include file="./template/contents/default/site/header.html" /}>
+		<!-- 标准模式 -->
+		<main class="product_list_detail_met_16_1 page met-showproduct pagetype1" m-id='44' style="padding-top: 50px; background: #fff;">
+			<div class="met-showproduct-head page-content block-bg">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-7">
+							   <div class='met-showproduct-list fngallery cover text-xs-center' id='met-imgs-slick' m-id='noset' m-type="displayimgs">
+									<div class='slick-slide'>
+										<a >
+											<img src="<{$content.images|aimg}>" class='img-fluid' alt='<{$content.title}>' />
+										</a>
+									</div>
+								</div>
+
+						</div>
+						<div class="col-lg-5">
+								<div class="product-intro">
+									<h1 class='m-t-0 font-size-24'><{$content.title}></h1>
+											<p class='description'><{$content.description}></p>
+											<ul class="product-para paralist blocks-100 blocks-sm-2 blocks-md-3 blocks-lg-2 m-x-0">
+												<{foreach name="dbstruct" item="db_vo" key="db_key"}>
+												<li class="p-x-0 p-r-15 m-b-15">
+													<span><{$db_vo.label}>：</span><{$content[$db_key]}>                                 
+												</li>
+												<{/foreach}>
+                                                                                                                                                                                                             <li style="display:none;">关注:<script src="<{url link="contents/Contents/click" vars="id=$content[id]" suffix="true" domain="true"}>" type='text/javascript' language="javascript"></script></li>
+											</ul>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="met-showproduct-body page-content">
+				<div class="container">
+					<div class="row">
+
+							<!-- 内容选项卡 -->
+						<div class="col-lg-9 pull-lg-right">
+
+							<div class="row">
+								<div class="panel panel-body m-b-0 product-detail" boxmh-mh >
+									<ul class="nav nav-tabs nav-tabs-line m-b-20 met-showproduct-navtabs">
+										<li class="nav-item">
+											<a  class='nav-link active' data-toggle="tab" href="#product-content0" data-get="product-details">详细信息</a>
+										</li>
+									</ul>
+									<article class="tab-content">
+										<{$content.body}>
+									</article>
+								</div>
+							</div>
+						</div>
+		<!-- 内容选项卡 -->
+
+
+		<!-- 产品侧栏 -->
+						<div class="col-lg-3">
+							<div class="row">
+								<aside class="panel panel-body m-b-0 product-hot met-sidebar leftsidebar" boxmh-h>
+									<div class='sidebar-piclist'>
+										<h3 class='m-0 font-size-16 font-weight-300'>为您推荐</h3>
+										<ul class='blocks-2 blocks-md-3 blocks-lg-100 m-t-20 text-xs-center imagesize sidebar-piclist-ul' data-scale='x'>
+										   <{Cms:column limit="5" orderby="add_time desc" cat_id="$content['cat_id']" item="vo" key="k"}>
+											<li class='masonry-child'>
+												<a href='<{url link="contents/Contents/index" vars="id=$vo[id]" suffix="true" domain="true"}>' title='<{$vo.title}>' class='block m-b-0' target='_blank'>
+													<img src="<{$vo.images|level4|aimg}>" class='cover-image' alt='<{$vo.title}>' height='100'></a>
+												<h4 class='m-t-10 m-b-0 font-size-14 text-md-center'>
+													<a href='<{url link="contents/Contents/index" vars="id=$vo[id]" suffix="true" domain="true"}>' title='<{$vo.title}>' target='_blank'><{$vo.title|mb_truncation=20}></a>
+												</h4>
+											</li>
+											<{/Cms:column}>
+										</ul>
+									</div>
+								</aside>
+							</div>
+						</div>
+		<!-- 产品侧栏 -->
+
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- 标准模式 -->
+		
+		<{include file="./template/contents/default/site/footer.html" /}>
+	</body>
+
+</html>
