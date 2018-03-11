@@ -8,11 +8,14 @@ Shopxian3.0.0CMS是一款内容管理系统，适合企业及个人快速构建�
 
 ## 安装指导
 下载cms源码 https://codeload.github.com/zhangqiquan/shopxian_cms/zip/master
+
 推荐下载本地运行环境 https://www.apachefriends.org/zh_cn/index.html (下载php7以上版本)
+
 下载 建站集成软件包 XAMPP （下载并安装）
+
 安装运行 打开XAMPP安装目录下htdocs将cms源码复制到htdocs目录下替换原本里面的文件
 
-访问 http://127.0.0.1/public/进行安装
+访问 http://127.0.0.1/public/    进行安装
 数据库服务器：	
 localhost
 数据库服务器地址，一般为localhost
@@ -41,7 +44,12 @@ shopxian
 ##其他运行方式【推荐】
 当XAMPP安装以后 可以使用 XAMPP中php执行程序系统秀仙CMS系统 命令如下 
 首先进入命令行 window系统 请使用 window键+R键 输入 cmd 回车
-进入秀仙系统代码目录 的public下  启动命令 G:\xampp\php\php.exe -S 127.0.0.1:8888 shopxian (G:\xampp\为你电脑上xampp的安装目录)可以使用 127.0.0.1:8888 访问系统秀仙CMS系统
+
+进入秀仙系统代码目录 的public下  
+启动命令 G:\xampp\php\php.exe -S 127.0.0.1:8888 shopxian 
+(G:\xampp\为你电脑上xampp的安装目录)
+
+可以使用 127.0.0.1:8888 访问系统秀仙CMS系统
 
 ## 参与开发
 请参阅 [参考手册](http://help.shopxian.com)。
