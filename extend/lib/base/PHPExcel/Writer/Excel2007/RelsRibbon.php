@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:52
+            * 时间: 2018-03-11 18:25:11
             */
              class PHPExcel_Writer_Excel2007_RelsRibbon extends PHPExcel_Writer_Excel2007_WriterPart  {            public function writeRibbonRelationships(PHPExcel $pPHPExcel = null)      {                   $objWriter = null;          if ($this->getParentWriter()->getUseDiskCaching()) {              $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_DISK, $this->getParentWriter()->getDiskCachingDirectory());          } else {              $objWriter = new PHPExcel_Shared_XMLWriter(PHPExcel_Shared_XMLWriter::STORAGE_MEMORY);          }                     $objWriter->startDocument('1.0', 'UTF-8', 'yes');                     $objWriter->startElement('Relationships');          $objWriter->writeAttribute('xmlns', 'http:         $localRels = $pPHPExcel->getRibbonBinObjects('names');          if (is_array($localRels)) {              foreach ($localRels as $aId => $aTarget) {                  $objWriter->startElement('Relationship');                  $objWriter->writeAttribute('Id', $aId);                  $objWriter->writeAttribute('Type', 'http:                 $objWriter->writeAttribute('Target', $aTarget);                  $objWriter->endElement();              }          }          $objWriter->endElement();            return $objWriter->getData();      }  }  

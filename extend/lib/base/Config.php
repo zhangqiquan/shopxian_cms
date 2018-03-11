@@ -10,7 +10,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:51
+            * 时间: 2018-03-11 18:25:10
             */
          namespace lib\base;      class Config {      public function write($save_path,$data,$annotation=[]){          $save_data='<?php 
 
@@ -24,6 +24,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:51
+            * 时间: 2018-03-11 18:25:10
             */
        '."\n".'return ['."\n";          $lang=$annotation;          foreach($data as $k=>$v){              if(is_array($v)){                  if(isset($lang[$k])){                      $save_data.='                 }                  $save_data.="    '{$k}'=>[";                  foreach ($v as $key => $value) {                      $value= str_replace("'", "\'", $value);                      $save_data.="\n        '{$key}'=>'".$value."',";                  }                  $save_data.="\n    ],\n";              }else if(is_array($arr=json_decode($v, true))){                  if(isset($lang[$k])){                      $save_data.='                 }                  $save_data.="    '{$k}'=>[";                  foreach ($arr as $key => $value) {                      $value= str_replace("'", "\'", $value);                      $save_data.="'{$key}'=>'".$value."',";                  }                  $save_data.="],\n";              }else{                  $v=str_replace("'", "\'", $v);                  $save_data.="    '{$k}'=>'".$v."',                 if(isset($lang[$k])){                      $save_data.= isset($lang[$k])?$lang[$k]:'';                  }                  $save_data.="\n";              }          }          $save_data.="];";          return file_put_contents($save_path, $save_data);      }  }  

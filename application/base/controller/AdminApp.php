@@ -10,7 +10,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         
 namespace app\base\controller; 
@@ -178,7 +178,7 @@ class AdminApp extends BaseController{
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
        \nnamespace model\\$v;\n class  $classname extends \\think\Model{\n    protected \$table = '". $database['prefix']."{$dbname}';\n    protected \$pk = ". $pk.";\n} \n"); 
                                 } 

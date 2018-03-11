@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:53
+            * 时间: 2018-03-11 18:25:13
             */
          return [      'Stru'=>[          'id'=>[              'type'=>'int',              'length'=>'11',              'default'=>null,              'label'=>'文章id',              'in_list' => true,              'input_type'=>'hidden',          ],         'body'=>[                  'type'=>'varchar',                  'length'=>'5000',                 'comment'=>'图集内容',                  'label'=>'图集内容',                  'in_list' => false,                                    'default'=>'',                  'input_type'=>'baiduUmeditor',              ],     ],      'Charset'=>'utf8',      'Collate'=>'utf8_unicode_ci',      'Engine'=>'MyISAM',      'Annotation'=>'',      'primary'=>[              'id',      ],  ];

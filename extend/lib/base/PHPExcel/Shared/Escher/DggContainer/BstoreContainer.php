@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:51
+            * 时间: 2018-03-11 18:25:11
             */
              class PHPExcel_Shared_Escher_DggContainer_BstoreContainer  {            private $BSECollection = array();              public function addBSE($BSE)      {          $this->BSECollection[] = $BSE;          $BSE->setParent($this);      }              public function getBSECollection()      {          return $this->BSECollection;      }  }  

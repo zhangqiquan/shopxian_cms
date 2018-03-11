@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:52
+            * 时间: 2018-03-11 18:25:11
             */
              class PHPExcel_Worksheet_Row  {            private $parent;              private $rowIndex = 0;              public function __construct(PHPExcel_Worksheet $parent = null, $rowIndex = 1)      {                   $this->parent   = $parent;          $this->rowIndex = $rowIndex;      }              public function __destruct()      {          unset($this->parent);      }              public function getRowIndex()      {          return $this->rowIndex;      }              public function getCellIterator($startColumn = 'A', $endColumn = null)      {          return new PHPExcel_Worksheet_RowCellIterator($this->parent, $this->rowIndex, $startColumn, $endColumn);      }  }  

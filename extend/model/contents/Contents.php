@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:53
+            * 时间: 2018-03-11 18:25:13
             */
         namespace model\contents;  class  Contents extends \think\Model{     protected $table = 'zs_contents';     protected $pk = "id"; }  

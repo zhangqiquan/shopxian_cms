@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:51
+            * 时间: 2018-03-11 18:25:10
             */
              interface PHPExcel_CachedObjectStorage_ICache  {            public function addCacheData($pCoord, PHPExcel_Cell $cell);              public function updateCacheData(PHPExcel_Cell $cell);              public function getCacheData($pCoord);              public function deleteCacheData($pCoord);              public function isDataSet($pCoord);              public function getCellList();              public function getSortedCellList();              public function copyCellCollection(PHPExcel_Worksheet $parent);              public static function cacheMethodIsAvailable();  }  

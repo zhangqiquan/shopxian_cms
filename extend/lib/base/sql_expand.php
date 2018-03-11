@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:53
+            * 时间: 2018-03-11 18:25:12
             */
          namespace lib\base;    class sql_expand  extends \think\controller{      public function __construct($config = array()) {          parent::__construct($config);      }            public function table_sql($table_name){          $table_name=C('prefix').$table_name;          $sql="SHOW CREATE TABLE  $table_name";          $return=M($table_name)->query($sql);          return $return;               }            public function table_Stru($table_name){          $table_name=C('prefix').$table_name;          $sql="SHOW FULL FIELDS FROM  $table_name";          $return=M($table_name)->query($sql);          return $return;      }  }  

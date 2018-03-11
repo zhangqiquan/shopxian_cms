@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:52
+            * 时间: 2018-03-11 18:25:12
             */
              class PHPExcel_Writer_OpenDocument_Mimetype extends PHPExcel_Writer_OpenDocument_WriterPart  {            public function write(PHPExcel $pPHPExcel = null)      {          return 'application/vnd.oasis.opendocument.spreadsheet';      }  }  

@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:40
             */
-                         return [           'type'         => 'Think',           'view_path'    => '',           'view_suffix'  => 'html',           'view_depr'    => DIRECTORY_SEPARATOR,           'tpl_begin'    => '<{',           'tpl_end'      => '}>',           'taglib_begin' => '<{',           'taglib_end'   => '}>',      'strip_space'        => true,      'tpl_cache'          => false,      'cache_time'         => 0,      'default_filter' => '',          'tpl_replace_string'=>[          '__ROOT_PATH__'=>  request()->domain(),      ],      'taglib_pre_load'=>'common\taglib\Cms,common\taglib\Input,common\taglib\Zhanshop,common\taglib\Model'  ];  
+                       return [           'type'         => 'Think',           'view_path'    => '',           'view_suffix'  => 'html',           'view_depr'    => DIRECTORY_SEPARATOR,           'tpl_begin'    => '<{',           'tpl_end'      => '}>',           'taglib_begin' => '<{',           'taglib_end'   => '}>',      'strip_space'        => true,      'tpl_cache'          => false,      'cache_time'         => 0,      'default_filter' => '',          'tpl_replace_string'=>[          '__ROOT_PATH__'=>  request()->domain().dirname($_SERVER['SCRIPT_NAME']),      ],      'taglib_pre_load'=>'common\taglib\Cms,common\taglib\Input,common\taglib\Zhanshop,common\taglib\Model'  ];  

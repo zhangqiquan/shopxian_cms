@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 18:25:12
+            * 时间: 2018-03-11 18:25:10
             */
-             abstract class PHPExcel_Writer_OpenDocument_WriterPart extends PHPExcel_Writer_Excel2007_WriterPart  {  }  
+           namespace lib\base;  class Danli {      private static $_instace=NULL;      private function __construct() {          ;      }            public static function instace(){          if(is_null(self::$_instace)){              self::$_instace=new self;         }          return self::$_instace;      }      public function __clone() {          trigger_error('不允许克隆', E_USER_ERROR);      }        public function ceshi(){          echo "测试";      }  }  

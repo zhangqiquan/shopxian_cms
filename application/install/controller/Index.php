@@ -10,7 +10,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         
 namespace app\install\controller; 
@@ -159,11 +159,15 @@ class Index extends \think\Controller{
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
        \nnamespace think; 
 require __DIR__ . '/../include/base.php'; 
 Container::get('app')->run()->send();"); 
         return $this->fetch('site/index/finish'); 
+    } 
+    public function statusMsg($status='',$msg='',$url='',$close=true){ 
+        if($status)return $this->success($msg,$url,$close); 
+        return $this->error($msg, $url); 
     } 
 } 

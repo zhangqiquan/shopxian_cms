@@ -223,7 +223,7 @@
 				}
 			})()
 		</script>
-		<!--[if lte IE 8]><script src="http://demo-src.wpcom.cn/module4/wp-content/themes/Module/js/respond.min.js"></script><![endif]-->
+		<!--[if lte IE 8]><script src="<{$js_dir}>/js/respond.min.js"></script><![endif]-->
 	</head>
 
 	<body class="home page-template page-template-page-home page-template-page-home-php page page-id-269">
@@ -236,7 +236,7 @@
 						<{foreach name="imgs.path" item="p" key="k" }>
 							<div class="swiper-slide">
 								<a href="<{$imgs['link'][$k]}>" target="_blank">
-								<div class="slide-img" style="background-image: url('<{$p}>');"></div>
+								<div class="slide-img" style="background-image: url('<{$p|aimg}>');"></div>
 								</a>
 							</div>
 						<{/foreach}>

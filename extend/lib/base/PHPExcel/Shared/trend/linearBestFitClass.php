@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:51
+            * 时间: 2018-03-11 18:25:11
             */
            require_once(PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php');      class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit  {            protected $bestFitType        = 'linear';              public function getValueOfYForX($xValue)      {          return $this->getIntersect() + $this->getSlope() * $xValue;      }              public function getValueOfXForY($yValue)      {          return ($yValue - $this->getIntersect()) / $this->getSlope();      }                public function getEquation($dp = 0)      {          $slope = $this->getSlope($dp);          $intersect = $this->getIntersect($dp);            return 'Y = ' . $intersect . ' + ' . $slope . ' * X';      }              private function linearRegression($yValues, $xValues, $const)      {          $this->leastSquareFit($yValues, $xValues, $const);      }              public function __construct($yValues, $xValues = array(), $const = true)      {          if (parent::__construct($yValues, $xValues) !== false) {              $this->linearRegression($yValues, $xValues, $const);          }      }  }  

@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:53
+            * 时间: 2018-03-11 18:25:12
             */
          namespace lib\base;    class Xml {      static public function toarray($xml){          $str='<xml><node><![CDATA[content]]></node></xml>';          $res = @simplexml_load_string($xml,NULL,LIBXML_NOCDATA);          $res = json_decode(json_encode($res),true);          return $res;      }  }  

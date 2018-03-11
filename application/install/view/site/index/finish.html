@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>shopxian安装向导 - Powered by shopxian</title>
-<link rel="stylesheet" href="/static/css/install.css" />
-<script src="/static/js/install/jquery.js"></script>
+<link rel="stylesheet" href="__ROOT_PATH__/static/css/install.css" />
+<script src="__ROOT_PATH__/static/js/install/jquery.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -13,10 +13,10 @@
 </div>  <section class="section">
     <div class="">
       <div class="success_tip cc"> 安装完成
-		<p>为了您站点的安全，安装完成后即可将网站根目录下的“Install”文件夹删除，或者/install/目录下创建install.txt文件防止重复安装。<p>
+		<p>为了您站点的安全，安装完成后即可将网站application目录下的“Install”文件夹删除防止重复安装。<p>
       </div>
 	        <div class="bottom tac"> 
-                       <a href="<{url link='desktop/Admin/index'}>" class="btn btn_submit J_install_btn">进入后台</a>	
+                       <a href="<{url link='desktop/Admin/index'}>" style="background: url(__ROOT_PATH__/static/images/install/btn.png) no-repeat;" class="btn btn_submit J_install_btn">进入后台</a>	
       </div>
       <div class=""> </div>
     </div>

@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         use lib\base\Api; Route::get('api/captcha', function ($name) {     return response()         ->data(Api::run('\app\base\controller\Captcha','index'))         ->code(200)         ->contentType('text/plain'); }); Route::get('api/reporting', function () {     return response()         ->data(Api::run('\app\members\api\Reporting','index'))         ->code(200)         ->contentType('text/plain'); }); Route::get('api/downloadsysapp', function () {     return response()         ->data(Api::run('\app\system\api\downloadApp','index'))         ->code(200)         ->contentType('text/plain'); });

@@ -10,7 +10,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
          namespace common\taglib;  use think\template\TagLib;  use think\Cache;      class Zhanshop extends Taglib {           protected $tags = [          'menu'    => array('attr'=>'limit'),         'widgets'       => ['attr' => 'name,type,val', 'close' => 0],      ];      public function tagMenu($tag, $content){          $parseStr = '<?php 
 
@@ -24,7 +24,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         $a=appModel("system","SystemSiteMenu")->where(["enabled"=>"true"])->order("rank asc")->limit('.$tag['limit'].')->column("*");';          $parseStr .= 'foreach($a as $k=>$v){ ?>';          $parseStr .= '<?php 
 
@@ -38,7 +38,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         '                  . 'echo  str_replace(array("[url]","[title]"),array($v["url"],$v["title"]),"'.$content.'");'                  . ' ?>';          $parseStr .= '<?php 
 
@@ -52,7 +52,7 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         } ?>';          return $parseStr;      }      public function tagWidgets($tag, $content)      {          $parseStr='<?php 
 
@@ -66,6 +66,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:28
+            * 时间: 2018-03-11 18:24:39
             */
         ';          $parseStr.='if(isset($widgets)==false){';          $parseStr.='$widgets=new \lib\site\widgets();}';          $parseStr.='echo $widgets->getwidgets("'.$tag['name'].'","'.$tag['type'].'",\''.$tag['val'].'\');?>';          return $parseStr;      }  }  

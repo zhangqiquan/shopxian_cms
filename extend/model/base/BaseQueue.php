@@ -10,6 +10,6 @@
             * ============================================================================
             * 作者: 张启全 
 
-            * 时间: 2018-03-11 16:08:51
+            * 时间: 2018-03-11 18:25:09
             */
         namespace model\base;  class  BaseQueue extends \think\Model{     protected $table = 'zs_base_queue';     protected $pk = "id"; }  
