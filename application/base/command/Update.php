@@ -1,18 +1,5 @@
 <?php 
-
-           /**
-            * 秀仙系统 shopxian_release/3.0.0
-            * ============================================================================
-            * * 版权所有 2017-2018 上海秀仙网络科技有限公司，并保留所有权利。
-            * 网站地址: http://www.shopxian.com；
-            * ----------------------------------------------------------------------------
-            * 本软件只能免费使用  不允许对程序代码以任何形式任何目的再发布或者出售。
-            * ============================================================================
-            * 作者: 张启全 
-
-            * 时间: 2018-03-11 18:24:39
-            */
-        
+ 
 namespace app\base\command; 
  
 use think\config; 
@@ -100,21 +87,7 @@ class Update  extends Command{
                                                 $primary=$data['primary']; 
                                                 $pk= count($primary)==1?'"'.$primary[0].'"':''; 
                                                 if($pk=='')$pk= '["'.implode ('","', $primary).'"]'; 
-                                                file_put_contents(shopXianEnv('extend_path').'model/'.$v.'/'.$model_file_name, "<?php 
-
-           /**
-            * 秀仙系统 shopxian_release/3.0.0
-            * ============================================================================
-            * * 版权所有 2017-2018 上海秀仙网络科技有限公司，并保留所有权利。
-            * 网站地址: http://www.shopxian.com；
-            * ----------------------------------------------------------------------------
-            * 本软件只能免费使用  不允许对程序代码以任何形式任何目的再发布或者出售。
-            * ============================================================================
-            * 作者: 张启全 
-
-            * 时间: 2018-03-11 18:24:39
-            */
-       \nnamespace model\\$v;\n class  $classname extends \\think\Model{\n    protected \$table = '". $database['prefix']."{$dbname}';\n    protected \$pk = ". $pk.";\n} \n"); 
+                                                file_put_contents(shopXianEnv('extend_path').'model/'.$v.'/'.$model_file_name, "<?php\nnamespace model\\$v;\n class  $classname extends \\think\Model{\n    protected \$table = '". $database['prefix']."{$dbname}';\n    protected \$pk = ". $pk.";\n} \n"); 
                                             } 
                                         }                                         
                                         $table_name=$database['prefix'].basename($v1,'.php'); 
