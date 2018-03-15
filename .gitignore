@@ -1,11 +1,12 @@
 .idea
 composer.lock
 *.log
+thinkphp
 /nbproject/private/
 nbproject/
 runtime/
 public/*.html
 public/upload/
-public/uploads/
+tp5/
 tests/
 phpunit.xml

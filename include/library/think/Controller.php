@@ -70,10 +70,12 @@ class Controller
         $this->initialize();
 
         // 前置操作方法
-        foreach ((array) $this->beforeActionList as $method => $options) {
-            is_numeric($method) ?
-            $this->beforeAction($options) :
-            $this->beforeAction($method, $options);
+        if ($this->beforeActionList) {
+            foreach ($this->beforeActionList as $method => $options) {
+                is_numeric($method) ?
+                $this->beforeAction($options) :
+                $this->beforeAction($method, $options);
+            }
         }
     }
 
@@ -118,13 +120,6 @@ class Controller
      */
     protected function fetch($template = '', $vars = [], $config = [])
     {
-        if ('' === $template) {
-            $trace    = debug_backtrace(false, 2);
-            $suffix   = $this->app['config']->get('app.action_suffix');
-            $action   = $suffix ? substr($trace[1]['function'], 0, -strlen($suffix)) : $trace[1]['function'];
-            $template = Loader::parseName($action);
-        }
-
         return $this->view->fetch($template, $vars, $config);
     }
 
@@ -237,10 +232,11 @@ class Controller
         if (!$v->check($data)) {
             if ($this->failException) {
                 throw new ValidateException($v->getError());
+            } else {
+                return $v->getError();
             }
-            return $v->getError();
+        } else {
+            return true;
         }
-
-        return true;
     }
 }

@@ -1,5 +1,17 @@
 <?php 
- 
+
+/**
+ * 秀仙系统 shopxian_release/3.0.0
+ * ============================================================================
+ * * 版权所有 2017-2018 上海秀仙网络科技有限公司，并保留所有权利。
+ * 网站地址: http://www.shopxian.com；
+ * ----------------------------------------------------------------------------
+ * 本软件只能免费使用  不允许对程序代码以任何形式任何目的再发布或者出售。
+ * ============================================================================
+ * 作者: 张启全 
+
+ * 时间: 2018-03-15 19:24:50
+ */  
 namespace app\install\controller; 
 use app\install\lib\Install; 
 use think\Session; 
@@ -67,9 +79,9 @@ class Index extends \think\Controller{
  
     public function install($appName=''){ 
         $post= input('post.'); 
-        session('installPost',  json_encode($post)); 
-        $deploy= config('shopxian.base_app'); 
-        $return_data=['deploy'=>  json_encode($deploy)]; 
+        foreach ($post as $key => $value) { 
+            session($key,  $value); 
+        } 
         $obj_Install=new Install(); 
         $obj=$obj_Install->link($post['dbhost'], $post['dbuser'], $post['dbpw'], "", $post['dbport']); 
         $dbname=$post['dbname']; 
@@ -80,15 +92,25 @@ class Index extends \think\Controller{
          } 
         
         $isExists=$obj_Install->isExists($post['dbname']); 
+        if($isExists==false){ 
+            return $this->error("数据库不存在或者创建失败,请检查是否有权限"); 
+        } 
         $writeConf=$obj_Install->writeConf($post); 
-        if($writeConf==false)return trigger_error('配置文件写入失败');         
+        if($writeConf==false)return trigger_error('配置文件写入失败');     
+        sleep(1); 
+        return $this->redirect(url('toInstall')); 
+    } 
+    public function toInstall(){ 
+        $deploy= config('shopxian.base_app'); 
+        $return_data=['deploy'=>  json_encode($deploy)];             
         return $this->fetch('site/index/install',$return_data); 
     } 
+ 
     public function installApp(){ 
         $get=input(); 
         $get['error']='0'; 
         $obj_Install=new Install(); 
-        $config=  json_decode(session('installPost'), true); 
+        $config= session(''); 
         $obj_Install->link($config['dbhost'], $config['dbuser'], $config['dbpw'], $config['dbname'], $config['dbport']); 
         $return=$obj_Install->install($get['app']); 
         if($return!=1)$get['error']=$return; 
@@ -104,9 +126,8 @@ class Index extends \think\Controller{
     } 
     public function finish(){ 
         
-        $installPost=  json_decode(session('installPost'), true); 
-        $config= json_decode(session('installPost'),true); 
-        if(session('installPost')){ 
+        $config= session(''); 
+        if($config){ 
             
             $base_app=config('shopxian.base_app'); 
             foreach($base_app as $v){ 
@@ -133,6 +154,7 @@ class Index extends \think\Controller{
         }  
         
         session(null); 
+        file_put_contents(shopXianEnv('app_path').'install.txt', 1);
         return $this->fetch('site/index/finish'); 
     } 
     public function statusMsg($status='',$msg='',$url='',$close=true){ 

@@ -93,14 +93,14 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                        <form role="search" class="navbar-form-custom" method="post" action="http://www.zi-han.net/theme/hplus/search_results.html">
+                        <form role="search" class="navbar-form-custom" method="post" action="">
                             <div class="form-group">
                                 <input type="text" placeholder="请输入您需要查找的内容 …" class="layui-input" name="top-search" id="top-search" style="display: none;">
                             </div>
                         </form>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
-                        <li class="dropdown">
+                        <li class="dropdown" style="display:none;">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                                 <i class="fa fa-envelope"></i> <span class="label label-warning">0</span>
                             </a>
@@ -142,7 +142,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" style="display:none;">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                                 <i class="fa fa-bell"></i> <span class="label label-primary">0</span>
                             </a>
@@ -175,9 +175,16 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="hidden-xs">
-<!--                            <a  target="_blank" href=""  data-index="0"><i class="fa fa-cart-arrow-down"></i> 店铺首页</a>-->
-                        </li>
+                        <?php
+                        if($desktop_main_nav=config('shopxian.desktop_main_nav')){
+                            foreach($desktop_main_nav as $k=>$v){
+                                echo '<li class="hidden-xs">
+                            <a  target="_blank" href="'.$v.'"  data-index="0">'.$k.'</a>
+                        </li>';
+                            }
+                        }
+                        ?>
+                        
                         <li class="dropdown hidden-xs">
                             <a class="right-sidebar-toggle" aria-expanded="false">
                                 <i class="fa fa-tasks"></i> 主题
