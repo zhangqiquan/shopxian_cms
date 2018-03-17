@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:43
  */       class PHPExcel_Cell_Hyperlink  {            private $url;              private $tooltip;              public function __construct($pUrl = '', $pTooltip = '')      {                   $this->url     = $pUrl;          $this->tooltip = $pTooltip;      }              public function getUrl()      {          return $this->url;      }              public function setUrl($value = '')      {          $this->url = $value;          return $this;      }              public function getTooltip()      {          return $this->tooltip;      }              public function setTooltip($value = '')      {          $this->tooltip = $value;          return $this;      }              public function isInternal()      {          return strpos($this->url, 'sheet:     }              public function getHashCode()      {          return md5(              $this->url .              $this->tooltip .              __CLASS__          );      }  }  

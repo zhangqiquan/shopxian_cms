@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:21
+ * 时间: 2018-03-17 23:28:43
  */   namespace lib\base;  use model\base\BaseAppConfig;    class AppConfig {            public static function set(string $name, string $app = '', string $value = ''){                 $appConfig= new BaseAppConfig();          $data=[              'code'=>$name,              'value'=>$value,              'app'=>$app          ];          $appConfig->isUpdate($appConfig->get($name))->save($data);          return $appConfig->code;      }            public static function get(string $name = '', string $app = ''){          $appConfig= new BaseAppConfig();          $where=[];          if($name)$where['code']=$name;          if($name)$where['app']=$app;          $config=$appConfig->where($where)->cache(10)->find();         $res='';          if(isset($config->value))$res=$config->value;          return $res;      }            public static function all(array $names = [], string $app = ''){          $appConfig= new BaseAppConfig();          $where=[];          if($names)$where[]=['code','in',$names];          if($names)$where[]=['app','=',$app];          $config=$appConfig->where($where)->cache(10)->column('value','code');         return $config;      }  }  

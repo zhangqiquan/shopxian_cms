@@ -109,13 +109,16 @@ class Mysql extends Builder
      */
     public function parseKey(Query $query, $key)
     {
+        if (is_int($key)) {
+            return $key;
+        }
         $key = trim($key);
 
         if (strpos($key, '->') && false === strpos($key, '(')) {
             // JSON字段支持
-            list($field, $name) = explode('->', $key);
+            list($field, $name) = explode('->', $key, 2);
 
-            $key = 'json_extract(' . $this->parseKey($query, $field) . ', \'$.' . $name . '\')';
+            $key = 'json_extract(' . $this->parseKey($query, $field) . ', \'$.' . str_replace('->', '.', $name) . '\')';
         } elseif (strpos($key, '.') && !preg_match('/[,\'\"\(\)`\s]/', $key)) {
             list($table, $key) = explode('.', $key, 2);
 

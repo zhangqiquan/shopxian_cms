@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:45
  */       abstract class PHPExcel_Worksheet_CellIterator  {            protected $subject;              protected $position = null;              protected $onlyExistingCells = false;              public function __destruct()      {          unset($this->subject);      }              public function getIterateOnlyExistingCells()      {          return $this->onlyExistingCells;      }              abstract protected function adjustForExistingOnlyRange();              public function setIterateOnlyExistingCells($value = true)      {          $this->onlyExistingCells = (boolean) $value;            $this->adjustForExistingOnlyRange();      }  }  

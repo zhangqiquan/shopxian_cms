@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
- */   namespace model\contents;   class  ContentsComment extends \think\Model{      protected $table = 'zs_contents_comment';      protected $pk = "contents_id";  }   
+ * 时间: 2018-03-17 23:28:45
+ */  namespace model\contents;  class  ContentsComment extends \think\Model{     protected $table = 'zs_contents_comment';     protected $pk = "contents_id"; }  

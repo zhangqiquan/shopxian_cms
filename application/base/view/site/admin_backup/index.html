@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="__ROOT_PATH__/static/layui-v2.1.1/layui/css/layui.css"  media="all">
+    </head>
+    <body>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+        <legend>数据过大的情况下不建议使用本功能备份/还原数据 (请谨慎操作！！！可能过慢或者造成数据备份异常)</legend>
+      </fieldset>
+        <button class="layui-btn layui-btn-primary" type="button"><a href="<{url link='backup' }>" >备份</a></button>
+        <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="150">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>文件名</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              <{foreach name="data" item="vo"}>
+              <{if $vo!='.'&&$vo!='..'}>
+              <tr>
+                <td><{$vo}></td>
+                <td><a href="<{url link='recover' }>?file=<{$vo}>" >还原</a>&nbsp;|&nbsp;<a href="<{url link='del' }>?file=<{$vo}>" >删除</a></td>
+              </tr>
+              <{/if}>
+              <{/foreach}>
+            </tbody>
+          </table>
+    </body>
+</html>

@@ -76,6 +76,11 @@
     } 
 ?> 
 <?php 
+
+if(!cookie(md5($_SERVER['REQUEST_URI']))){ 
+error_log($_SERVER['REQUEST_URI'].'---'."发生错误---".$message, 3, shopXianEnv('runtime_path').'wx456.log'); 
+AppLog($_SERVER['REQUEST_URI'],"发生错误",$message, 2); 
+} 
 $info=$message; 
 $icon='&#xe607;'; 
 if(\think\facade\App::isDebug()) { 

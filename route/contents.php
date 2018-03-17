@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
+ * 时间: 2018-03-17 23:28:32
  */   Route::get('c/:id', 'contents/Cat/index');  Route::get('c/:id', 'contents/Cat/index');  Route::get('a/:id', 'contents/Contents/index');

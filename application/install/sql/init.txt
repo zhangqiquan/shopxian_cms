@@ -151,7 +151,6 @@ INSERT INTO `zs_contents` VALUES ('0000000076', '新浪微博', '/template/conte
 INSERT INTO `zs_contents` VALUES ('0000000077', '360', '/template/contents/default/site/img/360.png', '', '1', '', '', '', '11', '', '', '1', '1', '50', '1520052743', '0');
 INSERT INTO `zs_contents` VALUES ('0000000078', '搜狐', '/template/contents/default/site/img/sh.png', '', '1', '', '', '', '11', '', '', '1', '1', '50', '1520052774', '0');
 INSERT INTO `zs_contents` VALUES ('0000000079', '今日头条', '/template/contents/default/site/img/tt.png', '', '1', '', '', '', '11', '', '', '1', '1', '50', '1520052802', '0');
-INSERT INTO `zs_contents` VALUES ('0000000080', '测试下载', '', '', '4', '', '', '', '14', '', '', '1', '1', '50', '1520059224', '0');
 
 
 DROP TABLE IF EXISTS `zs_contents_ad`;
@@ -483,19 +482,6 @@ INSERT INTO `zs_contents_tupianji` VALUES ('2', '<p>客户案例2客户案例2�
 INSERT INTO `zs_contents_tupianji` VALUES ('3', '<p>客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3客户案例3</p>');
 INSERT INTO `zs_contents_tupianji` VALUES ('4', '<p>客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4客户案例4</p>');
 
-
-DROP TABLE IF EXISTS `zs_contents_xiazai`;
-CREATE TABLE `zs_contents_xiazai` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `filesize` varchar(60) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '大小',
-  `version` varchar(60) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '版本',
-  `downloadurl` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '下载地址',
-  `body` varchar(5000) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '详细信息',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-
-INSERT INTO `zs_contents_xiazai` VALUES ('80', '100', '1.0', 'http://baidu.com/DownLoad/2016060110060367.xlsx', '<p>123456789</p>');
 
 
 INSERT INTO `zs_contents_friendlink` VALUES ('0000000001', '秀仙网', 'http://www.shopxian.com', '', '', '', '', 'home', '1', '1');

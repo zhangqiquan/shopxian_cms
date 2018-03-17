@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:43
  */       class PHPExcel_CalcEngine_CyclicReferenceStack  {            private $stack = array();              public function count()      {          return count($this->stack);      }              public function push($value)      {          $this->stack[$value] = $value;      }              public function pop()      {          return array_pop($this->stack);      }              public function onStack($value)      {          return isset($this->stack[$value]);      }              public function clear()      {          $this->stack = array();      }              public function showStack()      {          return $this->stack;      }  }  

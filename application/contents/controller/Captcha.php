@@ -10,23 +10,23 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
- */  
-namespace app\contents\controller; 
-use lib\images\Captcha as lib; 
- 
-class Captcha { 
-    public function index($w=130,$h=40,$fontSize=20){ 
-        $config =    [ 
+ * 时间: 2018-03-17 23:28:31
+ */ 
+namespace app\contents\controller;
+use lib\images\Captcha as lib;
+
+class Captcha {
+    public function index($w=130,$h=40,$fontSize=20){
+        $config =    [
             
-            'fontSize'    =>    $fontSize,     
+            'fontSize'    =>    $fontSize,    
             
-            'length'      =>    3,    
-            'imageH'   => $h, 
+            'length'      =>    3,   
+            'imageH'   => $h,
             
-            'imageW'   => $w, 
-        ]; 
-        $captcha = new lib($config); 
-        return $captcha->entry('contents');    
-    } 
-} 
+            'imageW'   => $w,
+        ];
+        $captcha = new lib($config);
+        return $captcha->entry('contents');   
+    }
+}

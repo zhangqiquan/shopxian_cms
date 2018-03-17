@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
- */   namespace model\desktop;   class  DesktopMenu extends \think\Model{      protected $table = 'zs_desktop_menu';      protected $pk = "menus_id";  }   
+ * 时间: 2018-03-17 23:28:45
+ */  namespace model\desktop;  class  DesktopMenu extends \think\Model{     protected $table = 'zs_desktop_menu';     protected $pk = "menus_id"; }  

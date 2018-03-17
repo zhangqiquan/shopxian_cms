@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:45
  */   namespace lib\base;    class Xml {      static public function toarray($xml){          $str='<xml><node><![CDATA[content]]></node></xml>';          $res = @simplexml_load_string($xml,NULL,LIBXML_NOCDATA);          $res = json_decode(json_encode($res),true);          return $res;      }  }  

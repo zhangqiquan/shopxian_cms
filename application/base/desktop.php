@@ -10,7 +10,7 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
+ * 时间: 2018-03-17 23:28:31
  */  
 return [ 
     [ 
@@ -96,10 +96,37 @@ return [
                 "arg"=>"" 
             ], 
             [ 
-                "name"=>"系统日志清空", 
+                "name"=>"数据备份/还原", 
                 "app"=>"base", 
-                "controller"=>"AdminAppLog", 
-                "method"=>"clearAll", 
+                "controller"=>"AdminBackup", 
+                "method"=>"index", 
+                "rank"=>"20", 
+                "display"=>true, 
+                "arg"=>"" 
+            ], 
+            [ 
+                "name"=>"数据备份", 
+                "app"=>"base", 
+                "controller"=>"AdminBackup", 
+                "method"=>"backup", 
+                "rank"=>"20", 
+                "display"=>false, 
+                "arg"=>"" 
+            ], 
+            [ 
+                "name"=>"数据还原", 
+                "app"=>"base", 
+                "controller"=>"AdminBackup", 
+                "method"=>"recover", 
+                "rank"=>"20", 
+                "display"=>false, 
+                "arg"=>"" 
+            ], 
+            [ 
+                "name"=>"数据还原", 
+                "app"=>"base", 
+                "controller"=>"AdminBackup", 
+                "method"=>"del", 
                 "rank"=>"20", 
                 "display"=>false, 
                 "arg"=>"" 

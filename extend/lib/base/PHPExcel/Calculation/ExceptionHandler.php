@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:43
  */       class PHPExcel_Calculation_ExceptionHandler  {            public function __construct()      {          set_error_handler(array('PHPExcel_Calculation_Exception', 'errorHandlerCallback'), E_ALL);      }              public function __destruct()      {          restore_error_handler();      }  }  

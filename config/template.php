@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
+ * 时间: 2018-03-17 23:28:32
  */                 return [           'type'         => 'Think',           'view_path'    => '',           'view_suffix'  => 'html',           'view_depr'    => DIRECTORY_SEPARATOR,           'tpl_begin'    => '<{',           'tpl_end'      => '}>',           'taglib_begin' => '<{',           'taglib_end'   => '}>',      'strip_space'        => true,      'tpl_cache'          => false,      'cache_time'         => 0,      'default_filter' => '',          'tpl_replace_string'=>[          '__ROOT_PATH__'=> root_path(),      ],      'taglib_pre_load'=>'common\taglib\Cms,common\taglib\Input,common\taglib\Zhanshop,common\taglib\Model'  ];  

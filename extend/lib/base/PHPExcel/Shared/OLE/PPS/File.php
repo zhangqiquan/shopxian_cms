@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:45
  */                             class PHPExcel_Shared_OLE_PPS_File extends PHPExcel_Shared_OLE_PPS  {            public function __construct($name)      {          parent::__construct(null, $name, PHPExcel_Shared_OLE::OLE_PPS_TYPE_FILE, null, null, null, null, null, '', array());      }              public function init()      {          return true;      }              public function append($data)      {          $this->_data .= $data;      }              public function getStream()      {          $this->ole->getStream($this);      }  }  

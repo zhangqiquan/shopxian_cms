@@ -1,25 +1,14 @@
 <?php 
-return [
-	'type'=>'mysql',
-	'dsn'=>'',
-	'hostname'=>'127.0.0.1',
-	'database'=>'shopxian111',
-	'username'=>'root',
-	'password'=>'',
-	'hostport'=>'3306',
-	'params'=>[],
-	'charset'=>'utf8',
-	'prefix'=>'zs_',
-	'debug'=>'1',
-	'deploy'=>'0',
-	'rw_separate'=>'',
-	'master_num'=>'1',
-	'slave_no'=>'',
-	'fields_strict'=>'1',
-	'resultset_type'=>'array',
-	'auto_timestamp'=>'',
-	'datetime_format'=>'Y-m-d H:i:s',
-	'sql_explain'=>'',
-	'query'=>'\think\db\Query',
-	'break_reconnect'=>'1',
-];
+
+/**
+ * 秀仙系统 shopxian_release/3.0.0
+ * ============================================================================
+ * * 版权所有 2017-2018 上海秀仙网络科技有限公司，并保留所有权利。
+ * 网站地址: http://www.shopxian.com；
+ * ----------------------------------------------------------------------------
+ * 本软件只能免费使用  不允许对程序代码以任何形式任何目的再发布或者出售。
+ * ============================================================================
+ * 作者: 张启全 
+
+ * 时间: 2018-03-17 23:22:54
+ */           return [          'type'            => 'mysql',          'hostname'        => '127.0.0.1',          'database'        => 'root',          'username'        => 'root',          'password'        => '',          'hostport'        => '3306',          'dsn'             => '',          'params'          => [],          'charset'         => 'utf8',          'prefix'          => 'zs_',          'debug'           => true,          'deploy'          => 0,          'rw_separate'     => false,          'master_num'      => 1,          'slave_no'        => '',          'fields_strict'   => true,          'resultset_type'  => 'array',          'auto_timestamp'  => false,          'datetime_format' => 'Y-m-d H:i:s',          'sql_explain'     => false,          'break_reconnect' => true,          'query'           => '\\think\\db\\Query', ];

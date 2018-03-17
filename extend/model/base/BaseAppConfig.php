@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:21
- */   namespace model\base;   class  BaseAppConfig extends \think\Model{      protected $table = 'zs_base_app_config';      protected $pk = "code";  }   
+ * 时间: 2018-03-17 23:28:43
+ */  namespace model\base;  class  BaseAppConfig extends \think\Model{     protected $table = 'zs_base_app_config';     protected $pk = "code"; }  

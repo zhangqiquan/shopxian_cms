@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
- */               return [          'prefix'    => '',          'expire'    => 0,          'path'      => '/',          'domain'    => '',          'secure'    => false,          'httponly'  => '',          'setcookie' => true, ]; 
+ * 时间: 2018-03-17 23:28:32
+ */                 return [           'prefix'    => '',           'expire'    => 0,           'path'      => '/',           'domain'    => '',           'secure'    => false,           'httponly'  => '',           'setcookie' => true,  ];  

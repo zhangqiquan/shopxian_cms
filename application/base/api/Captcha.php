@@ -10,26 +10,26 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
- */  
-namespace app\base\api; 
-use lib\images\Captcha as lib; 
- 
-class Captcha { 
-    public function index(){ 
-        echo 222222;die; 
-        $config =    [ 
+ * 时间: 2018-03-17 23:28:31
+ */ 
+namespace app\base\api;
+use lib\images\Captcha as lib;
+
+class Captcha {
+    public function index(){
+        echo 222222;die;
+        $config =    [
             
-            'fontSize'    =>    30,     
+            'fontSize'    =>    30,    
             
-            'length'      =>    3,    
+            'length'      =>    3,   
             
-            'useNoise'    =>    false,  
-            'imageH'=>500, 
-            'imageW'=>300, 
-            'bg'       => [242, 157, 177], 
-        ]; 
-        $captcha = new lib($config); 
-        return $captcha->entry();  
-    } 
-} 
+            'useNoise'    =>    false, 
+            'imageH'=>500,
+            'imageW'=>300,
+            'bg'       => [242, 157, 177],
+        ];
+        $captcha = new lib($config);
+        return $captcha->entry(); 
+    }
+}

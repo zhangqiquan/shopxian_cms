@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
- */   namespace model\files;   class  FilesData extends \think\Model{      protected $table = 'zs_files_data';      protected $pk = "file_id";  }   
+ * 时间: 2018-03-17 23:28:45
+ */  namespace model\files;  class  FilesData extends \think\Model{     protected $table = 'zs_files_data';     protected $pk = "file_id"; }  

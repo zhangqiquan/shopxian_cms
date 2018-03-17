@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:21
+ * 时间: 2018-03-17 23:28:43
  */     namespace lib\base;  class Danli {      private static $_instace=NULL;      private function __construct() {          ;      }            public static function instace(){          if(is_null(self::$_instace)){              self::$_instace=new self;         }          return self::$_instace;      }      public function __clone() {          trigger_error('不允许克隆', E_USER_ERROR);      }        public function ceshi(){          echo "测试";      }  }  

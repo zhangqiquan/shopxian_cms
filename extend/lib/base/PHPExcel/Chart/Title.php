@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:43
  */       class PHPExcel_Chart_Title  {              private $caption = null;              private $layout = null;              public function __construct($caption = null, PHPExcel_Chart_Layout $layout = null)      {          $this->caption = $caption;          $this->layout = $layout;      }              public function getCaption()      {          return $this->caption;      }              public function setCaption($caption = null)      {          $this->caption = $caption;                    return $this;      }              public function getLayout()      {          return $this->layout;      }  }  

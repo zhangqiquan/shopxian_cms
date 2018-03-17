@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
+ * 时间: 2018-03-17 23:28:32
  */   if((isset($_SERVER['LOCAL_ADDR'])&&$_SERVER['LOCAL_ADDR']=='127.0.0.1')||(isset($_SERVER['SERVER_ADDR'])&&$_SERVER['SERVER_ADDR']=='127.0.0.1')){      config('app.app_debug',true);      config('template.strip_space',false);      config('template.cache_time',false);  }  $file_path=__DIR__.DIRECTORY_SEPARATOR.'database'.DIRECTORY_SEPARATOR.'127.0.0.1.php';  if(isset($_SERVER['HTTP_HOST'])&&file_exists(__DIR__.DIRECTORY_SEPARATOR.'database'.DIRECTORY_SEPARATOR.$_SERVER['HTTP_HOST'].'.php'))$file_path=__DIR__.DIRECTORY_SEPARATOR.'database'.DIRECTORY_SEPARATOR.$_SERVER['HTTP_HOST'].'.php';  return require_once $file_path;

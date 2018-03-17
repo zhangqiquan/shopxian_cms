@@ -10,13 +10,13 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
- */  
-namespace app\system\api; 
- 
-class downloadApp { 
-    public function index(){ 
+ * 时间: 2018-03-17 23:28:32
+ */ 
+namespace app\system\api;
+
+class downloadApp {
+    public function index(){
         echo file_get_contents('http:
-        die; 
-    } 
-} 
+        die;
+    }
+}

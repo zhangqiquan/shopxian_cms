@@ -10,5 +10,5 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:22
+ * 时间: 2018-03-17 23:28:45
  */   namespace lib\image;    class Upload {      use \traits\controller\Jump;            public static function image($user_id){          $path=dirname($_SERVER['SCRIPT_FILENAME']) . DIRECTORY_SEPARATOR;          $path1=DS.'uploads'.DIRECTORY_SEPARATOR.'member'.$user_id.DIRECTORY_SEPARATOR.date('Ymd').DS;          $path.=$path1;          $path2=uniqid().'.'.pathinfo($_FILES["file"]['name'])['extension'];          $path.=$path2;          $exarr=explode(DS,$path1);          $path1=DS.'uploads'.DIRECTORY_SEPARATOR.'member'.$user_id.DIRECTORY_SEPARATOR.date('Ymd').DIRECTORY_SEPARATOR.$path2;          $mkpath=dirname($_SERVER['SCRIPT_FILENAME']) . DIRECTORY_SEPARATOR;          foreach($exarr as $k=>$v){              if($k==0||$v==false) continue;              $mkpath.=$v.DS;              if(!is_dir($mkpath))mkdir ($mkpath, 0777);          }          if(move_uploaded_file($_FILES['file']['tmp_name'], $path)){              return $this->success('上传成功','' , ltrim(ltrim(str_replace(DS, '/', $path1),'/'),'/'));          }else{              return $this->error('上传失败','' , '');          }      }  }  

@@ -10,7 +10,7 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-15 19:07:10
+ * 时间: 2018-03-17 23:28:31
  */  
 namespace app\contents\controller; 
 use lib\contents\ContentCat; 
@@ -115,12 +115,13 @@ class Contents extends Base{
         return $this->error ("踩失败"); 
     } 
     public function download($id){ 
-        $row=appModel('contents', 'ContentsXiazai')->cache(30)->find($id); 
+        $row=appModel('contents', 'ContentsXiazaizhongxin')->cache(3)->find($id); 
         if(!$row)return $this->_empty ();                                   
-        $filepath = $row->downloadurl;   
+        $filepath = $row->dizhi;   
         $arr = explode( '/' , $filepath); 
         $filename= $arr[count($arr)-1];     
         if($filepath){ 
+            if(count(explode('.', $filename))==1)$filename.='.zip'; 
             header("Content-type: text/plain"); 
             header("Accept-Ranges: bytes"); 
             header("Content-Disposition: attachment; filename=".$filename); 
