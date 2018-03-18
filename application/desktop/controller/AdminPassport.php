@@ -10,7 +10,7 @@
  * ============================================================================
  * 作者: 张启全 
 
- * 时间: 2018-03-17 23:28:31
+ * 时间: 2018-03-18 16:56:40
  */  
 namespace app\desktop\controller; 
 use lib\base\SiteController; 
@@ -60,14 +60,7 @@ class AdminPassport extends SiteController{
         ]); 
     } 
     public function exitLogin(){ 
-        $Session=new Session(); 
-        $Session->clear(); 
-        $cookie=$_COOKIE; 
-        if($cookie){ 
-            foreach($cookie as $k=>$v){ 
-                setcookie($k, NULL, 0); 
-            } 
-        } 
+        session(null); 
         $this->redirect('AdminPassport/login'); 
     } 
 } 
