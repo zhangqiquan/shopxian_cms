@@ -12,7 +12,7 @@ Shopxian3.0.0CMS内容管理系统
 > 浏览器要求IE9及以上
 
 ##系统预览与演示
-秀仙CMS演示站: http://demo-cms3.shopxian.cn/
+秀仙CMS演示站: <a href="http://demo-cms3.shopxian.cn/" target="_blank">http://demo-cms3.shopxian.cn/</a>
 
 秀仙CMS演示站后台地址: 
 http://demo-cms3.shopxian.cn/shopadmin
