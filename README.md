@@ -33,24 +33,13 @@ https://www.kancloud.cn/quanquan/shopxian_cms/546783
 
 ## 安装指导
 下载安装C++运行库http://psoft.xpgod.com:801/small/visualc2016_xpgod.zip
-下载php7.2  https://pan.baidu.com/s/13S_-3U8nh3JwiANg9lzPYg 下载并解压
 
-ShopXianCms 源码下载
-访问 https://codeload.github.com/zhangqiquan/shopxian_cms/zip/master 下载代码并解压
-
-1. 使用命令启动 ShopXian 
-2. 使用 windows键 + R 输入 CMD  打开cmd控制台 
-3. 使用D: 盘符进入D盘 
-4. 使用cd  php\shopxian_cms3\shopxian_cms-master\public 进入 Shopxian public网页公共目录 (下载的源码目录)
-5. 使用 D:\php\php-7.2.3-nts-Win32-VC15-x64\php.exe -S 127.0.0.1:8888 shopxian 启动PHP Server环境
-6. (注意具体路径按你保存的路径)
-
-下载并安装mysql
-https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.21.0.msi
-安装过程中设置root 密码 如设置密码为 123456
+使用 https://raw.githubusercontent.com/zhangqiquan/shopxian_cms/master/UPUPW_shopxian3.0.7z  一键安装shopxian系统
+下载解压 打开UPUPW_shopxian3.0目录下的upupw.exe 双击运行  输入提示中的  s1 回车 
+ 
 
 ##安装Shopxian系统
-在浏览器地址栏访问 127.0.0.1:8888/install
+在浏览器地址栏访问 127.0.0.1/install
 
 ![Image text](https://box.kancloud.cn/1dc62de62412289f524ca3789d022f0d_755x587.png)
 
@@ -65,9 +54,9 @@ https://cdn.mysql.com//Downloads/MySQLInstaller/mysql-installer-community-5.7.21
 	    设置数据库信息
 	    填写数据库服务器地址: localhost 本地安装默认
 	    数据库端口:3306 本地安装默认
-	    数据库用户名:root 一般默认
-	    数据库密码:123456 刚才安装mysql时候设置的数据库密码
-	    数据库名:shopxian 可以修改
+	    数据库用户名:root 
+	    数据库密码:root   
+	    数据库名:shopxian3.0 可以修改
 	
 	    设置管理员信息
 	    管理员账号:admin 一般填写admin
