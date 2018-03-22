@@ -39,7 +39,7 @@ https://www.kancloud.cn/quanquan/shopxian_cms/546783
  
 
 ##安装Shopxian系统
-在浏览器地址栏访问 127.0.0.1/install
+在浏览器地址栏访问 127.0.0.1/index.php/install
 
 ![Image text](https://box.kancloud.cn/1dc62de62412289f524ca3789d022f0d_755x587.png)
 
